@@ -1,8 +1,13 @@
-#include<dfa.h>
-typedef struct state
+#include"dfa.h"
+struct pair
+{
+	int state;
+	int alpha;
+	Pair* next;
+};
+struct state
 {	
 	int id;
-	state* next;
-	int isfinal = 0;
-	char token[20];
-}
+	Pair* trans;
+	char* token;
+};
