@@ -46,9 +46,6 @@ void read_dfa(char* filename)
 	ssize_t read;
 	char* line = NULL;
 	char* tok;
-	finalstate* head;
-	finalstate* temp; 
-	head = (finalstate*)malloc(sizeof(finalstate));
 	state* states[11];
 	int i;
 	for(i=0;i<11;i++)
