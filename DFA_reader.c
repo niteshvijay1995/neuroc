@@ -30,7 +30,7 @@ _ -> 9
 
 */
 //int final[];
-
+int num_states = 60;
 typedef struct finalstate finalstate;
 struct finalstate
 {
@@ -39,21 +39,22 @@ struct finalstate
 	finalstate* next;
 };
 
-void read_dfa(char* filename)
+void read_dfa(char* filename, state** states)
 {
 	FILE *file = fopen(filename,"r");
 	size_t len = 0;
 	ssize_t read;
 	char* line = NULL;
 	char* tok;
-	state* states[57];
 	int i;
-	for(i=0;i<57;i++)
+	for(i=0;i<num_states;i++)
 	{
 		states[i] = (state*)malloc(sizeof(state));
 		states[i]->isfinal = 0;
 		states[i]->islookup = 0;
 	}
+	lookup_table = ht_create(30);
+	printf("States initialised\n");
 	if(file == 0)
 		printf("Problem opening file");
 	else
@@ -62,6 +63,7 @@ void read_dfa(char* filename)
 		{
 			if(strcmp(line,"<FinalStates>\n") == 0)
 			{
+				printf("Reading Final States ...\n");
 				int final_state_id;
 				while((len = getline(&line, &len, file)) != -1 && strcmp(line,"</FinalStates>\n"))
 				{
@@ -76,6 +78,7 @@ void read_dfa(char* filename)
 			}
 			if(strcmp(line,"<Transition>\n") == 0)
 			{
+				printf("Reading Transition States ...\n");
 				//temp = head;
 				int from;
 				int to;
@@ -84,6 +87,7 @@ void read_dfa(char* filename)
 				Pair* temp_pair;		
 				while((len = getline(&line, &len, file)) != -1 && strcmp(line,"</Transition>\n"))
 				{
+					printf(".");
 					//printf("..%s..",line);
 					tok = strtok(line," ");
 					from = atoi(tok);						
@@ -105,22 +109,42 @@ void read_dfa(char* filename)
 					}
 					else
 					{
+						//printf("Adding more trans\n");
 						while(temp_pair->next != NULL)
 							temp_pair = temp_pair->next;
 						temp_pair->next = (Pair*)malloc(sizeof(Pair));
 						temp_pair = temp_pair->next;
 					}	
+					
 					temp_pair->next_state = to;
 					temp_pair->alpha = alpha_index;
+					temp_pair->next = NULL;
+				}
+			}
+			if(strcmp(line,"<Lookup>\n") == 0)
+			{
+				printf("Reading Lookup ...\n");
+				int state;
+				char lexime[20];
+				char token[20];		
+				while((len = getline(&line, &len, file)) != -1 && strcmp(line,"</Lookup>\n"))
+				{
+					printf(".");
+					tok = strtok(line," ");
+					state = atoi(tok);
+					states[state]->isfinal = 1;
+					states[state]->islookup = 1;	
+					tok = strtok(NULL," ");
+					strcpy(lexime,tok);					
+					tok = strtok(NULL,"\n");
+					strcpy(token,tok);
+					ht_insert(lookup_table,lexime,token);
 				}
 			}
 		}
 		fclose(file);
 	//print(head);
 	printstate(states);
+	//return states;
 	}
-}
-int main()
-{
-	read_dfa("dfa.txt");
 }

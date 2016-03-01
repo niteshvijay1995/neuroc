@@ -114,7 +114,6 @@ char* getNextToken(char* input, state** states){
 		char* token;
 		if((token = ht_get(lookup_table,input)) !=NULL)
 			return token;
-		}
 	if(states[curr_state_id]->isfinal==1) return states[curr_state_id]->token;
 	else return a;
 }

@@ -33,11 +33,6 @@
 54 TK_FIELDID
 </FinalStates>
 <Transition>
-0 _ 1
-1 m 2
-2 a 3
-3 i 4
-4 n 5
 0 > 6
 6 = 7
 0 < 8
@@ -102,9 +97,6 @@
 0 a 54
 54 a 54
 54 b 54
-0 A 55
-55 a 56
-56 a 56
 </Transition>
 <Lookup>
 49 with TK_WITH
@@ -129,7 +121,7 @@
 49 endrecord TK_ENDRECORD
 49 else TK_ELSE
 54 _main TK_MAIN
-56 If TK_IF
-56 Input TK_INPUT
+49 if TK_IF
+49 input TK_INPUT
 </Lookup>
 

@@ -6,7 +6,7 @@ Date 29-02-16
 #include<stdio.h>
 #include<malloc.h>
 #include "DFA_reader.c"
-state* states[num_states];
+state* states[60];
 //Function to get buffer stream from file
 FILE* getStream(FILE *fp, char** Buffer, size_t buffersize)
 {

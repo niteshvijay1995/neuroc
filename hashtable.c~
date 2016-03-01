@@ -118,3 +118,19 @@ char* ht_get(hashtable* ht, char* key){
 	}
 }
 
+int main( int argc, char **argv ) {
+
+	hashtable* ht = ht_create( 65536 );
+
+	insert( ht, "key1", "inky" );
+	insert( ht, "key2", "pinky" );
+	insert( ht, "key3", "blinky" );
+	insert( ht, "key4", "floyd" );
+
+	printf( "%s\n", get( ht, "key1" ) );
+	printf( "%s\n", get( ht, "key2" ) );
+	printf( "%s\n", get( ht, "key3" ) );
+	printf( "%s\n", get( ht, "key4" ) );
+
+	return 0;
+}
