@@ -85,3 +85,28 @@ void printstate(state** states)
 			}
 	}
 }
+
+//returns the next state after searching linked list.
+int search_linked_list(Pair* p, int alpha){
+	Pair* head = p;
+	while(head!=NULL){
+		if(head->alpha == alpha) return head->next_state;
+		head = head->next;
+	}
+	return -1;
+}
+char* getNextToken(char* input, state** states){
+	int i,next_state_id;
+	int curr_state_id = 0;
+	char* a = malloc(100* sizeof(char));
+	a = "Invalid stream";
+	int len = strlen(input);
+	for(i=0; i<len; i++){
+		int alpha = char2index(input[i]);
+		next_state_id =  search_linked_list(states[curr_state_id]->trans, alpha);
+		if(next_state_id == -1) return a;
+		else curr_state_id = next_state_id;
+	}
+	if(states[curr_state_id]->isfinal==1) return states[curr_state_id]->token;
+	else return a;
+}
