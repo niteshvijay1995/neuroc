@@ -1,4 +1,4 @@
-#include "dfa.h"
+#include "dfa.c"
 #include <stdio.h>
 int char2index(char ch)
 {
@@ -110,4 +110,3 @@ char* getNextToken(char* input, state** states){
 	if(states[curr_state_id]->isfinal==1) return states[curr_state_id]->token;
 	else return a;
 }
-
