@@ -46,9 +46,9 @@ void read_dfa(char* filename)
 	ssize_t read;
 	char* line = NULL;
 	char* tok;
-	state* states[11];
+	state* states[57];
 	int i;
-	for(i=0;i<11;i++)
+	for(i=0;i<57;i++)
 	{
 		states[i] = (state*)malloc(sizeof(state));
 		states[i]->isfinal = 0;
@@ -63,29 +63,20 @@ void read_dfa(char* filename)
 			if(strcmp(line,"<FinalStates>\n") == 0)
 			{
 				int final_state_id;
-				//char* final_state_token;
-				//temp = head;	
 				while((len = getline(&line, &len, file)) != -1 && strcmp(line,"</FinalStates>\n"))
 				{
 					
 					tok = strtok(line," ");
-					final_state_id = atoi(tok);						
-					//printf("%s",tok);
+					final_state_id = atoi(tok);
 					tok = strtok(NULL," \n");
 					states[final_state_id]->token = (char*)malloc(sizeof(tok));
-					//strcpy(temp->token,tok);
-					//final_state_token = tok;
 					states[final_state_id]->isfinal = 1;
 					strcpy(states[final_state_id]->token,tok);
-					//printf("%s",tok);
-					//temp->next = (finalstate*)malloc(sizeof(finalstate));
-					//temp = temp->next;
 				}
-				//free(temp);
 			}
 			if(strcmp(line,"<Transition>\n") == 0)
 			{
-				temp = head;
+				//temp = head;
 				int from;
 				int to;
 				int alpha_index;
