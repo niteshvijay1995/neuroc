@@ -31,6 +31,7 @@
 52 TK_ID
 53 TK_ID
 54 TK_FIELDID
+55 TK_
 </FinalStates>
 <Transition>
 0 > 6
@@ -97,9 +98,7 @@
 0 a 54
 54 a 54
 54 b 54
-0 A 55
-55 a 56
-56 a 56
+0 , 55
 </Transition>
 <Lookup>
 49 with TK_WITH
