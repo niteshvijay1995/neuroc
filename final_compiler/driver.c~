@@ -15,7 +15,7 @@ int main(int argc, char** args)
 			printf("File not found !!\n");
 			exit(0);
 		}
-		if(argc == 3 && !strcmp(args[2],"-p"))
+		if(argc == 3 && strcmp(args[2],"-p"))
 			pflag = 1;
 		tokenInfo* tokenlist;
 		tokenInfo* temp;

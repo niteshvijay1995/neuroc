@@ -168,7 +168,7 @@ void read_dfa(char* filename, state** states)
 				Pair* temp_pair;		
 				while((len = getline(&line, &len, file)) != -1 && strcmp(line,"</Transition>\n"))
 				{
-					printf(".");
+					//printf(".");
 					//printf("..%s..",line);
 					tok = strtok(line," ");
 					from = atoi(tok);						
@@ -210,7 +210,7 @@ void read_dfa(char* filename, state** states)
 				char token[20];		
 				while((len = getline(&line, &len, file)) != -1 && strcmp(line,"</Lookup>\n"))
 				{
-					printf(".");
+					//printf(".");
 					tok = strtok(line," ");
 					state = atoi(tok);
 					states[state]->isfinal = 1;
@@ -276,7 +276,7 @@ tokenInfo* lexeme_detected(tokenInfo* token_node,int lineno, char* lexeme)
 }
 tokenInfo* getNextToken(FILE *fp)
 {
-	read_dfa("dfa.txt",states);
+	read_dfa("dfa.dat",states);
 	char* Buffer;	
 	char ch;			//used when iterating on Buffer
 	size_t bsize;
@@ -309,13 +309,12 @@ tokenInfo* getNextToken(FILE *fp)
 						break;
 					case '%':
 						comment_flag = 1;
-						printf("Comment detected on line no. %d\n",lineno);
+						//printf("Comment detected on line no. %d\n",lineno);
 						break;
 					case '\n':
 						comment_flag = 0;
 						lexeme[j] = '\0';
 						if(j!=0)
-							//printf("j = %d",j);
 							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
 						j = 0;
 						lineno++;
@@ -397,6 +396,7 @@ tokenInfo* getNextToken(FILE *fp)
 							i = temp;
 							break;
 						}
+						lexeme[j] = ch;
 						temp_tok = lexeme_detected(temp_tok,lineno,"=");
 						j = 0;
 						break;
@@ -419,6 +419,8 @@ tokenInfo* getNextToken(FILE *fp)
 							i = temp;
 							break;
 						}
+						temp_tok = lexeme_detected(temp_tok,lineno,"!");
+						j = 0;
 						break;
 					case '@':
 						temp = i;			//for detectinn @@@
@@ -433,6 +435,7 @@ tokenInfo* getNextToken(FILE *fp)
 									i = temp;
 									break;
 								}
+						lexeme[j] = ch;
 						break;
 					case '&':
 						temp = i;			//for detectinn &&&
@@ -447,6 +450,7 @@ tokenInfo* getNextToken(FILE *fp)
 									i = temp;
 									break;
 								}
+						lexeme[j] = ch;
 						break;
 					case '.':
 						temp = i;
@@ -482,34 +486,37 @@ tokenInfo* getNextToken(FILE *fp)
 					case '\t':
 						break;
 					case '<':
-						temp = i;
-						if(Buffer[++temp]=='-')					//check for <-- (Assignment operator)
-							if(Buffer[++temp]=='-')
-								if(Buffer[++temp]=='-')
+						if(Buffer[i+1]=='-')			 //check for <-- (Assignment operator)
+						{	if(Buffer[i+2]=='-')
+								if(Buffer[i+3]=='-')
 									{
 										lexeme[j] = '\0';
 										if(j!=0)
 											temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
 										temp_tok = lexeme_detected(temp_tok,lineno,"<---");
-										i = temp;
+										i = i+3;
 										j = 0;
 										break;
-									}
-						else if(Buffer[temp] == '=')				//check for <= (less than or equals to)
-						{
+									}}
+						else if(Buffer[i+1]=='=')			//check for <= (less than or equals to)
+						{	
 							lexeme[j] = '\0';
 							if(j!=0)
 								temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
 							temp_tok = lexeme_detected(temp_tok,lineno,"<=");
-							i = temp;
+							i = i+1;
 							j = 0;
 							break;	
 						}
-						lexeme[j] = '\0';					//for < (less than) as delimiter
-						if(j!=0)
-							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
-						temp_tok = lexeme_detected(temp_tok,lineno,"<");
-						j = 0;
+						else
+						{
+							lexeme[j] = '\0';			//for < (less than) as delimiter
+							if(j!=0)
+								temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+							temp_tok = lexeme_detected(temp_tok,lineno,"<");
+							j = 0;
+							break;
+						}
 						break;
 					case '>':
 						if(Buffer[++temp] == '=')			//check for >= (greater than or equal to)

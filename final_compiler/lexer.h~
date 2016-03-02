@@ -1,8 +1,4 @@
 #include "lexerDef.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
-#include <string.h>
 FILE* getStream(FILE *fp, char** Buffer, size_t buffersize);
 tokenInfo* lexeme_detected(tokenInfo* token_node,int lineno, char* lexeme);
 void read_dfa(char* filename, state** states);
