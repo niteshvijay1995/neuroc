@@ -15,3 +15,4 @@ entry* entry_create(char* key, char* value);
 int hash_function(hashtable* ht, char* key);
 void ht_insert(hashtable* ht, char* key, char* value);
 char* ht_get(hashtable* ht, char* key);
+tokenInfo* getNextToken(FILE *fp);

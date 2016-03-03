@@ -276,7 +276,7 @@ tokenInfo* lexeme_detected(tokenInfo* token_node,int lineno, char* lexeme)
 }
 tokenInfo* getNextToken(FILE *fp)
 {
-	read_dfa("dfa.dat",states);
+	read_dfa("./dfa.txt",states);
 	char* Buffer;	
 	char ch;			//used when iterating on Buffer
 	size_t bsize;
@@ -455,7 +455,7 @@ tokenInfo* getNextToken(FILE *fp)
 					case '.':
 						temp = i;
 						/*This is to differentiate between a real number(TK_REAL) and Record type definition 
-						Here we are checking next character and if it is a digit then it should be a real number and 							hence skipping the lexeme_detected call*/ 
+						Here we are checking next character and if it is a digit then it should be a real number and 							hence skipping the lexeme_detected call*/
 						if(isdigit(Buffer[++temp]))
 						{	
 							lexeme[j] = ch;
