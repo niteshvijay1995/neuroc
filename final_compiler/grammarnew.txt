@@ -48,8 +48,9 @@
 <elsePart> ===> TK_ENDIF
 <ioStmt> ===> TK_READ TK_OP <singleOrRecId> TK_CL TK_SEM
 <ioStmt> ===> TK_WRITE TK_OP <allVar> TK_CL TK_SEM
-<allVar> ===> <var>
-<allVar> ===> TK_ID TK_DOT TK_FIELDID
+<allVar> ===> TK_ID <rava>
+<rava> ===> TK_DOT TK_FIELDID
+<rava> ===> eps
 <arithmeticExpression> ===> <term> <expPrime>
 <expPrime> ===> <lpo> <term> <expPrime>
 <expPrime> ===> eps

@@ -423,8 +423,9 @@ tokenInfo* getNextToken(FILE *fp)
 						j = 0;
 						break;
 					case '@':
-						temp = i;			//for detectinn @@@
+						temp = i;			//for detectinn &&&
 						if(Buffer[++temp] == '@')
+						{
 							if(Buffer[++temp] == '@')						
 								{
 									lexeme[j] = '\0';
@@ -435,11 +436,32 @@ tokenInfo* getNextToken(FILE *fp)
 									i = temp;
 									break;
 								}
-						lexeme[j] = ch;
+							else
+							{
+								lexeme[j] = '\0';
+								if(j!=0)
+										temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+								temp_tok = lexeme_detected(temp_tok,lineno,"@@");
+								j = 0;
+								i = temp-1;
+								break;
+							}
+						}
+						else
+						{
+							lexeme[j] = '\0';
+								if(j!=0)
+										temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+								temp_tok = lexeme_detected(temp_tok,lineno,"@");
+								j = 0;
+								i = temp-1;
+								break;
+						}
 						break;
 					case '&':
 						temp = i;			//for detectinn &&&
 						if(Buffer[++temp] == '&')
+						{
 							if(Buffer[++temp] == '&')						
 								{
 									lexeme[j] = '\0';
@@ -450,7 +472,27 @@ tokenInfo* getNextToken(FILE *fp)
 									i = temp;
 									break;
 								}
-						lexeme[j] = ch;
+							else
+							{
+								lexeme[j] = '\0';
+								if(j!=0)
+										temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+								temp_tok = lexeme_detected(temp_tok,lineno,"&&");
+								j = 0;
+								i = temp-1;
+								break;
+							}
+						}
+						else
+						{
+							lexeme[j] = '\0';
+								if(j!=0)
+										temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+								temp_tok = lexeme_detected(temp_tok,lineno,"&");
+								j = 0;
+								i = temp-1;
+								break;
+						}
 						break;
 					case '.':
 						temp = i;
@@ -488,6 +530,7 @@ tokenInfo* getNextToken(FILE *fp)
 					case '<':
 						if(Buffer[i+1]=='-')			 //check for <-- (Assignment operator)
 						{	if(Buffer[i+2]=='-')
+							{
 								if(Buffer[i+3]=='-')
 									{
 										lexeme[j] = '\0';
@@ -497,7 +540,29 @@ tokenInfo* getNextToken(FILE *fp)
 										i = i+3;
 										j = 0;
 										break;
-									}}
+									}
+								else
+									{
+										lexeme[j] = '\0';
+										if(j!=0)
+											temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+										temp_tok = lexeme_detected(temp_tok,lineno,"<--");
+										i = i+2;
+										j = 0;
+										break;
+									}
+							}
+							else
+								{
+									lexeme[j] = '\0';
+										if(j!=0)
+											temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+										temp_tok = lexeme_detected(temp_tok,lineno,"<-");
+										i = i+1;
+										j = 0;
+										break;
+								}
+						}
 						else if(Buffer[i+1]=='=')			//check for <= (less than or equals to)
 						{	
 							lexeme[j] = '\0';

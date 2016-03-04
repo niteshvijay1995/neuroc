@@ -31,7 +31,7 @@ int main(int argc, char** args)
 					printf("\n");
 					lineno = temp->lineno;
 				}
-				printf("%s ",temp->token);
+				printf("%s(%s) ",temp->token,temp->lexeme);
 			}
 			else if(temp->isvalid == 0)
 			{

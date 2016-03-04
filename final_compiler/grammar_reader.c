@@ -3,7 +3,7 @@
 #include <string.h>
 #include "lookuptable.c"
 #include "lexer.c"
-#define NON_TERMINAL 50
+#define NON_TERMINAL 51
 #define TERMINAL 53
 struct list_gram{
 	char* value;
@@ -11,14 +11,24 @@ struct list_gram{
 };
 typedef struct list_gram list_gram;
 
+char* synset[] = {"TK_SEM","TK_END","TK_RETURN","TK_ENDIF","TK_COLON"};
+int synsetsize = 5;
+
 struct first_set{
 	char* arr[30];
 	int valid;
 	int size;
 	int eflag;
 };
+struct follow_set{
+	char* arr[30];
+	int folof;
+	int valid;
+	int size;
+	int eflag;
+};
 typedef struct first_set first_set;
-
+typedef struct follow_set follow_set;
 struct snode{
 	char* value;
 	struct snode* next;
@@ -28,6 +38,7 @@ typedef struct snode snode;
 struct ntree{
 	int size;
 	int consumed;
+	int traverse;
 	char* lexeme;
 	char* node_symbol;
 	struct ntree* next[20];
@@ -37,16 +48,22 @@ struct ntree{
 };
 
 
+struct dum_fol{
+	char* value;
+	struct dum_fol* next;
+};
+
+typedef struct dum_fol dum_fol;
 typedef struct ntree ntree;
 
 
-int num_rules = 89;
-int non_terminals = 50;
+int num_rules = 90;
+int non_terminals = 51;
 int num_terminals = 53; 
 first_set* fs[50];
-first_set* fol[50];
-int parse_table[NON_TERMINAL][TERMINAL];
-
+follow_set* fol[50];
+int parse_table[NON_TERMINAL][TERMINAL+1];
+int found[NON_TERMINAL];
 void st_push(snode** head, char* value){
 	snode* newp = malloc(sizeof(snode));
 	newp->value = strdup(value);
@@ -58,6 +75,7 @@ void s_node_push(ntree* root, char* value){
 	ntree* temp = malloc(sizeof(ntree));
 	temp->size = 0;
 	temp->consumed = 0;
+	temp->traverse = 0;
 	//if(value[0]=='T') {temp->lexeme = tok->lexeme;}
 	temp->lexeme = NULL;
 	temp->lineno = 0;
@@ -67,7 +85,7 @@ void s_node_push(ntree* root, char* value){
 	temp->parent = root;
 	root->next[root->size] = temp;
 	root->size++;
-	printf("\nNode %s inserted in %s at %d\n",temp->node_symbol,root->node_symbol,(root->size-1));
+	//printf("\nNode %s inserted in %s at %d\n",temp->node_symbol,root->node_symbol,(root->size-1));
 }
 char* st_pop(snode** head){
 	char* value;
@@ -75,6 +93,10 @@ char* st_pop(snode** head){
 	//printf("Value popping = %s..\n",value);
 	*head = (*head)->next;
 	return value;
+}
+char* st_front(snode* head){
+	if(head==NULL) return NULL;
+	else return head->value;
 }
 
 void push_rule(snode** head ,ntree* s_node, list_gram* rule ){
@@ -89,10 +111,12 @@ void push_rule(snode** head ,ntree* s_node, list_gram* rule ){
 }
 
 void st_print(snode* head){
+	printf("Stack = ");
 	while(head->next!=NULL){
 		printf("%s-->", head->value);
 		head = head->next;
 	}
+	printf("\n");
 }
 
 void list_gram_insert_end(list_gram** head, char* value){
@@ -215,6 +239,7 @@ int find_first_set(char* non_terminal, list_gram** rules, looktable* lt_non_term
 	return iseps;
 }
 
+
 int find_follow_set(list_gram** rules, looktable* lt_non_terminal){
 	int i=0;
 	int eflag = 1;
@@ -222,19 +247,21 @@ int find_follow_set(list_gram** rules, looktable* lt_non_terminal){
 	fol[0]->valid = 1;
 	fol[0]->size++;
 	list_gram* temp2;
+	list_gram* temp;
 	for(i=0; i<num_rules; i++){
-		list_gram* temp = rules[i];
+		temp = rules[i];
 		temp = temp->next;
 		if(temp->value[0] == 'e') continue;
 		while(temp!=NULL){
 			eflag = 1;
-			printf("\ntemp = %s\n",temp->value);
+			//printf("Rule = %s fol_set of = %s \n",rules[i]->value,temp->value);
+			//printf("\ntemp = %s\n",temp->value);
 			if(temp->value[0] == 'T') {temp = temp->next; continue;}
 			int idx = lt_get(lt_non_terminal, temp->value);
 
 			if(temp->next==NULL){
 				first_set* nw = fol[lt_get(lt_non_terminal, rules[i]->value)];
-				printf("\nhere\n");
+				//printf("\nhere\n");
 				fol_add(idx, nw);
 				//follow = first(rules[i])
 			}
@@ -242,7 +269,7 @@ int find_follow_set(list_gram** rules, looktable* lt_non_terminal){
 				if(temp->next->value[0] == 'T'){
 					//follow = "TK_..."	
 						if(!ifexists2(idx, temp->next->value)){
-							printf("%s ",temp->next->value);
+							//printf("%s ",temp->next->value);
 							fol[idx]->arr[fol[idx]->size] = strdup(temp->next->value);
 							fol[idx]->valid = 1;
 							fol[idx]->size++;
@@ -255,17 +282,157 @@ int find_follow_set(list_gram** rules, looktable* lt_non_terminal){
 					{
 						if(temp2->value[0]=='T'){
 							if(!ifexists2(idx, temp2->value)){
-								printf("%s ",temp2->value);
+								//printf("%s ",temp2->value);
 								fol[idx]->arr[fol[idx]->size] = strdup(temp2->value);
 								fol[idx]->valid = 1;
 								fol[idx]->size++;
 							}
 							break;
 						}
+						//printf("Rule = %s fol_set of = %s Non T = %s\n",rules[i]->value,temp->value,temp2->value);
 						first_set* nw = fs[lt_get(lt_non_terminal, temp2->value)];
 						eflag = fol_add(idx, nw);
-						printf("eflag = %d\n",eflag);
+						//printf("eflag = %d\n",eflag);
 						temp2 = temp2->next;
+					}
+					if(eflag && temp2==NULL){
+						//follow = follow(rules[i])
+						first_set* nw = fol[lt_get(lt_non_terminal, rules[i]->value)];
+						//printf("\nhere\n");
+						fol_add(idx, nw);
+						//follow = first(rules[i])
+					}
+				}	
+			}
+			temp = temp->next;
+		}
+	}
+	
+		for(i=num_rules-1; i>=0; i--){
+		temp = rules[i];
+		temp = temp->next;
+		if(temp->value[0] == 'e') continue;
+		while(temp!=NULL){
+			eflag = 1;
+			//printf("\ntemp = %s\n",temp->value);
+			if(temp->value[0] == 'T') {temp = temp->next; continue;}
+			int idx = lt_get(lt_non_terminal, temp->value);
+
+			if(temp->next==NULL){
+				first_set* nw = fol[lt_get(lt_non_terminal, rules[i]->value)];
+				//printf("\nhere\n");
+				fol_add(idx, nw);
+				//follow = first(rules[i])
+			}
+			else{
+				if(temp->next->value[0] == 'T'){
+					//follow = "TK_..."	
+						if(!ifexists2(idx, temp->next->value)){
+							//printf("%s ",temp->next->value);
+							fol[idx]->arr[fol[idx]->size] = strdup(temp->next->value);
+							fol[idx]->valid = 1;
+							fol[idx]->size++;
+						}
+						temp=temp->next;
+				}else if(temp->next->value[0] == '<'){
+					temp2 = temp->next; 
+				//follow = first(temp->next->value)
+					while(eflag && temp2!= NULL)
+					{
+						if(temp2->value[0]=='T'){
+							if(!ifexists2(idx, temp2->value)){
+								//printf("%s ",temp2->value);
+								fol[idx]->arr[fol[idx]->size] = strdup(temp2->value);
+								fol[idx]->valid = 1;
+								fol[idx]->size++;
+							}
+							break;
+						}
+						//printf("Rule = %s fol_set of = %s Non T = %s\n",rules[i]->value,temp->value,temp2->value);
+						first_set* nw = fs[lt_get(lt_non_terminal, temp2->value)];
+						eflag = fol_add(idx, nw);
+						//printf("eflag = %d\n",eflag);
+						temp2 = temp2->next;
+					}
+					if(eflag && temp2==NULL){
+						//follow = follow(rules[i])
+						first_set* nw = fol[lt_get(lt_non_terminal, rules[i]->value)];
+						//printf("\nhere\n");
+						fol_add(idx, nw);
+						//follow = first(rules[i])
+					}
+				}	
+			}
+			temp = temp->next;
+		}
+	}
+}
+
+int find_fol(list_gram** rules, looktable* lt_non_terminal){
+	int i=0;
+	int eflag = 1;
+	fol[0]->arr[fol[0]->size] = strdup("$");
+	fol[0]->valid = 1;
+	fol[0]->size++;
+	list_gram* temp2;
+	list_gram* temp;
+	for(i=0; i<num_rules; i++){
+		temp = rules[i];
+		temp = temp->next;
+		if(temp->value[0] == 'e') continue;
+		while(temp!=NULL){
+			eflag = 1;
+			//printf("Rule = %s fol_set of = %s \n",rules[i]->value,temp->value);
+			//printf("\ntemp = %s\n",temp->value);
+			if(temp->value[0] == 'T') {temp = temp->next; continue;}
+			int idx = lt_get(lt_non_terminal, temp->value);
+
+			if(temp->next==NULL){
+				//first_set* nw = fol[lt_get(lt_non_terminal, rules[i]->value)];
+				//printf("\nhere\n");
+				//fol_add(idx, nw);
+				if(idx != lt_get(lt_non_terminal, rules[i]->value))
+					fol[idx]->folof = lt_get(lt_non_terminal, rules[i]->value);
+				//follow = first(rules[i])
+			}
+			else{
+				if(temp->next->value[0] == 'T'){
+					//follow = "TK_..."	
+						if(!ifexists2(idx, temp->next->value)){
+							//printf("%s ",temp->next->value);
+							fol[idx]->arr[fol[idx]->size] = strdup(temp->next->value);
+							fol[idx]->valid = 1;
+							fol[idx]->size++;
+						}
+						temp=temp->next;
+				}else if(temp->next->value[0] == '<'){
+					temp2 = temp->next; 
+				//follow = first(temp->next->value)
+					while(eflag && temp2!= NULL)
+					{
+						if(temp2->value[0]=='T'){
+							if(!ifexists2(idx, temp2->value)){
+								//printf("%s ",temp2->value);
+								fol[idx]->arr[fol[idx]->size] = strdup(temp2->value);
+								fol[idx]->valid = 1;
+								fol[idx]->size++;
+							}
+							break;
+						}
+						//printf("Rule = %s fol_set of = %s Non T = %s\n",rules[i]->value,temp->value,temp2->value);
+						first_set* nw = fs[lt_get(lt_non_terminal, temp2->value)];
+						eflag = fol_add(idx, nw);
+						//printf("eflag = %d\n",eflag);
+						temp2 = temp2->next;
+					}
+					if(eflag && temp2==NULL){
+						//follow = follow(rules[i])
+						//first_set* nw = fol[lt_get(lt_non_terminal, rules[i]->value)];
+						//printf("\nhere\n");
+						//fol_add(idx, nw);
+						if(idx != lt_get(lt_non_terminal, rules[i]->value))
+							fol[idx]->folof = lt_get(lt_non_terminal, rules[i]->value);
+						//follow = first(rules[i])
 					}
 				}	
 			}
@@ -292,6 +459,29 @@ int ifexists2(int idx, char* ter){
 	}
 	return 0;
 }
+dum_fol* compute_fol(int idx,int start)
+{
+//	char* fol_set[20];
+	dum_fol* df;
+	dum_fol* head;
+	df = malloc(sizeof(dum_fol));
+	head = df;
+	int i;
+	for(i=0;i<fol[idx]->size;i++)
+	{
+		df->next = malloc(sizeof(dum_fol));	
+		df = df->next;
+		df-> value = strdup(fol[idx]->arr[i]);
+		df->next = NULL;
+	}
+	if(fol[idx]->folof != -1 && fol[idx]->folof != start && idx!= fol[idx]->folof)
+	{
+		//printf("Comuting for %d\n",fol[idx]->folof);
+		df->next = compute_fol(fol[idx]->folof,start);
+	}
+	return head->next;
+}
+
 int fol_add(int idx, first_set* nw){
 	int fill = nw->size;
 	int i;
@@ -366,9 +556,14 @@ void createParseTable(looktable* lt_non_terminal, looktable* lt_terminal, list_g
 		if(strcmp(temp->value,"eps")==0){
 			//follow
 			k = lt_get(lt_non_terminal, rules[i]->value);
-			for(j=0; j<fol[k]->size; j++){
-				m = lt_get(lt_terminal, fol[k]->arr[j]);
+			dum_fol* dtemp;
+			dtemp = compute_fol(k,k);
+			while(dtemp!=NULL)
+			{
+			//for(j=0; j<fol[k]->size; j++){
+				m = lt_get(lt_terminal, dtemp->value);
 				if(m!=-1) parse_table[k][m] = i;
+				dtemp = dtemp->next;
 			}
 			eflag = 0;
 		}
@@ -387,7 +582,12 @@ void createParseTable(looktable* lt_non_terminal, looktable* lt_terminal, list_g
 			//		printf("rule: %s -> %s", rules[i]->value,fs[k]->arr[j]);
 					m = lt_get(lt_terminal, fs[p]->arr[j]);
 			//		printf("m is %d k is %d j is %d\n", m,k,j);
-					if(m!=-1) parse_table[k][m] = i;
+					if(m!=-1) {
+						parse_table[k][m] = i;
+
+					}else{
+						//printf("\nsome error occured\n");
+					}
 				}
 				eflag = fs[p]->eflag;
 				temp = temp->next;	
@@ -404,50 +604,81 @@ ntree* parseInputSourceCode(char* test_case_file, list_gram** rules, looktable* 
 	tokenlist = getNextToken(fp);
 	temp = tokenlist;
 	snode* stack = malloc(sizeof(snode));
-	//st_boot(&stack);
 	ntree* root = malloc(sizeof(ntree));
 	ntree* currNode;
 	root->parent = NULL;
 	root->node_symbol = strdup("<program>");
 	root->consumed = 0;
+	root->traverse = 0;
 	push_rule(&stack,root,rules[0]->next);
-	st_print(stack);
+	//st_print(stack);
 	char* t_rec;
 	int nt_i;
 	int t_i;
 	int ruleno;
-	int a,b;
+	int lineno;
+	int ntremflag = 0;
 	currNode = root;
-	while(stack->next!=NULL && temp!=NULL)
+	while(stack->next!=NULL && temp->next!=NULL)
 	{
-		for(a=0;a<32;a++)
-			for(b=0;b<32;b++){}
+		//printf("\nToken-%s\n",temp->token);
+		//st_print(stack);
 		t_rec = st_pop(&stack);
+		lineno = temp->lineno;
 		if(temp->isvalid == 0)
 		{
 			if(temp->errno == 23)
-				printf("Error in line no. %d:TK_ID lenght execceded\n",temp->lineno);
+				printf("ERROR_1: Identifier at line %d is longer than the prescribed length of 20 characters.\n",temp->lineno);
 			else
-				printf("Error in line no. %d:%s \n",temp->lineno,temp->token);
+			{
+				if(t_rec[0] == '<')
+					ntremflag = 1;
+				printf("ERROR_3: Unknown pattern %s at line number %d\n",temp->lexeme,temp->lineno);
+			}
 			temp = temp->next;
+			char ch;
+			//scanf(" %c ",&ch);
+			//for(a=0;a<56787;a++)
+			//for(b=0;b<56787;b++){}
 		}
 		//printf("\nPopped = %s Token = %s\n",t_rec,temp->token);
 		//st_print(stack);
-		else if(strcmp(t_rec,temp->token)==0)
-		{
-			printf("\n%s consumed %s\n",temp->token,temp->lexeme); 
-			temp = temp->next;
-			printf("\nParse tree consumed %s\n",currNode->next[currNode->consumed]->node_symbol);
-			currNode->consumed++;
-			printf("Consumed = %d Size = %d",currNode->consumed,currNode->size);
-			while(currNode->consumed>=currNode->size)
-						{
-							printf("\nupar gaya\n");
-							currNode = currNode->parent;
-						}
-		}
+		else if (t_rec[0] == 'T')
+			{
+				if(strcmp(t_rec,temp->token)==0)
+				{
+					//currNode->lexeme = temp->lexeme;
+					//printf("\n%s consumed %s\n",temp->token,temp->lexeme); 
+					currNode->next[currNode->consumed]->lexeme = temp->lexeme;
+					currNode->next[currNode->consumed]->lineno = temp->lineno;
+					temp = temp->next;
+				//	printf("\nParse tree consumed %s\n",currNode->next[currNode->consumed]->node_symbol);
+					//printf("\nlexeme is %s\n", temp->lexeme);
+					
+					currNode->consumed++;
+				//	printf("Consumed = %d Size = %d",currNode->consumed,currNode->size);
+					while(currNode->consumed>=currNode->size && currNode->parent !=NULL)
+								{
+								//	printf("\nupar gaya\n");
+									currNode = currNode->parent;
+								}
+				}
+				else
+				{
+					if(ntremflag)
+					{
+						ntremflag = 0;
+						continue;
+					}
+					printf("Error_5: The token %s for lexeme %s does not match at lineNo. %d The expected token is %s\n",temp->token,temp->lexeme,temp->lineno,t_rec);
+					char ch;
+					//scanf(" %c ",&ch);
+
+				}
+			}
 		else if(t_rec[0] == '<')
 			{
+				//printf("%s\n", );
 				nt_i = lt_get(lt_non_terminal,t_rec);
 				t_i = lt_get(lt_terminal,temp->token);
 				ruleno = parse_table[nt_i][t_i];
@@ -457,22 +688,122 @@ ntree* parseInputSourceCode(char* test_case_file, list_gram** rules, looktable* 
 						currNode = currNode->parent;
 
 						push_rule(&stack, currNode->next[currNode->consumed], rules[ruleno]->next);
+						//st_print(stack);
 						currNode->consumed++;
 						currNode = currNode->next[(currNode->consumed)-1];
-					printf("\nRule %d pushed\n",ruleno);
+					//printf("\nRule %d pushed\n",ruleno);
 				}
 				else
 				{
-					printf("Error : %s\n",temp->token);
+					printf("ERROR_5: The token of type %s for lexeme %s does not match at line number %d. The expected token is of type %s\n",temp->token,temp->lexeme,temp->lineno,t_rec);
+					int s;
+					int bflag = 1;
+				//	printf("\nE: t_rec = %s, token = %s lineNo. %d\n", t_rec, temp->token,temp->lineno);
+					for(s=0;s<synsetsize;s++)
+					{
+						//printf("\nentered with\n");
+						t_i = lt_get(lt_terminal,synset[s]);
+						ruleno = parse_table[nt_i][t_i];
+						if(ruleno != -1)
+						{
+							while(currNode->consumed>=currNode->size)
+								currNode = currNode->parent;
+								push_rule(&stack, currNode->next[currNode->consumed], rules[ruleno]->next);
+								//st_print(stack);
+								currNode->consumed++;
+								currNode = currNode->next[(currNode->consumed)-1];
+								bflag = 0;
+						}
+					}
+					//t_rec = st_front(stack);
+					//nt_i = lt_get(lt_non_terminal,t_rec);
+					dum_fol* fols = compute_fol(nt_i,nt_i);
+					first_set* firs = fs[nt_i];
+					//printf("%s Error in line no. %d\n",t_rec,temp->lineno);
+					dum_fol* temp2 = fols;
+					while(temp2!=NULL)
+						{
+							//printf("in fol set: %s ",temp2->value);
+							temp2 = temp2->next;
+						}
+						int i;
+					tokenInfo* tok_temp2;
+					tok_temp2 = temp;
+					while(tok_temp2!=NULL && bflag)
+					{
+						while(fols!=NULL && bflag)
+						{
+							//printf("\nChecking\n");
+							if(strcmp(fols->value,tok_temp2->token)==0)
+							{
+								temp = temp2;
+								//t_i = lt_get(lt_terminal,tok_temp2->token);
+								//ruleno = parse_table[nt_i][t_i];
+								bflag = 0;
+							}
+							fols = fols->next;
+						}
+						tok_temp2 = tok_temp2->next;
+					}
+					if(bflag)
+						{
+						//	printf(" Token skipped = %s\n",temp->token);
+							temp = temp->next;
+						}
+				//	printf("Error :%s - %s\n",t_rec,temp->token);
+				//	char ch;
+					//scanf(" %c ",&ch);
 				}
 			}
 		else
 		{
+			//printf("\n %s eps\n",t_rec);
 			currNode->consumed++;
 			while(currNode->consumed>=currNode->size)
 							currNode = currNode->parent;
 			}
 	}
+	if(stack->next!=NULL)
+	{
+		printf("Error_4: Input is consumed while it is expected to have token %s at line number %d\n",st_pop(&stack),lineno+1);
+	}
+	return root;
+}
+
+void printNode(ntree* node, FILE* fp){
+	
+	if(strcmp(node->node_symbol, "<program>")==0){
+		fprintf(fp, "lexemeCurrentNode: ----,\tlineno: , token: ,"); 
+		fprintf(fp, "valueIfNumber: , parentNodeSymbol: root, isLeafNode: no , NodeSymbol:%s \n", node->node_symbol);
+	}
+	else if(strcmp(node->node_symbol, "TK_NUM")==0 || strcmp(node->node_symbol, "TK_RNUM")==0){
+		fprintf(fp,"lexemeCurrentNode: %s,\tlineno: %d, token: %s,", node->lexeme, node->lineno, node->node_symbol); 
+		fprintf(fp,"valueIfNumber: %s, parentNodeSymbol: %s, isLeafNode: yes , NodeSymbol: \n", node->lexeme,node->parent->node_symbol);
+	}else if((node->node_symbol)[0]=='T'){
+		fprintf(fp,"lexemeCurrentNode: %s,\tlineno: %d, token: %s,", node->lexeme, node->lineno, node->node_symbol); 
+		fprintf(fp,"valueIfNumber: , parentNodeSymbol: %s, isLeafNode: yes , NodeSymbol: \n",node->parent->node_symbol);
+	}else if((node->node_symbol)[0]=='e'){
+		fprintf(fp,"lexemeCurrentNode: ----,\tlineno: , token: ,"); 
+		fprintf(fp,"valueIfNumber: , parentNodeSymbol: %s, isLeafNode: yes , NodeSymbol: %s\n", node->parent->node_symbol,node->node_symbol);
+	}
+	else{
+		fprintf(fp,"lexemeCurrentNode: ----,\tlineno: , token: ,"); 
+		fprintf(fp,"valueIfNumber: , parentNodeSymbol: %s, isLeafNode: no , NodeSymbol: %s\n", node->parent->node_symbol,node->node_symbol);
+	}
+}
+void printParseTree(ntree* root, FILE* fp){
+	if(root==NULL) return;
+	if(root->size==0){
+		root->is_leaf_node=1;
+		printNode(root, fp);	
+	} 
+	if(root->traverse >=root->size) return;
+	//root->traverse++;
+	int i;
+	for(i=0; i<root->size; i++){
+		printParseTree(root->next[root->traverse++], fp);
+	}
+	printNode(root, fp);
 }
 
 int main(){
@@ -491,10 +822,11 @@ int main(){
 		fs[i]->size = 0;
 		fs[i]->valid = 0;
 		fs[i]->eflag = 0;
-		fol[i] = malloc(sizeof(first_set));
+		fol[i] = malloc(sizeof(follow_set));
 		fol[i]->size = 0;
 		fol[i]->valid = 0;
 		fol[i]->eflag = 0;
+		fol[i]->folof = -1;
 	}
 	readgrammar("grammarnew.txt", rules);
 	//print_grammar(rules);
@@ -521,10 +853,30 @@ int main(){
 		find_first_set(nt_strings[i], rules, lt_non_terminal);
 		//print_fs(lt_non_terminal,nt_strings[i]);
 	}
+	//getchar();
 	//printf("\nreached here\n");
-	find_follow_set(rules, lt_non_terminal);
-	printf("\nreached here\n");
-	for(i=0; i<50; i++) print_fol(lt_non_terminal, nt_strings[i]);
+	//find_follow_set(rules, lt_non_terminal);
+	//int q = lt_get(lt_non_terminal, "<temp>");
+	find_fol(rules, lt_non_terminal);
+
+	//Follow set printing example
+
+	/*dum_fol* ele;
+	printf("\nFollow set computed\n");
+	ele = compute_fol(q,q);
+	//ele = ele->next;
+	printf("\nFollow set of <temp> - ");
+	while(ele!=NULL)
+	{
+		printf("%s ",ele->value);
+		ele = ele->next;
+	}*/
+
+
+	//fol[q]->arr[fol[q]->size++] = strdup("TK_CL");
+	//printf("\nreached here\n");
+	//for(i=0; i<50; i++) print_fol(lt_non_terminal, nt_strings[i]);
+	//scanf("%d",&i);
 	file = fopen("terminals.txt", "r");
 	i=0;
 	while((nbytes = getline(&line, &len, file)) != -1){
@@ -541,19 +893,26 @@ int main(){
 		}
 	}
 	createParseTable(lt_non_terminal, lt_terminal, rules);
-	parseInputSourceCode("testcase1.txt",rules, lt_terminal, lt_non_terminal);
-/*	
-	for(i=0;i<NON_TERMINAL;i++){
+		for(i=0;i<NON_TERMINAL;i++){
 		for(j=0;j<TERMINAL;j++){
 			if(parse_table[i][j] != -1)
-			
-			printf("%d -> %d ",i, parse_table[i][j]);
+			{
+			//printf("(%d,%d) -> %d ",i+1,j+1, parse_table[i][j]);
+			}
 		}
-		printf("\n");
-	}*/
+		//printf("\n");
+
+	}
+	//getchar();
+	//scanf("%d",&i);
+	ntree* root = parseInputSourceCode("testcase3.txt",rules, lt_terminal, lt_non_terminal);
+	FILE* fp = fopen("output.txt", "w");
+	printParseTree(root, fp);
+	fclose(fp);
 	//printf("\nParse Table value checking = %d\n",parse_table[lt_get(lt_non_terminal,"<stmts>")][lt_get(lt_terminal,"TK_READ")]);
 	//printf("\n Rule = %s %s",rules[parse_table[lt_get(lt_non_terminal,"<stmts>")][lt_get(lt_terminal,"TK_READ")]]->value,rules[parse_table[lt_get(lt_non_terminal,"<dataType>")][lt_get(lt_terminal,"TK_INT")]]->next->value);
 	
 	
+
 }
 
