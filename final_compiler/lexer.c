@@ -135,7 +135,7 @@ void read_dfa(char* filename, state** states)
 		states[i]->islookup = 0;
 	}
 	lookup_table = ht_create(30);
-	printf("States initialised\n");
+	//printf("States initialised\n");
 	if(file == 0)
 		printf("Problem opening file");
 	else
@@ -144,7 +144,7 @@ void read_dfa(char* filename, state** states)
 		{
 			if(strcmp(line,"<FinalStates>\n") == 0)
 			{
-				printf("Reading Final States ...\n");
+				//printf("Reading Final States ...\n");
 				int final_state_id;
 				while((len = getline(&line, &len, file)) != -1 && strcmp(line,"</FinalStates>\n"))
 				{
@@ -159,7 +159,7 @@ void read_dfa(char* filename, state** states)
 			}
 			if(strcmp(line,"<Transition>\n") == 0)
 			{
-				printf("Reading Transition States ...\n");
+				//printf("Reading Transition States ...\n");
 				//temp = head;
 				int from;
 				int to;
@@ -204,7 +204,7 @@ void read_dfa(char* filename, state** states)
 			}
 			if(strcmp(line,"<Lookup>\n") == 0)
 			{
-				printf("Reading Lookup ...\n");
+				//printf("Reading Lookup ...\n");
 				int state;
 				char lexime[20];
 				char token[20];		

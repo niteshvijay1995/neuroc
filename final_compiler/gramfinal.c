@@ -11,6 +11,9 @@ struct list_gram{
 };
 typedef struct list_gram list_gram;
 
+char* synset[] = {"TK_SEM","TK_END","TK_RETURN","TK_ENDIF","TK_COLON"};
+int synsetsize = 5;
+
 struct first_set{
 	char* arr[30];
 	int valid;
@@ -53,8 +56,7 @@ struct dum_fol{
 typedef struct dum_fol dum_fol;
 typedef struct ntree ntree;
 
-char* synset[] = {"TK_SEM","TK_END","TK_RETURN","TK_ENDIF","TK_COLON"};
-int synsetsize = 5;
+
 int num_rules = 90;
 int non_terminals = 51;
 int num_terminals = 53; 
@@ -62,7 +64,6 @@ first_set* fs[50];
 follow_set* fol[50];
 int parse_table[NON_TERMINAL][TERMINAL+1];
 int found[NON_TERMINAL];
-
 void st_push(snode** head, char* value){
 	snode* newp = malloc(sizeof(snode));
 	newp->value = strdup(value);
@@ -238,6 +239,134 @@ int find_first_set(char* non_terminal, list_gram** rules, looktable* lt_non_term
 	return iseps;
 }
 
+
+int find_follow_set(list_gram** rules, looktable* lt_non_terminal){
+	int i=0;
+	int eflag = 1;
+	fol[0]->arr[fol[0]->size] = strdup("$");
+	fol[0]->valid = 1;
+	fol[0]->size++;
+	list_gram* temp2;
+	list_gram* temp;
+	for(i=0; i<num_rules; i++){
+		temp = rules[i];
+		temp = temp->next;
+		if(temp->value[0] == 'e') continue;
+		while(temp!=NULL){
+			eflag = 1;
+			//printf("Rule = %s fol_set of = %s \n",rules[i]->value,temp->value);
+			//printf("\ntemp = %s\n",temp->value);
+			if(temp->value[0] == 'T') {temp = temp->next; continue;}
+			int idx = lt_get(lt_non_terminal, temp->value);
+
+			if(temp->next==NULL){
+				first_set* nw = fol[lt_get(lt_non_terminal, rules[i]->value)];
+				//printf("\nhere\n");
+				fol_add(idx, nw);
+				//follow = first(rules[i])
+			}
+			else{
+				if(temp->next->value[0] == 'T'){
+					//follow = "TK_..."	
+						if(!ifexists2(idx, temp->next->value)){
+							//printf("%s ",temp->next->value);
+							fol[idx]->arr[fol[idx]->size] = strdup(temp->next->value);
+							fol[idx]->valid = 1;
+							fol[idx]->size++;
+						}
+						temp=temp->next;
+				}else if(temp->next->value[0] == '<'){
+					temp2 = temp->next; 
+				//follow = first(temp->next->value)
+					while(eflag && temp2!= NULL)
+					{
+						if(temp2->value[0]=='T'){
+							if(!ifexists2(idx, temp2->value)){
+								//printf("%s ",temp2->value);
+								fol[idx]->arr[fol[idx]->size] = strdup(temp2->value);
+								fol[idx]->valid = 1;
+								fol[idx]->size++;
+							}
+							break;
+						}
+						//printf("Rule = %s fol_set of = %s Non T = %s\n",rules[i]->value,temp->value,temp2->value);
+						first_set* nw = fs[lt_get(lt_non_terminal, temp2->value)];
+						eflag = fol_add(idx, nw);
+						//printf("eflag = %d\n",eflag);
+						temp2 = temp2->next;
+					}
+					if(eflag && temp2==NULL){
+						//follow = follow(rules[i])
+						first_set* nw = fol[lt_get(lt_non_terminal, rules[i]->value)];
+						//printf("\nhere\n");
+						fol_add(idx, nw);
+						//follow = first(rules[i])
+					}
+				}	
+			}
+			temp = temp->next;
+		}
+	}
+	
+		for(i=num_rules-1; i>=0; i--){
+		temp = rules[i];
+		temp = temp->next;
+		if(temp->value[0] == 'e') continue;
+		while(temp!=NULL){
+			eflag = 1;
+			//printf("\ntemp = %s\n",temp->value);
+			if(temp->value[0] == 'T') {temp = temp->next; continue;}
+			int idx = lt_get(lt_non_terminal, temp->value);
+
+			if(temp->next==NULL){
+				first_set* nw = fol[lt_get(lt_non_terminal, rules[i]->value)];
+				//printf("\nhere\n");
+				fol_add(idx, nw);
+				//follow = first(rules[i])
+			}
+			else{
+				if(temp->next->value[0] == 'T'){
+					//follow = "TK_..."	
+						if(!ifexists2(idx, temp->next->value)){
+							//printf("%s ",temp->next->value);
+							fol[idx]->arr[fol[idx]->size] = strdup(temp->next->value);
+							fol[idx]->valid = 1;
+							fol[idx]->size++;
+						}
+						temp=temp->next;
+				}else if(temp->next->value[0] == '<'){
+					temp2 = temp->next; 
+				//follow = first(temp->next->value)
+					while(eflag && temp2!= NULL)
+					{
+						if(temp2->value[0]=='T'){
+							if(!ifexists2(idx, temp2->value)){
+								//printf("%s ",temp2->value);
+								fol[idx]->arr[fol[idx]->size] = strdup(temp2->value);
+								fol[idx]->valid = 1;
+								fol[idx]->size++;
+							}
+							break;
+						}
+						//printf("Rule = %s fol_set of = %s Non T = %s\n",rules[i]->value,temp->value,temp2->value);
+						first_set* nw = fs[lt_get(lt_non_terminal, temp2->value)];
+						eflag = fol_add(idx, nw);
+						//printf("eflag = %d\n",eflag);
+						temp2 = temp2->next;
+					}
+					if(eflag && temp2==NULL){
+						//follow = follow(rules[i])
+						first_set* nw = fol[lt_get(lt_non_terminal, rules[i]->value)];
+						//printf("\nhere\n");
+						fol_add(idx, nw);
+						//follow = first(rules[i])
+					}
+				}	
+			}
+			temp = temp->next;
+		}
+	}
+}
 
 int find_fol(list_gram** rules, looktable* lt_non_terminal){
 	int i=0;
@@ -607,8 +736,7 @@ ntree* parseInputSourceCode(char* test_case_file, list_gram** rules, looktable* 
 							//printf("\nChecking\n");
 							if(strcmp(fols->value,tok_temp2->token)==0)
 							{
-								//printf("\n\nREACHED HERE\n\n");
-								temp = tok_temp2; //ask?
+								temp = temp2;
 								//t_i = lt_get(lt_terminal,tok_temp2->token);
 								//ruleno = parse_table[nt_i][t_i];
 								bflag = 0;
@@ -777,7 +905,7 @@ int main(){
 	}
 	//getchar();
 	//scanf("%d",&i);
-	ntree* root = parseInputSourceCode("testcase4.txt",rules, lt_terminal, lt_non_terminal);
+	ntree* root = parseInputSourceCode("testcase3.txt",rules, lt_terminal, lt_non_terminal);
 	FILE* fp = fopen("output.txt", "w");
 	printParseTree(root, fp);
 	fclose(fp);

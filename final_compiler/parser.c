@@ -1,58 +1,8 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 #include "lookuptable.c"
 #include "lexer.c"
+#include "parser.h"
 #define NON_TERMINAL 51
 #define TERMINAL 53
-struct list_gram{
-	char* value;
-	struct list_gram* next;
-};
-typedef struct list_gram list_gram;
-
-struct first_set{
-	char* arr[30];
-	int valid;
-	int size;
-	int eflag;
-};
-struct follow_set{
-	char* arr[30];
-	int folof;
-	int valid;
-	int size;
-	int eflag;
-};
-typedef struct first_set first_set;
-typedef struct follow_set follow_set;
-struct snode{
-	char* value;
-	struct snode* next;
-};
-typedef struct snode snode;
-
-struct ntree{
-	int size;
-	int consumed;
-	int traverse;
-	char* lexeme;
-	char* node_symbol;
-	struct ntree* next[20];
-	int is_leaf_node;
-	struct ntree* parent;
-	int lineno;
-};
-
-
-struct dum_fol{
-	char* value;
-	struct dum_fol* next;
-};
-
-typedef struct dum_fol dum_fol;
-typedef struct ntree ntree;
-
 char* synset[] = {"TK_SEM","TK_END","TK_RETURN","TK_ENDIF","TK_COLON"};
 int synsetsize = 5;
 int num_rules = 90;
@@ -468,7 +418,20 @@ void createParseTable(looktable* lt_non_terminal, looktable* lt_terminal, list_g
 	}
 }
 
-ntree* parseInputSourceCode(char* test_case_file, list_gram** rules, looktable* lt_terminal, looktable* lt_non_terminal){
+void print_parse_table(){
+	int i,j;
+	for(i=0;i<NON_TERMINAL;i++){
+		for(j=0;j<TERMINAL;j++){
+			if(parse_table[i][j] != -1)
+			{
+				printf("(%d,%d) -> %d ",i+1,j+1, parse_table[i][j]);
+			}
+		}
+		printf("\n");
+	}
+}
+
+ntree* parseInputSourceCode(char* test_case_file, list_gram** rules, looktable* lt_terminal, looktable* lt_non_terminal, int* error){
 	FILE *fp = fopen(test_case_file,"r");
 	tokenInfo* tokenlist;
 	tokenInfo* temp;
@@ -506,6 +469,7 @@ ntree* parseInputSourceCode(char* test_case_file, list_gram** rules, looktable* 
 					ntremflag = 1;
 				printf("ERROR_3: Unknown pattern %s at line number %d\n",temp->lexeme,temp->lineno);
 			}
+			(*error)++;
 			temp = temp->next;
 			char ch;
 			//scanf(" %c ",&ch);
@@ -542,6 +506,7 @@ ntree* parseInputSourceCode(char* test_case_file, list_gram** rules, looktable* 
 						continue;
 					}
 					printf("Error_5: The token %s for lexeme %s does not match at lineNo. %d The expected token is %s\n",temp->token,temp->lexeme,temp->lineno,t_rec);
+					(*error)++;
 					char ch;
 					//scanf(" %c ",&ch);
 
@@ -566,6 +531,7 @@ ntree* parseInputSourceCode(char* test_case_file, list_gram** rules, looktable* 
 				}
 				else
 				{
+					(*error)++;
 					printf("ERROR_5: The token of type %s for lexeme %s does not match at line number %d. The expected token is of type %s\n",temp->token,temp->lexeme,temp->lineno,t_rec);
 					int s;
 					int bflag = 1;
@@ -637,6 +603,7 @@ ntree* parseInputSourceCode(char* test_case_file, list_gram** rules, looktable* 
 	}
 	if(stack->next!=NULL)
 	{
+		(*error)++;
 		printf("Error_4: Input is consumed while it is expected to have token %s at line number %d\n",st_pop(&stack),lineno+1);
 	}
 	return root;
@@ -677,114 +644,3 @@ void printParseTree(ntree* root, FILE* fp){
 	}
 	printNode(root, fp);
 }
-
-int main(){
-
-	list_gram* rules[num_rules];
-	looktable* lt_non_terminal = lt_create(128);
-	looktable* lt_terminal = lt_create(128);
-	char* nt_strings[50];
-	int i = 0,j;
-	for(i=0; i<num_rules; i++){
-		rules[i] = malloc(sizeof(list_gram));
-	}
-	for(i=0;i<non_terminals;i++)
-	{
-		fs[i] = malloc(sizeof(first_set));
-		fs[i]->size = 0;
-		fs[i]->valid = 0;
-		fs[i]->eflag = 0;
-		fol[i] = malloc(sizeof(follow_set));
-		fol[i]->size = 0;
-		fol[i]->valid = 0;
-		fol[i]->eflag = 0;
-		fol[i]->folof = -1;
-	}
-	readgrammar("grammarnew.txt", rules);
-	//print_grammar(rules);
-
-	FILE *file = fopen("nonterminal.txt","r");
-	size_t len = 0;
-	size_t nbytes = 1000;
-	ssize_t read;
-	char* line = malloc(nbytes+1);
-	char* tok;
-	i=0;
-	while((nbytes = getline(&line, &len, file)) != -1){
-		int x = strlen(line);
-		
-		if(line[x-1]=='\n') line[x-1] = 0;
-		//printf("iter i: %d length %d: %s ",i, x, line);
-		lt_insert(lt_non_terminal, line, i);
-		nt_strings[i] = strdup(line);
-		i++;
-	}
-	fclose(file);
-
-	for(i=0;i<50;i++){
-		find_first_set(nt_strings[i], rules, lt_non_terminal);
-		//print_fs(lt_non_terminal,nt_strings[i]);
-	}
-	//getchar();
-	//printf("\nreached here\n");
-	//find_follow_set(rules, lt_non_terminal);
-	//int q = lt_get(lt_non_terminal, "<temp>");
-	find_fol(rules, lt_non_terminal);
-
-	//Follow set printing example
-
-	/*dum_fol* ele;
-	printf("\nFollow set computed\n");
-	ele = compute_fol(q,q);
-	//ele = ele->next;
-	printf("\nFollow set of <temp> - ");
-	while(ele!=NULL)
-	{
-		printf("%s ",ele->value);
-		ele = ele->next;
-	}*/
-
-
-	//fol[q]->arr[fol[q]->size++] = strdup("TK_CL");
-	//printf("\nreached here\n");
-	//for(i=0; i<50; i++) print_fol(lt_non_terminal, nt_strings[i]);
-	//scanf("%d",&i);
-	file = fopen("terminals.txt", "r");
-	i=0;
-	while((nbytes = getline(&line, &len, file)) != -1){
-		int x = strlen(line);
-		if(line[x-1]=='\n') line[x-1] = 0;
-		//printf("iter i: %d length %d: %s ",i, x, line);
-		lt_insert(lt_terminal, line, i);
-		i++;
-	}
-
-	for(i=0;i<NON_TERMINAL;i++){
-		for(j=0;j<TERMINAL;j++){
-			parse_table[i][j] = -1;
-		}
-	}
-	createParseTable(lt_non_terminal, lt_terminal, rules);
-		for(i=0;i<NON_TERMINAL;i++){
-		for(j=0;j<TERMINAL;j++){
-			if(parse_table[i][j] != -1)
-			{
-			//printf("(%d,%d) -> %d ",i+1,j+1, parse_table[i][j]);
-			}
-		}
-		//printf("\n");
-
-	}
-	//getchar();
-	//scanf("%d",&i);
-	ntree* root = parseInputSourceCode("testcase4.txt",rules, lt_terminal, lt_non_terminal);
-	FILE* fp = fopen("output.txt", "w");
-	printParseTree(root, fp);
-	fclose(fp);
-	//printf("\nParse Table value checking = %d\n",parse_table[lt_get(lt_non_terminal,"<stmts>")][lt_get(lt_terminal,"TK_READ")]);
-	//printf("\n Rule = %s %s",rules[parse_table[lt_get(lt_non_terminal,"<stmts>")][lt_get(lt_terminal,"TK_READ")]]->value,rules[parse_table[lt_get(lt_non_terminal,"<dataType>")][lt_get(lt_terminal,"TK_INT")]]->next->value);
-	
-	
-
-}
-
