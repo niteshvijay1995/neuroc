@@ -10,6 +10,17 @@ Nilay Jain 2013A7PS179P
 #include <limits.h>
 #include <string.h>
 
+
+first_set* fs[NON_TERMINAL];
+follow_set* fol[NON_TERMINAL];
+looktable* lt_non_terminal;
+looktable* lt_terminal;
+list_gram* rules[NUM_RULES];
+char* nt_strings[NON_TERMINAL];
+int parse_table[NON_TERMINAL][TERMINAL];
+int found[NON_TERMINAL];
+
+
 void parser_init();
 void st_push(snode** head, char* value);
 void s_node_push(ntree* root, list_gram* rule);

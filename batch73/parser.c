@@ -9,14 +9,6 @@ Nilay Jain 2013A7PS179P
 
 char* synset[] = {"TK_SEM","TK_END","TK_RETURN","TK_ENDIF","TK_COLON"};
 int synsetsize = 5;
-first_set* fs[NON_TERMINAL];
-follow_set* fol[NON_TERMINAL];
-looktable* lt_non_terminal;
-looktable* lt_terminal;
-list_gram* rules[NUM_RULES];
-char* nt_strings[NON_TERMINAL];
-int parse_table[NON_TERMINAL][TERMINAL];
-int found[NON_TERMINAL];
 
 void parser_init()
 {
@@ -40,7 +32,7 @@ void parser_init()
 		}
 
 		readgrammar("grammarnew.txt", rules);
-		modify_grammar("astRules.txt");
+		//modify_grammar("astRules.txt");
 		//print_grammar(rules);
 		readnonterminal("nonterminal.txt",lt_non_terminal,nt_strings);
 		readterminal("terminals.txt",lt_terminal);
@@ -72,7 +64,7 @@ void parser_init()
 		}*/
 
 		createParseTable(lt_non_terminal, lt_terminal, rules);
-		print_parse_table();
+		//print_parse_table();
 				
 }
 
@@ -392,7 +384,7 @@ int inarr(int* arr, int value, int size){
 dum_fol* compute_fol(int idx,int start, int* arr, int size)
 {
 //	char* fol_set[20];
-	printf("infinte loop idx = %d, start = %d\n", idx, start);
+	//printf("infinte loop idx = %d, start = %d\n", idx, start);
 	dum_fol* df;
 	dum_fol* head;
 	df = malloc(sizeof(dum_fol));
@@ -407,12 +399,12 @@ dum_fol* compute_fol(int idx,int start, int* arr, int size)
 	}
 	if(fol[idx]->folof != -1 && !inarr(arr, fol[idx]->folof, size) && idx!= fol[idx]->folof)
 	{
-		printf("***********************Comuting for %d\n",fol[idx]->folof);
-		printf("contents of arr\n[");
-		int j;
-		for(j=0; j<size; j++) printf("%d-%d ",j, arr[i]);
-		printf("]\n");
-		if(fol[idx]->folof < 0) printf("kuch galat hai\n");
+		//printf("***********************Comuting for %d\n",fol[idx]->folof);
+		//printf("contents of arr\n[");
+		//int j;
+		//for(j=0; j<size; j++) printf("%d-%d ",j, arr[i]);
+		//printf("]\n");
+		//if(fol[idx]->folof < 0) printf("kuch galat hai\n");
 		arr[size++] = fol[idx]->folof;
 		df->next = compute_fol(fol[idx]->folof,start, arr, size);
 	}
@@ -530,7 +522,7 @@ void createParseTable(looktable* lt_non_terminal, looktable* lt_terminal, list_g
 						parse_table[k][m] = i;
 
 					}else{
-						printf("\nsome error occured in rule %s , %s\n", rules[i]->value, rules[i]->next->value);
+						//printf("\nsome error occured in rule %s , %s\n", rules[i]->value, rules[i]->next->value);
 					}
 				}
 				eflag = fs[p]->eflag;
@@ -889,157 +881,3 @@ int lt_get(looktable* ht, char* key){
 
 
 
-void print_grammar_for_ast(list_gram** rules){
-	int i =0;
-	for(i=0; i<NUM_RULES; i++){
-		list_gram* temp = rules[i];
-		while(temp!=NULL){
-			printf("%s (%d)", temp->value,temp->ast_value);
-			temp = temp->next;
-		}
-		printf("\n");
-	}
-}
-
-void modify_grammar(char* filename)
-{
-	FILE *file = fopen(filename,"r");
-	size_t len = 0;
-	size_t nbytes = 1000;
-	ssize_t read;
-	char* line = malloc(nbytes+1);
-	char* tok;
-	
-	int i;
-	if(file == 0)
-		printf("Problem opening file");
-	else{
-		i=0;
-		while((len = getline(&line, &nbytes, file)) != -1){
-			if(rules[i] == NULL)
-			{
-				printf("Error - Problem in reading grammer\n");
-			}
-			else
-			{
-				list_gram* temp;
-				temp = rules[i]->next;
-				rules[i]->ast_value = -1;
-				tok = strtok(line," ");
-				while(tok!=NULL && temp!=NULL){
-					temp->ast_value = atoi(tok);
-					tok = strtok(NULL," \n");
-					temp = temp->next;
-				}	
-			}
-			i++;
-		}
-	}
-	print_grammar_for_ast(rules);		
-}
-
-astTree* construct_ast(ntree *root)
-{
-	//printf("\nCalled\n");
-	int i=0,j;
-	astTree* new_node;
-	new_node = (astTree*)malloc(sizeof(astTree));
-	new_node->size = 0;
-	new_node->node_symbol = root->node_symbol;
-	new_node->lexeme = root->lexeme;
-	astTree* temp;
-	//printf("\ninit complete\n");
-	for(i=0;i<root->size;i++)
-	{
-		if(root->next[i]->ast_value == 0)	//removed
-			continue;	
-		else if(root->next[i]->ast_value == 2)	
-		{
-			new_node->children[new_node->size++] = construct_ast(root->next[i]);
-		}
-		else if(root->next[i]->ast_value == 1)
-		{
-			temp = construct_ast(root->next[i]);
-			for(j=0;j<temp->size;j++)
-			{
-				new_node->children[new_node->size++] = temp->children[j];
-			}
-		}
-	}
-	return new_node;
-}
-
-copy_ast_node(astTree* r1, astTree* r2){
-	r1->node_symbol = r2->node_symbol;
-	r1->lexeme = r2->lexeme;
-}
-
-astTree* clean_ast(astTree* root){
-	int i;
-	for(i=0; i<root->size; i++){
-		while(root->children[i]->size==1 && root->children[i]->node_symbol[0]=='<' && !cannotBeDeleted(root->children[i]->node_symbol)){
-			astTree* temp = root->children[i];
-			root->children[i] = root->children[i]->children[0];
-			free(temp);
-		}
-		if(root->children[i]->size ==0 && root->children[i]->node_symbol[0]=='<')
-		{
-			int j;
-			root->size--;
-			for(j=i; j<root->size;j++)
-			{
-				root->children[j] = root->children[j+1];
-			}
-			i--;
-		}
-		else if(check_pull_up(root->children[i]->node_symbol)){
-			astTree* temp = root->children[i];
-			copy_ast_node(root, root->children[i]);
-			root->size--;
-			free(temp);
-			int j;
-			for(j=i; j<root->size;j++)
-			{
-				root->children[j] = root->children[j+1];
-			}
-			i--;	
-		}
-		else
-		{
-			root->children[i] = clean_ast(root->children[i]);
-		}
-	}
-	return root;
-}
-void print_ast(astTree* root)
-{
-	if(root == NULL)
-		return;
-	int i;
-	if(root->size != 0)
-		printf("\nparent - %s children - ",root-> node_symbol);
-	for(i=0;i<root->size;i++)
-	{
-		printf(" %s ( %s ) ",root->children[i]->node_symbol, root->children[i]->lexeme);
-	}	
-	for(i=0;i<root->size;i++)
-	{
-		print_ast(root->children[i]);
-	}
-}
-
-int check_pull_up(char* string)
-{
-	if (strcmp(string, "TK_PLUS") == 0 || strcmp(string, "TK_MINUS") == 0 || strcmp(string, "TK_DIV") == 0 || strcmp(string, "TK_MUL") == 0 || strcmp(string, "TK_ASSIGNOP") == 0
-		|| strcmp(string, "TK_WRITE") == 0 || strcmp(string, "TK_READ") == 0 || strcmp(string, "TK_AND") == 0 || strcmp(string, "TK_OR") == 0 || strcmp(string, "TK_LT") == 0
-		|| strcmp(string, "TK_LE") == 0 || strcmp(string, "TK_EQ") == 0 || strcmp(string, "TK_GT") == 0 || strcmp(string, "TK_GE") == 0 || strcmp(string, "TK_NE") == 0 || strcmp(string, "TK_NOT") == 0
-		|| strcmp(string, "TK_FUNID") == 0)
-		return 1;
-	else return 0;
-}
-
-int cannotBeDeleted(char* string)
-{
-	return strcmp(string, "<whileBody>") == 0 || strcmp(string, "<booleanExpression>") == 0 || strcmp(string, "<funCallStmt>") == 0
-		|| strcmp(string, "<parameter_list>") == 0 || strcmp(string, "<ifBody>") == 0 || strcmp(string, "<elsePart>") == 0;
-}
