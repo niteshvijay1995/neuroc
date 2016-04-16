@@ -1,10 +1,17 @@
-#define NON_TERMINAL 51
+/*
+Batch 73
+Nitesh Vijay 2013A7PS164P
+Nilay Jain 2013A7PS179P
+*/
+
+#define NON_TERMINAL 49
 #define TERMINAL 53
-#define NUM_RULES 90
+#define NUM_RULES 87
 
 struct list_gram{
 	char* value;
 	struct list_gram* next;
+	int ast_value;
 };
 typedef struct list_gram list_gram;
 
@@ -32,13 +39,13 @@ typedef struct snode snode;
 struct ntree{
 	int size;
 	int consumed;
-	int traverse;
 	char* lexeme;
 	char* node_symbol;
 	struct ntree* next[20];
 	int is_leaf_node;
 	struct ntree* parent;
 	int lineno;
+	int ast_value;
 };
 
 
@@ -62,3 +69,18 @@ struct looktable_s{
 	lookentry** table;
 };
 typedef struct looktable_s looktable;
+
+
+struct astTree{
+	int size;
+	struct astTree* children[20];
+	char* node_symbol;
+	char* lexeme;
+};
+typedef struct astTree astTree;
+
+struct intList{
+	int val;
+	struct intList* next;
+};
+typedef struct intList intList;

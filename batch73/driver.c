@@ -1,6 +1,12 @@
+/*
+Batch 73
+Nitesh Vijay 2013A7PS164P
+Nilay Jain 2013A7PS179P
+*/
+
+
 #include "parser.h"
 #include "lexer.h"
-
 void printcode(tokenInfo* tokenlist)
 {
 	int lineno = 0;
@@ -65,6 +71,7 @@ int main(int argc, char** args)
 		tokenInfo* tokenlist;
 		tokenlist = getNextToken(fp);
 		ntree* root;
+		astTree* astTree_root;
 		int error=0;
 		parser_init();
 		while(1)
@@ -83,18 +90,25 @@ int main(int argc, char** args)
 						break;
 					case 3:
 						root = parseInputSourceCode(args[1], &error);
-						if(error==0) printf("Compiled Successfully: Input source code is syntactically correct!!\n\n");
+						if(error==0) printf("\nCompiled Successfully: Input source code is syntactically correct!!\n\n");
 						else printf("\nCompilation Error\n\n");
 						break;
 					case 4:
 						root = parseInputSourceCode(args[1], &error);
 						fp = fopen(args[2], "w");
 						printParseTree(root, fp);
-						if(error==0) printf("Compiled Successfully: Parse tree printed in file %s!!\n\n",args[2]);
-						else printf("Compilation Error: Parse tree printed in file %s!!\n\n",args[2]);
+						if(error==0) printf("\nCompiled Successfully: Parse tree printed in file %s!!\n\n",args[2]);
+						else printf("\nCompilation Error: Parse tree printed in file %s!!\n\n",args[2]);
 						fclose(fp);
 						break;
 					case 5:
+						modify_grammar("astRules.txt");
+						astTree_root =  construct_ast(root);
+						//print_ast(astTree_root);
+						astTree_root = clean_ast(astTree_root);
+						print_ast(astTree_root);
+						//exit(0);
+					default:
 						exit(0);
 				}
 			}

@@ -1,5 +1,10 @@
+/*
+Batch 73
+Nitesh Vijay 2013A7PS164P
+Nilay Jain 2013A7PS179P
+*/
+
 #include "lexer.h"
-#define NUM_STATES 60
 hashtable* lookup_table;
 state* states[NUM_STATES];
 int char2index(char ch)

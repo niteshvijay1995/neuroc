@@ -1,7 +1,7 @@
 #include "lexer.h"
-#define NUM_STATES 60
 hashtable* lookup_table;
-state* states[NUM_STATES];
+int num_states = 60;
+state* states[60];
 int char2index(char ch)
 {
 	//printf("=%c=",ch);
@@ -61,8 +61,6 @@ int char2index(char ch)
 				return 24;
 			case '!':
 				return 25;
-			case ',':
-				return 26; 
 
 		}
 	}
@@ -130,7 +128,7 @@ void read_dfa(char* filename, state** states)
 	char* line = NULL;
 	char* tok;
 	int i;
-	for(i=0;i<NUM_STATES;i++)
+	for(i=0;i<num_states;i++)
 	{
 		states[i] = (state*)malloc(sizeof(state));
 		states[i]->isfinal = 0;
@@ -232,8 +230,6 @@ void read_dfa(char* filename, state** states)
 	}
 }
 
-
-
 FILE* getStream(FILE *fp, char** Buffer, size_t buffersize)
 {
 	int c;
@@ -252,25 +248,16 @@ tokenInfo* lexeme_detected(tokenInfo* token_node,int lineno, char* lexeme)
 	if(strcmp(token,"TK_ID")==0 && strlen(lexeme)>20)
 	{
 		token_node->isvalid = 0;
-		token_node->errno = 1;			
+		token_node->errno = 23;			
 		//printf("Identifier length exceeded (Limit : 20)\n"); 
 	}
 	else
 	{
 		if(strcmp(token,"Invalid")==0)
 		{
-			if(strlen(lexeme) == 1)
-			{
-				strcpy(token_node->lexeme,lexeme);
-				token_node->isvalid = 0;
-				token_node->errno = 2;
-			}
-			else
-			{
-				strcpy(token_node->lexeme,lexeme);
-				token_node->isvalid = 0;
-				token_node->errno = 3;
-			}
+			strcpy(token_node->lexeme,lexeme);
+			token_node->isvalid = 0;
+			token_node->errno = 45;
 		}
 		else
 		{
@@ -306,8 +293,9 @@ tokenInfo* getNextToken(FILE *fp)
 	{
 		i =0;
 		//printf("%s\n",Buffer);
-		while((ch=Buffer[i])!=EOF && ch !='\0')
+		while((ch=Buffer[i])!='\0')
 		{
+			
 			if(comment_flag == 0 || ch == '\n')
 			{
 				switch(ch)
@@ -333,6 +321,69 @@ tokenInfo* getNextToken(FILE *fp)
 						break;
 					case '\r':
 						break;
+					case ':':
+						lexeme[j] = '\0';
+						if(j!=0)						
+							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+						temp_tok = lexeme_detected(temp_tok,lineno,":");
+						j = 0;
+						break;
+					case '[':
+						lexeme[j] = '\0';
+						if(j!=0)
+							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+						temp_tok = lexeme_detected(temp_tok,lineno,"[");
+						j = 0;
+						break;
+					case ']':
+						lexeme[j] = '\0';
+						if(j!=0)
+							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+						temp_tok = lexeme_detected(temp_tok,lineno,"]");
+						j = 0;
+						break;
+					case ';':
+						lexeme[j] = '\0';
+						if(j!=0)
+							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+						temp_tok = lexeme_detected(temp_tok,lineno,";");
+						j = 0;
+						break;
+					case '+':
+						lexeme[j] = '\0';
+						if(j!=0)
+							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+						temp_tok = lexeme_detected(temp_tok,lineno,"+");
+						j = 0;
+						break;
+					case '-':
+						lexeme[j] = '\0';
+						if(j!=0)
+							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+						temp_tok = lexeme_detected(temp_tok,lineno,"-");
+						j = 0;
+						break;
+					case '*':
+						lexeme[j] = '\0';
+						if(j!=0)
+							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+						temp_tok = lexeme_detected(temp_tok,lineno,"*");
+						j = 0;
+						break;
+					case '/':
+						lexeme[j] = '\0';
+						if(j!=0)
+							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+						temp_tok = lexeme_detected(temp_tok,lineno,"/");
+						j = 0;
+						break;
+					case ',':
+						lexeme[j] = '\0';
+						if(j!=0)
+							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+						temp_tok = lexeme_detected(temp_tok,lineno,",");
+						j = 0;
+						break;
 					case '=':			//for detecting ==
 						temp = i;
 						if(Buffer[++temp] == '=')
@@ -347,6 +398,13 @@ tokenInfo* getNextToken(FILE *fp)
 						}
 						lexeme[j] = ch;
 						temp_tok = lexeme_detected(temp_tok,lineno,"=");
+						j = 0;
+						break;
+					case '~':
+						lexeme[j] = '\0';
+						if(j!=0)
+							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+						temp_tok = lexeme_detected(temp_tok,lineno,"~");
 						j = 0;
 						break;
 					case '!':
@@ -365,7 +423,7 @@ tokenInfo* getNextToken(FILE *fp)
 						j = 0;
 						break;
 					case '@':
-						temp = i;			//for detectinn @@@
+						temp = i;			//for detectinn &&&
 						if(Buffer[++temp] == '@')
 						{
 							if(Buffer[++temp] == '@')						
@@ -452,6 +510,21 @@ tokenInfo* getNextToken(FILE *fp)
 						temp_tok = lexeme_detected(temp_tok,lineno,".");
 						j = 0;
 						break;
+					case '(':
+						lexeme[j] = '\0';
+						if(j!=0)
+							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+						temp_tok = lexeme_detected(temp_tok,lineno,"(");
+						j = 0;
+						break;
+					case ')':
+						lexeme[j] = '\0';
+						if(j!=0)
+							temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
+						temp_tok = lexeme_detected(temp_tok,lineno,")");
+						j = 0;
+						break;
+						break;
 					case '\t':
 						break;
 					case '<':
@@ -528,26 +601,10 @@ tokenInfo* getNextToken(FILE *fp)
 						j = 0;
 						break;
 					default:
-						if(('0'<=ch && ch<='9') || ('A'<=ch && ch<='Z') || ('a'<=ch && ch<='z') || ch == '#' || ch=='_')
-						{
-							//printf("char : %c\n",ch);
-							lexeme[j] = ch;
-							if(j<60)
-								j++;	
-						}
-						else
-						{
-							//printf("Unknown char : %c at line %d\n",ch,lineno);
-							lexeme[j] = '\0';
-							if(j!=0)
-								temp_tok = lexeme_detected(temp_tok,lineno,lexeme);
-							char str[2];
-							str[0] = ch;
-							str[1] = '\0';
-							temp_tok = lexeme_detected(temp_tok,lineno,str);
-							j = 0;
-							break;
-						}
+						lexeme[j] = ch;
+						if(j<60)
+							j++;
+					
 				}		//end switch
 			}			//end if (for comment)
 			i++;

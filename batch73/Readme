@@ -1,0 +1,20 @@
+Compiler Stage1
+batch73
+Nitesh Vijay 2013A7PS164P
+Nilay Jain 2013A7PS179P
+
+Instructions 
+
+1. Open terminal in current directory
+2. Type "make"
+3. Type "./stage1exe testcase1.txt output.txt"
+Note -  All the 4 options are working.
+
+
+.txt file details :
+dfa.txt - dfa input
+terminals.txt - list of terminals in grammar
+nonterminal.txt - list of non-terminals in grammar
+grammarnew.txt - grammar input
+
+Thank You 

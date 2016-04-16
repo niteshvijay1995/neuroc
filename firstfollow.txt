@@ -1,0 +1,50 @@
+<program> {TK_FUNID} {$}
+<mainFunction> {TK_MAIN} 
+<otherFunctions> {TK_FUNID} {TK_MAIN} 
+<function> {TK_FUNID} 
+<input_par> {TK_INPUT}
+<output_par> {TK_OUTPUT} {TK_SEM}
+<parameter_list> {TK_INT, TK_REAL, TK_RECORD}
+<dataType> {TK_INT, TK_REAL, TK_RECORD}
+<primitiveDatatype> {TK_INT, TK_REAL}
+<constructedDatatype> {TK_RECORD}
+<remaining_list>
+<stmts>
+<typeDefinitions>
+<typeDefinition>
+<fieldDefinitions>
+<fieldDefinition>
+<moreFields>
+<declarations>
+<declaration>
+<global_or_not>
+<otherStmts>
+<stmt>
+<assignmentStmt>
+<singleOrRecId>
+<new_24>
+<funCallStmt>
+<outputParameters>
+<inputParameters>
+<iterativeStmt>
+<conditionalStmt>
+<elsePart>
+<ioStmt>
+<allVar>
+<arithmeticExpression>
+<expPrime>
+<term>
+<termPrime>
+<factor>
+<highPrecedenceOperator>
+<lowPrecedenceOperators>
+<all>
+<temp>
+<booleanExpression>
+<var>
+<logicalOp>
+<relationalOp>
+<returnStmt>
+<optionalReturn>
+<idList>
+<more_ids>

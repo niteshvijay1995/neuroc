@@ -1,3 +1,9 @@
+/*
+Batch 73
+Nitesh Vijay 2013A7PS164P
+Nilay Jain 2013A7PS179P
+*/
+
 #include "lexer.h"
 #include "parser.h"
 
@@ -11,6 +17,7 @@ list_gram* rules[NUM_RULES];
 char* nt_strings[NON_TERMINAL];
 int parse_table[NON_TERMINAL][TERMINAL];
 int found[NON_TERMINAL];
+
 void parser_init()
 {
 	 	lt_non_terminal	= lt_create(128);
@@ -33,23 +40,40 @@ void parser_init()
 		}
 
 		readgrammar("grammarnew.txt", rules);
+		modify_grammar("astRules.txt");
 		//print_grammar(rules);
 		readnonterminal("nonterminal.txt",lt_non_terminal,nt_strings);
 		readterminal("terminals.txt",lt_terminal);
-		for(i=0;i<50;i++){
+		for(i=0;i<NON_TERMINAL;i++){
 			find_first_set(nt_strings[i], rules, lt_non_terminal);
-			//print_fs(lt_non_terminal,nt_strings[i]);
+		//	print_fs(lt_non_terminal,nt_strings[i]);
 		}
 
 		
 		find_fol(rules, lt_non_terminal);
+
 		for(i=0;i<NON_TERMINAL;i++){
 			for(j=0;j<TERMINAL;j++){
 				parse_table[i][j] = -1;
 			}
 		}
+		/*for(i=0;i<NON_TERMINAL;i++)
+		{
+			int arr[100];
+			dum_fol* temp = compute_fol(i,i, arr, 0);
+			printf("printing fol set for %s\n", nt_strings[i]);
+			while(temp!=NULL)
+			{
+				printf("%s ", temp->value);
+				temp = temp->next;
+			}
+			printf("\n");
+			//print_fol(lt_non_terminal, nt_strings[i]);
+		}*/
+
 		createParseTable(lt_non_terminal, lt_terminal, rules);
-		//print_parse_table();		
+		print_parse_table();
+				
 }
 
 
@@ -60,16 +84,16 @@ void st_push(snode** head, char* value){
 	*head = newp;
 }
 
-void s_node_push(ntree* root, char* value){
+void s_node_push(ntree* root, list_gram* rule){				//Formally - void s_node_push(ntree* root,char*value)  || Changed by Nitesh Vijay on 15/04/16
 	ntree* temp = malloc(sizeof(ntree));
 	temp->size = 0;
 	temp->consumed = 0;
-	temp->traverse = 0;
 	//if(value[0]=='T') {temp->lexeme = tok->lexeme;}
 	temp->lexeme = NULL;
 	temp->lineno = 0;
-	temp->node_symbol = strdup(value);
-	if(value[0]=='T' || value[0] == 'e') temp->is_leaf_node = 1;
+	temp->ast_value = rule->ast_value;
+	temp->node_symbol = strdup(rule->value);
+	if(rule->value[0]=='T' || rule->value[0] == 'e') temp->is_leaf_node = 1;	//value[0] changed to rule->value[0] by Nitesh Vijay
 	else temp->is_leaf_node = 0;
 	temp->parent = root;
 	root->next[root->size] = temp;
@@ -91,7 +115,7 @@ char* st_front(snode* head){
 void push_rule(snode** head ,ntree* s_node, list_gram* rule ){
 	list_gram* temp = rule;
 	//temp = temp->next;
-	s_node_push(s_node, temp->value);
+	s_node_push(s_node, temp);		//formally - s_node_push(s_node, temp->value);  || Chnaged by Nitesh Vijay on 15/04/16
 	if(temp->next!=NULL){
 		push_rule(head, s_node, temp->next);
 	}
@@ -357,9 +381,18 @@ int ifexists2(int idx, char* ter){
 	}
 	return 0;
 }
-dum_fol* compute_fol(int idx,int start)
+int inarr(int* arr, int value, int size){
+	int i;
+	for(i=0; i<size; i++){
+		if(arr[i]==value) return 1;
+	}
+	return 0;
+}
+
+dum_fol* compute_fol(int idx,int start, int* arr, int size)
 {
 //	char* fol_set[20];
+	printf("infinte loop idx = %d, start = %d\n", idx, start);
 	dum_fol* df;
 	dum_fol* head;
 	df = malloc(sizeof(dum_fol));
@@ -372,10 +405,16 @@ dum_fol* compute_fol(int idx,int start)
 		df-> value = strdup(fol[idx]->arr[i]);
 		df->next = NULL;
 	}
-	if(fol[idx]->folof != -1 && fol[idx]->folof != start && idx!= fol[idx]->folof)
+	if(fol[idx]->folof != -1 && !inarr(arr, fol[idx]->folof, size) && idx!= fol[idx]->folof)
 	{
-		//printf("Comuting for %d\n",fol[idx]->folof);
-		df->next = compute_fol(fol[idx]->folof,start);
+		printf("***********************Comuting for %d\n",fol[idx]->folof);
+		printf("contents of arr\n[");
+		int j;
+		for(j=0; j<size; j++) printf("%d-%d ",j, arr[i]);
+		printf("]\n");
+		if(fol[idx]->folof < 0) printf("kuch galat hai\n");
+		arr[size++] = fol[idx]->folof;
+		df->next = compute_fol(fol[idx]->folof,start, arr, size);
 	}
 	return head->next;
 }
@@ -431,7 +470,7 @@ void print_fol(looktable* lt_non_terminal, char* nt_string){
 	dum_fol* temp;
 	//printf("\nsize=%d\n",fs[idx]->size);
 	for(i=0; i< fol[idx]->size; i++){
-		temp = compute_fol(idx,idx);
+		//temp = compute_fol(idx,idx);
 		while(temp!=NULL)
 		{
 			printf("%s ", temp->value);
@@ -461,7 +500,8 @@ void createParseTable(looktable* lt_non_terminal, looktable* lt_terminal, list_g
 			//follow
 			k = lt_get(lt_non_terminal, rules[i]->value);
 			dum_fol* dtemp;
-			dtemp = compute_fol(k,k);
+			int arr[100];
+			dtemp = compute_fol(k,k, arr, 0);
 			while(dtemp!=NULL)
 			{
 			//for(j=0; j<fol[k]->size; j++){
@@ -490,7 +530,7 @@ void createParseTable(looktable* lt_non_terminal, looktable* lt_terminal, list_g
 						parse_table[k][m] = i;
 
 					}else{
-						//printf("\nsome error occured\n");
+						printf("\nsome error occured in rule %s , %s\n", rules[i]->value, rules[i]->next->value);
 					}
 				}
 				eflag = fs[p]->eflag;
@@ -526,7 +566,7 @@ ntree* parseInputSourceCode(char* test_case_file, int* error){
 	root->parent = NULL;
 	root->node_symbol = strdup("<program>");
 	root->consumed = 0;
-	root->traverse = 0;
+	root->ast_value = 2;
 	push_rule(&stack,root,rules[0]->next);
 	//st_print(stack);
 	char* t_rec;
@@ -651,7 +691,8 @@ ntree* parseInputSourceCode(char* test_case_file, int* error){
 					}
 					//t_rec = st_front(stack);
 					//nt_i = lt_get(lt_non_terminal,t_rec);
-					dum_fol* fols = compute_fol(nt_i,nt_i);
+					int arr[100];
+					dum_fol* fols = compute_fol(nt_i,nt_i, arr, 0);
 					first_set* firs = fs[nt_i];
 					//printf("%s Error in line no. %d\n",t_rec,temp->lineno);
 					dum_fol* temp2 = fols;
@@ -715,22 +756,22 @@ ntree* parseInputSourceCode(char* test_case_file, int* error){
 void printNode(ntree* node, FILE* fp){
 	
 	if(strcmp(node->node_symbol, "<program>")==0){
-		fprintf(fp, "lexemeCurrentNode: ----,\tlineno: , token: ,"); 
-		fprintf(fp, "valueIfNumber: , parentNodeSymbol: root, isLeafNode: no , NodeSymbol:%s \n", node->node_symbol);
+		fprintf(fp, "lexemeCurrentNode: %-20s, lineno:   , token: %-20s,","----",""); 
+		fprintf(fp, "valueIfNumber: %-5s, parentNodeSymbol: %-20s, isLeafNode: no  , NodeSymbol:%s \n","","root", node->node_symbol);
 	}
 	else if(strcmp(node->node_symbol, "TK_NUM")==0 || strcmp(node->node_symbol, "TK_RNUM")==0){
-		fprintf(fp,"lexemeCurrentNode: %s,\tlineno: %d, token: %s,", node->lexeme, node->lineno, node->node_symbol); 
-		fprintf(fp,"valueIfNumber: %s, parentNodeSymbol: %s, isLeafNode: yes , NodeSymbol: \n", node->lexeme,node->parent->node_symbol);
+		fprintf(fp,"lexemeCurrentNode: %-20s, lineno: %-2d, token: %-20s,", node->lexeme, node->lineno, node->node_symbol); 
+		fprintf(fp,"valueIfNumber: %-5s, parentNodeSymbol: %-20s, isLeafNode: yes , NodeSymbol: \n", node->lexeme,node->parent->node_symbol);
 	}else if((node->node_symbol)[0]=='T'){
-		fprintf(fp,"lexemeCurrentNode: %s,\tlineno: %d, token: %s,", node->lexeme, node->lineno, node->node_symbol); 
-		fprintf(fp,"valueIfNumber: , parentNodeSymbol: %s, isLeafNode: yes , NodeSymbol: \n",node->parent->node_symbol);
+		fprintf(fp,"lexemeCurrentNode: %-20s, lineno: %-2d, token: %-20s,", node->lexeme, node->lineno, node->node_symbol); 
+		fprintf(fp,"valueIfNumber: %-5s, parentNodeSymbol: %-20s, isLeafNode: yes , NodeSymbol: \n","",node->parent->node_symbol);
 	}else if((node->node_symbol)[0]=='e'){
-		fprintf(fp,"lexemeCurrentNode: ----,\tlineno: , token: ,"); 
-		fprintf(fp,"valueIfNumber: , parentNodeSymbol: %s, isLeafNode: yes , NodeSymbol: %s\n", node->parent->node_symbol,node->node_symbol);
+		fprintf(fp,"lexemeCurrentNode: %-20s, lineno:   , token: %-20s,","----",""); 
+		fprintf(fp,"valueIfNumber: %-5s, parentNodeSymbol: %-20s, isLeafNode: yes , NodeSymbol: %s\n", "",node->parent->node_symbol,node->node_symbol);
 	}
 	else{
-		fprintf(fp,"lexemeCurrentNode: ----,\tlineno: , token: ,"); 
-		fprintf(fp,"valueIfNumber: , parentNodeSymbol: %s, isLeafNode: no , NodeSymbol: %s\n", node->parent->node_symbol,node->node_symbol);
+		fprintf(fp,"lexemeCurrentNode: %-20s, lineno:   , token: %-20s,","----",""); 
+		fprintf(fp,"valueIfNumber: %-5s, parentNodeSymbol: %-20s, isLeafNode: no  , NodeSymbol: %s\n", "",node->parent->node_symbol,node->node_symbol);
 	}
 }
 void printParseTree(ntree* root, FILE* fp){
@@ -739,11 +780,11 @@ void printParseTree(ntree* root, FILE* fp){
 		root->is_leaf_node=1;
 		printNode(root, fp);	
 	} 
-	if(root->traverse >=root->size) return;
+	//if(root->traverse >=root->size) return;
 	//root->traverse++;
 	int i;
 	for(i=0; i<root->size; i++){
-		printParseTree(root->next[root->traverse++], fp);
+		printParseTree(root->next[i], fp);
 	}
 	printNode(root, fp);
 }
@@ -844,4 +885,155 @@ int lt_get(looktable* ht, char* key){
 
 		return newp->value;
 	}
+}
+
+
+
+void print_grammar_for_ast(list_gram** rules){
+	int i =0;
+	for(i=0; i<NUM_RULES; i++){
+		list_gram* temp = rules[i];
+		while(temp!=NULL){
+			printf("%s (%d)", temp->value,temp->ast_value);
+			temp = temp->next;
+		}
+		printf("\n");
+	}
+}
+
+void modify_grammar(char* filename)
+{
+	FILE *file = fopen(filename,"r");
+	size_t len = 0;
+	size_t nbytes = 1000;
+	ssize_t read;
+	char* line = malloc(nbytes+1);
+	char* tok;
+	
+	int i;
+	if(file == 0)
+		printf("Problem opening file");
+	else{
+		i=0;
+		while((len = getline(&line, &nbytes, file)) != -1){
+			if(rules[i] == NULL)
+			{
+				printf("Error - Problem in reading grammer\n");
+			}
+			else
+			{
+				list_gram* temp;
+				temp = rules[i]->next;
+				rules[i]->ast_value = -1;
+				tok = strtok(line," ");
+				while(tok!=NULL && temp!=NULL){
+					temp->ast_value = atoi(tok);
+					tok = strtok(NULL," \n");
+					temp = temp->next;
+				}	
+			}
+			i++;
+		}
+	}
+	print_grammar_for_ast(rules);		
+}
+
+astTree* construct_ast(ntree *root)
+{
+	//printf("\nCalled\n");
+	int i=0,j;
+	astTree* new_node;
+	new_node = (astTree*)malloc(sizeof(astTree));
+	new_node->size = 0;
+	new_node->node_symbol = root->node_symbol;
+	new_node->lexeme = root->lexeme;
+	astTree* temp;
+	//printf("\ninit complete\n");
+	for(i=0;i<root->size;i++)
+	{
+		if(root->next[i]->ast_value == 0)	//removed
+			continue;	
+		else if(root->next[i]->ast_value == 2)	
+		{
+			new_node->children[new_node->size++] = construct_ast(root->next[i]);
+		}
+		else if(root->next[i]->ast_value == 1)
+		{
+			temp = construct_ast(root->next[i]);
+			for(j=0;j<temp->size;j++)
+			{
+				new_node->children[new_node->size++] = temp->children[j];
+			}
+		}
+	}
+	return new_node;
+}
+
+copy_ast_node(astTree* r1, astTree* r2){
+	r1->node_symbol = r2->node_symbol;
+	r1->lexeme = r2->lexeme;
+}
+
+astTree* clean_ast(astTree* root){
+	int i;
+	for(i=0; i<root->size; i++){
+		if(root->children[i]->size ==0 && root->children[i]->node_symbol[0]=='<')
+		{
+			int j;
+			root->size--;
+			for(j=i; j<root->size;j++)
+			{
+				root->children[j] = root->children[j+1];
+			}
+			i--;
+		}
+		while(root->children[i]->size==1 && root->children[i]->node_symbol[0]=='<'){
+			astTree* temp = root->children[i];
+			root->children[i] = root->children[i]->children[0];
+			free(temp);
+		}
+		if(check_pull_up(root->children[i]->node_symbol)){
+			astTree* temp = root->children[i];
+			copy_ast_node(root, root->children[i]);
+			root->size--;
+			free(temp);
+			int j;
+			for(j=i; j<root->size;j++)
+			{
+				root->children[j] = root->children[j+1];
+			}
+			i--;	
+		}
+		else
+		{
+			root->children[i] = clean_ast(root->children[i]);
+		}
+	}
+	return root;
+}
+void print_ast(astTree* root)
+{
+	if(root == NULL)
+		return;
+	int i;
+	if(root->size != 0)
+		printf("\nparent - %s children - ",root-> node_symbol);
+	for(i=0;i<root->size;i++)
+	{
+		printf(" %s ( %s ) ",root->children[i]->node_symbol, root->children[i]->lexeme);
+	}	
+	for(i=0;i<root->size;i++)
+	{
+		print_ast(root->children[i]);
+	}
+}
+
+int check_pull_up(char* string)
+{
+	if (strcmp(string, "TK_PLUS") == 0 || strcmp(string, "TK_MINUS") == 0 || strcmp(string, "TK_DIV") == 0 || strcmp(string, "TK_MUL") == 0 || strcmp(string, "TK_ASSIGNOP") == 0
+		|| strcmp(string, "TK_PRINT") == 0 || strcmp(string, "TK_READ") == 0 || strcmp(string, "TK_AND") == 0 || strcmp(string, "TK_OR") == 0 || strcmp(string, "TK_LT") == 0
+		|| strcmp(string, "TK_LE") == 0 || strcmp(string, "TK_EQ") == 0 || strcmp(string, "TK_GT") == 0 || strcmp(string, "TK_GE") == 0 || strcmp(string, "TK_NE") == 0 || strcmp(string, "TK_NOT") == 0
+		|| strcmp(string, "TK_SIZE") == 0)
+		return 1;
+	else return 0;
 }

@@ -1,3 +1,9 @@
+/*
+Batch 73
+Nitesh Vijay 2013A7PS164P
+Nilay Jain 2013A7PS179P
+*/
+
 #include "parserDef.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -6,7 +12,7 @@
 
 void parser_init();
 void st_push(snode** head, char* value);
-void s_node_push(ntree* root, char* value);
+void s_node_push(ntree* root, list_gram* rule);
 char* st_pop(snode** head);
 char* st_front(snode* head);
 void push_rule(snode** head ,ntree* s_node, list_gram* rule );
@@ -21,7 +27,7 @@ int find_first_set(char* non_terminal, list_gram** rules, looktable* lt_non_term
 int find_fol(list_gram** rules, looktable* lt_non_terminal);
 int ifexists(int idx, char* ter);
 int ifexists2(int idx, char* ter);
-dum_fol* compute_fol(int idx,int start);
+dum_fol* compute_fol(int idx,int start, int arr[], int size);
 int fol_add(int idx, first_set* nw);
 int fs_add(int idx, first_set* nw);
 void print_fs(looktable* lt_non_terminal, char* nt_string);
