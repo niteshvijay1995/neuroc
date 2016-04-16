@@ -23,7 +23,7 @@ _main
 		read(b3c2.chemistry);
 		d4 <--- b3c2 + d4; 
 		b5 <--- b5 +1;
-	endwhile;
+	endwhile
 	write(d4);
 	return;
 end

@@ -977,6 +977,11 @@ copy_ast_node(astTree* r1, astTree* r2){
 astTree* clean_ast(astTree* root){
 	int i;
 	for(i=0; i<root->size; i++){
+		while(root->children[i]->size==1 && root->children[i]->node_symbol[0]=='<' && !cannotBeDeleted(root->children[i]->node_symbol)){
+			astTree* temp = root->children[i];
+			root->children[i] = root->children[i]->children[0];
+			free(temp);
+		}
 		if(root->children[i]->size ==0 && root->children[i]->node_symbol[0]=='<')
 		{
 			int j;
@@ -987,12 +992,7 @@ astTree* clean_ast(astTree* root){
 			}
 			i--;
 		}
-		while(root->children[i]->size==1 && root->children[i]->node_symbol[0]=='<'){
-			astTree* temp = root->children[i];
-			root->children[i] = root->children[i]->children[0];
-			free(temp);
-		}
-		if(check_pull_up(root->children[i]->node_symbol)){
+		else if(check_pull_up(root->children[i]->node_symbol)){
 			astTree* temp = root->children[i];
 			copy_ast_node(root, root->children[i]);
 			root->size--;
@@ -1031,9 +1031,15 @@ void print_ast(astTree* root)
 int check_pull_up(char* string)
 {
 	if (strcmp(string, "TK_PLUS") == 0 || strcmp(string, "TK_MINUS") == 0 || strcmp(string, "TK_DIV") == 0 || strcmp(string, "TK_MUL") == 0 || strcmp(string, "TK_ASSIGNOP") == 0
-		|| strcmp(string, "TK_PRINT") == 0 || strcmp(string, "TK_READ") == 0 || strcmp(string, "TK_AND") == 0 || strcmp(string, "TK_OR") == 0 || strcmp(string, "TK_LT") == 0
+		|| strcmp(string, "TK_WRITE") == 0 || strcmp(string, "TK_READ") == 0 || strcmp(string, "TK_AND") == 0 || strcmp(string, "TK_OR") == 0 || strcmp(string, "TK_LT") == 0
 		|| strcmp(string, "TK_LE") == 0 || strcmp(string, "TK_EQ") == 0 || strcmp(string, "TK_GT") == 0 || strcmp(string, "TK_GE") == 0 || strcmp(string, "TK_NE") == 0 || strcmp(string, "TK_NOT") == 0
-		|| strcmp(string, "TK_SIZE") == 0)
+		|| strcmp(string, "TK_FUNID") == 0)
 		return 1;
 	else return 0;
+}
+
+int cannotBeDeleted(char* string)
+{
+	return strcmp(string, "<whileBody>") == 0 || strcmp(string, "<booleanExpression>") == 0 || strcmp(string, "<funCallStmt>") == 0
+		|| strcmp(string, "<parameter_list>") == 0 || strcmp(string, "<ifBody>") == 0 || strcmp(string, "<elsePart>") == 0;
 }

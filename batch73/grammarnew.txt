@@ -43,7 +43,8 @@
 <outputParameters> ===> eps
 <inputParameters> ===> TK_SQL <idList> TK_SQR
 <iterativeStmt> ===> TK_WHILE TK_OP <booleanExpression> TK_CL <stmt> <otherStmts> TK_ENDWHILE
-<conditionalStmt> ===> TK_IF TK_OP <booleanExpression> TK_CL TK_THEN <stmt> <otherStmts> <elsePart>
+<conditionalStmt> ===> TK_IF TK_OP <booleanExpression> TK_CL TK_THEN <ifBody> <elsePart>
+<ifBody> ===> <stmt> <otherStmts>
 <elsePart> ===> TK_ELSE <stmt> <otherStmts> TK_ENDIF
 <elsePart> ===> TK_ENDIF
 <ioStmt> ===> TK_READ TK_OP <singleOrRecId> TK_CL TK_SEM

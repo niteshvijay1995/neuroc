@@ -4,9 +4,9 @@ Nitesh Vijay 2013A7PS164P
 Nilay Jain 2013A7PS179P
 */
 
-#define NON_TERMINAL 49
+#define NON_TERMINAL 50
 #define TERMINAL 53
-#define NUM_RULES 87
+#define NUM_RULES 88
 
 struct list_gram{
 	char* value;

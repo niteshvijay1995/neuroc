@@ -28,6 +28,7 @@
 <inputParameters>
 <iterativeStmt>
 <conditionalStmt>
+<ifBody>
 <elsePart>
 <ioStmt>
 <arithmeticExpression>
