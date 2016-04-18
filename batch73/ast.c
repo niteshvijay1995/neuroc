@@ -151,7 +151,7 @@ int check_pull_up(char* string)
 	if (strcmp(string, "TK_PLUS") == 0 || strcmp(string, "TK_MINUS") == 0 || strcmp(string, "TK_DIV") == 0 || strcmp(string, "TK_MUL") == 0 || strcmp(string, "TK_ASSIGNOP") == 0
 		|| strcmp(string, "TK_WRITE") == 0 || strcmp(string, "TK_READ") == 0 || strcmp(string, "TK_AND") == 0 || strcmp(string, "TK_OR") == 0 || strcmp(string, "TK_LT") == 0
 		|| strcmp(string, "TK_LE") == 0 || strcmp(string, "TK_EQ") == 0 || strcmp(string, "TK_GT") == 0 || strcmp(string, "TK_GE") == 0 || strcmp(string, "TK_NE") == 0 || strcmp(string, "TK_NOT") == 0
-		|| strcmp(string, "TK_FUNID") == 0)
+		|| strcmp(string, "TK_FUNID") == 0 || strcmp(string, "TK_MAIN") == 0)
 		return 1;
 	else return 0;
 }

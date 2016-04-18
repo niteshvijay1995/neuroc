@@ -11,3 +11,4 @@ struct intList{
 	struct intList* next;
 };
 typedef struct intList intList;
+
