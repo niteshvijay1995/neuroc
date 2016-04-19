@@ -3,6 +3,8 @@ struct astTree{
 	struct astTree* children[20];
 	char* node_symbol;
 	char* lexeme;
+	int lineno;
+	int type;
 };
 typedef struct astTree astTree;
 

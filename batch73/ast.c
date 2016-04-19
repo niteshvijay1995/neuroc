@@ -56,15 +56,23 @@ void modify_grammar(char* filename)
 	//print_grammar_for_ast(rules);		
 }
 
-astTree* construct_ast(ntree *root)
+astTree* ast_new_node(ntree *root)
 {
-	//printf("\nCalled\n");
-	int i=0,j;
 	astTree* new_node;
 	new_node = (astTree*)malloc(sizeof(astTree));
 	new_node->size = 0;
 	new_node->node_symbol = root->node_symbol;
 	new_node->lexeme = root->lexeme;
+	new_node->lineno = root->lineno;
+	new_node->type = -1;
+	return new_node;
+}
+
+astTree* construct_ast(ntree *root)
+{
+	//printf("\nCalled\n");
+	int i=0,j;
+	astTree* new_node = ast_new_node(root);
 	astTree* temp;
 	//printf("\ninit complete\n");
 	for(i=0;i<root->size;i++)
@@ -90,6 +98,7 @@ astTree* construct_ast(ntree *root)
 void copy_ast_node(astTree* r1, astTree* r2){
 	r1->node_symbol = r2->node_symbol;
 	r1->lexeme = r2->lexeme;
+	r1->lineno = r2->lineno;
 }
 
 astTree* clean_ast(astTree* root){
@@ -138,7 +147,7 @@ void print_ast(astTree* root)
 		printf("\nparent - %s children - ",root-> node_symbol);
 	for(i=0;i<root->size;i++)
 	{
-		printf(" %s ( %s ) ",root->children[i]->node_symbol, root->children[i]->lexeme);
+		printf(" %s ( %s )[ %d] ",root->children[i]->node_symbol, root->children[i]->lexeme, root->children[i]->type);
 	}	
 	for(i=0;i<root->size;i++)
 	{

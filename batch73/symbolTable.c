@@ -4,15 +4,13 @@
 #include "symbolTable.h"
 
 int global_offset = 0;
-symbol_list* lis;
 
-void push_symbol_list(char* lexeme, char* func_name){
+void push_symbol_list(symbol_list** lis, char* lexeme, char* func_name){
 	symbol_list* new_node = malloc(sizeof(symbol_list));
 	new_node->lexeme = strdup(lexeme);
 	new_node->func_name = strdup(func_name);
-	new_node->next = lis;
-	lis = new_node;
-	return;
+	new_node->next = *lis;
+	*lis = new_node;
 }
 
 sym_table* push_sym_table(sym_table* head, func_sym_table* data){
@@ -48,6 +46,13 @@ func_sym_table* sym_create(int size, char* name){
 void copy_details(details* d1, details* d2){
 	d1->type = d2->type;
 	d1->offset = d2->offset;
+	if(d1->type==3)
+	{
+		d1->rec_name = strdup(d2->rec_name);
+		symbol_list* temp = d2->slist;
+		d1->f = d2->f;
+		d1->slist = d2->slist;
+	}
 }
 
 var_entry* var_entry_create(char* key, details* det){
@@ -130,48 +135,68 @@ details* func_sym_get(func_sym_table* ht, char* key){
 	}
 }
 
-void createVarEntry(func_sym_table* f, char* lexeme, details* d){
+void createVarEntry(func_sym_table* f, char* lexeme, details* d, symbol_list** lis){
+	
 	if(func_sym_get(f, lexeme)!=NULL){
 		printf("error. variable %s is redeclared", lexeme);
 	}
 	func_sym_insert(f, lexeme, d);
 	//printf("a variable entry is created\n");
-	push_symbol_list(lexeme, f->func_name);
+	push_symbol_list(lis, lexeme, f->func_name);
+	
 }
 
-void allocate(astTree* temp, int* offset, func_sym_table* f, func_sym_table* g, looktable* lt_rec){
+void allocate(astTree* temp, int* offset, func_sym_table* f, func_sym_table* g, looktable* lt_rec, symbol_list** lis){
 	int j = 0;
 	int off = 0;
 	for(j=0; j<=temp->size-2; j+=2){
 		details* d = malloc(sizeof(details));
 		if(strcmp(temp->children[j]->node_symbol, "TK_INT")==0){
+			temp->children[j]->type = 0;
+			temp->children[j+1]->type = 0;
 			d->type = 0;
 			off = 2;
 		}
 		else if(strcmp(temp->children[j]->node_symbol, "TK_REAL")==0){
+			temp->children[j]->type = 1;
+			temp->children[j+1]->type = 1;
 			d->type = 1;
 			off = 2; 
 		}
 		else if(strcmp(temp->children[j]->node_symbol, "TK_RECORDID")==0){
+			temp->children[j]->type = 2;
+			temp->children[j+1]->type = 2;
 			d->type = 2;
 			off = lt_get(lt_rec, temp->children[j]->lexeme);
-			printf("\noff is: %d, lexeme searched was: %s\n", off, temp->children[j]->lexeme);
+			//printf("\noff is: %d, lexeme searched was: %s\n", off, temp->children[j]->lexeme);
 		}
 		d->offset = *offset + global_offset;
 
 		if(temp->size == 3){
 			global_offset += off;
-			createVarEntry(g, temp->children[j+1]->lexeme, d);
+			createVarEntry(g, temp->children[j+1]->lexeme, d, lis);
 		}
 		else{
 			(*offset) = *offset + off;
-			createVarEntry(f,temp->children[j+1]->lexeme,d);
+			createVarEntry(f,temp->children[j+1]->lexeme,d, lis);
+			//printf("\n ***lexeme = %s\n",temp->children[j+1]->lexeme);
 		}	
 	}
 
 }
 
-func_sym_table* createMainFuncEntry(astTree* root, char* name, func_sym_table* g){
+iterate_type_def(details** d, astTree* root){
+	int i;
+	int offset = 0;
+	symbol_list* temp = malloc(sizeof(symbol_list));
+	for(i=0; i<root->size; i++)
+	{
+		allocate(root->children[i], &offset, (*d)->f, NULL, NULL, &temp);
+	}
+	(*d)->slist = temp;
+}
+
+func_sym_table* createMainFuncEntry(astTree* root, char* name, func_sym_table* g, symbol_list** lis){
 	func_sym_table* f = sym_create(1024, name);
 	looktable* lt_rec = lt_create(1024);
 	int i;
@@ -180,15 +205,30 @@ func_sym_table* createMainFuncEntry(astTree* root, char* name, func_sym_table* g
 		if(strcmp(root->children[i]->node_symbol, "<typeDefinition>")==0)
 		{
 			astTree* temp = root->children[i];
-			int value = temp->children[1]->size * 2;
-			printf("\nlexeme inserted is: %s\n", temp->children[0]->lexeme);
+			int value = temp->children[1]->size * 2;		//considering int and real of size 2 
+		//	printf("\nlexeme inserted is: %s\n", temp->children[0]->lexeme);
+			details* d2 = malloc(sizeof(details));
+			d2->type = 3;
+			d2->offset = offset; 
+			offset = offset+=value;
+			d2->f = sym_create(32, temp->children[0]->lexeme);
+			temp->type = 3;
+			temp->children[0]->type = 3;
+			iterate_type_def(&d2, temp->children[1]);
+			//if(d2->slist == NULL) printf("nulla ho gaya\n");
+			createVarEntry(f,temp->children[0]->lexeme,d2, lis);
+			
+
+			//func_sym_insert(f, )
+
 			lt_insert(lt_rec, temp->children[0]->lexeme, value);
+			
 		}
 		if(strcmp(root->node_symbol, "TK_MAIN")==0){
 			if(strcmp(root->children[i]->node_symbol, "<declaration>")==0)
 			{	
 				astTree* temp = root->children[i];
-				allocate(temp,&offset,f, g, lt_rec);
+				allocate(temp,&offset,f, g, lt_rec, lis);
 			}
 		}
 		else if(strcmp(root->node_symbol,"TK_FUNID")==0)
@@ -197,7 +237,7 @@ func_sym_table* createMainFuncEntry(astTree* root, char* name, func_sym_table* g
 			temp1 = root->children[i];
 
 			if(i<2){
-				allocate(temp1, &offset,f, g, lt_rec);
+				allocate(temp1, &offset,f, g, lt_rec, lis);
 			}
 			else if(i==2){
 				int j;
@@ -206,7 +246,7 @@ func_sym_table* createMainFuncEntry(astTree* root, char* name, func_sym_table* g
 					if(strcmp(temp1->children[j]->node_symbol, "<declaration>")==0)
 					{	
 						astTree* temp3 = temp1->children[j];
-						allocate(temp3,&offset,f, g, lt_rec);
+						allocate(temp3,&offset,f, g, lt_rec, lis);
 					}			
 				}
 			}
@@ -215,7 +255,7 @@ func_sym_table* createMainFuncEntry(astTree* root, char* name, func_sym_table* g
 	return f;
 }
 
-sym_table* createSymbolTable(astTree* root){
+sym_table* createSymbolTable(astTree* root, symbol_list** lis){
 	sym_table* st;
 	int i;
 	func_sym_table* g = malloc(sizeof(func_sym_table));
@@ -224,7 +264,7 @@ sym_table* createSymbolTable(astTree* root){
 
 	for(i=0; i<root->size; i++)
 	{
-		func_sym_table* f = createMainFuncEntry(root->children[i], root->children[i]->lexeme, g);
+		func_sym_table* f = createMainFuncEntry(root->children[i], root->children[i]->lexeme, g, lis);
 		//printf("\none entry created\n");
 		st = push_sym_table(st,f);
 	}
@@ -242,10 +282,11 @@ func_sym_table* search_sym_table(sym_table* st, char* name){
 	return NULL;
 }
 
-void printSymbolTable(sym_table* st){
+void printSymbolTable(sym_table* st, symbol_list* lis){
 	symbol_list* temp = lis;
-	while(temp!=NULL)
+	while(temp->next!=NULL)
 	{
+		//printf("\nin printSymbolTable func name = %s\n",temp->func_name);
 		func_sym_table* f = search_sym_table(st, temp->func_name);
 		//printf("in printSymbolTable\n");
 		if(f==NULL){
@@ -254,8 +295,37 @@ void printSymbolTable(sym_table* st){
 		}
 		//printf("in printSymbolTable\n");
 		details* d = func_sym_get(f, temp->lexeme);
-		//printf("in printSymbolTable\n");
+		///printf("in printSymbolTable\n");
+
 		printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d\n", temp->lexeme, temp->func_name, d->type, d->offset);
+		if(d->type==3)
+		{
+			symbol_list* temp2 = d->slist;
+
+			while(temp2!=NULL)
+			{
+				details* d2 = func_sym_get(d->f, temp2->lexeme);
+				if(d2!=NULL) 
+				printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d\n", temp2->lexeme, temp2->func_name, d2->type, d2->offset);
+				temp2 = temp2->next;
+			}
+		}
 		temp = temp->next;
+	}
+}
+
+
+void init_typechecker(astTree* root, sym_table* st)
+{
+	int i=0,j;
+	for(i=0;i<root->size;i++)
+	{
+
+		astTree* temp = root->children[i];
+		for(j=0;j<temp->size;j++)
+		if(strcmp(root->children[i]->node_symbol,"TK_MAIN")==0)
+		{
+
+		}
 	}
 }

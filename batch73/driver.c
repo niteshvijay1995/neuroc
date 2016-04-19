@@ -110,8 +110,10 @@ int main(int argc, char** args)
 						astTree_root = clean_ast(astTree_root);
 						print_ast(astTree_root);
 						printf("\n_____________________________\n");
-						sym_table* st = createSymbolTable(astTree_root);
-						printSymbolTable(st);
+						symbol_list* lis;
+						sym_table* st = createSymbolTable(astTree_root, &lis);
+						printSymbolTable(st, lis);
+						print_ast(astTree_root);
 						break;
 					default:
 						exit(0);
