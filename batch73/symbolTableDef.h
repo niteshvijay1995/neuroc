@@ -10,6 +10,7 @@ struct details{
 	char* rec_name;
 	func_sym_table* f;
 	symbol_list* slist;
+	int lineno;
 };
 
 struct var_entry{

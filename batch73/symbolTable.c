@@ -53,6 +53,7 @@ void copy_details(details* d1, details* d2){
 		d1->f = d2->f;
 		d1->slist = d2->slist;
 	}
+	d1->lineno = d2->lineno;
 }
 
 var_entry* var_entry_create(char* key, details* det){
@@ -155,18 +156,21 @@ void allocate(astTree* temp, int* offset, func_sym_table* f, func_sym_table* g, 
 			temp->children[j]->type = 0;
 			temp->children[j+1]->type = 0;
 			d->type = 0;
+			d->lineno = temp->children[j]->lineno;
 			off = 2;
 		}
 		else if(strcmp(temp->children[j]->node_symbol, "TK_REAL")==0){
 			temp->children[j]->type = 1;
 			temp->children[j+1]->type = 1;
 			d->type = 1;
+			d->lineno = temp->children[j]->lineno;
 			off = 2; 
 		}
 		else if(strcmp(temp->children[j]->node_symbol, "TK_RECORDID")==0){
 			temp->children[j]->type = 2;
 			temp->children[j+1]->type = 2;
 			d->type = 2;
+			d->lineno = temp->children[j]->lineno;
 			off = lt_get(lt_rec, temp->children[j]->lexeme);
 			//printf("\noff is: %d, lexeme searched was: %s\n", off, temp->children[j]->lexeme);
 		}
@@ -209,7 +213,8 @@ func_sym_table* createMainFuncEntry(astTree* root, char* name, func_sym_table* g
 		//	printf("\nlexeme inserted is: %s\n", temp->children[0]->lexeme);
 			details* d2 = malloc(sizeof(details));
 			d2->type = 3;
-			d2->offset = offset; 
+			d2->offset = offset;
+			d2->lineno = temp->children[0]->lineno;  
 			offset = offset+=value;
 			d2->f = sym_create(32, temp->children[0]->lexeme);
 			temp->type = 3;
@@ -297,7 +302,7 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 		details* d = func_sym_get(f, temp->lexeme);
 		///printf("in printSymbolTable\n");
 
-		printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d\n", temp->lexeme, temp->func_name, d->type, d->offset);
+		printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d, lineno: %d\n", temp->lexeme, temp->func_name, d->type, d->offset, d->lineno);
 		if(d->type==3)
 		{
 			symbol_list* temp2 = d->slist;
@@ -306,15 +311,15 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 			{
 				details* d2 = func_sym_get(d->f, temp2->lexeme);
 				if(d2!=NULL) 
-				printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d\n", temp2->lexeme, temp2->func_name, d2->type, d2->offset);
+				printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d\n", temp2->lexeme, temp2->func_name, d2->type, d2->offset, d2->lineno);
 				temp2 = temp2->next;
 			}
 		}
 		temp = temp->next;
 	}
 }
-/*
 
+/*
 void init_typechecker(astTree* root, sym_table* st)
 {
 	int i=0,j;
@@ -335,7 +340,7 @@ void init_typechecker(astTree* root, sym_table* st)
 		}
 	}
 }
-
+/*
 int check_assignop_type(astTree* root)
 {
 	root->
