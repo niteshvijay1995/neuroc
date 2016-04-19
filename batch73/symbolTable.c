@@ -313,7 +313,7 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 		temp = temp->next;
 	}
 }
-
+/*
 
 void init_typechecker(astTree* root, sym_table* st)
 {
@@ -323,9 +323,20 @@ void init_typechecker(astTree* root, sym_table* st)
 
 		astTree* temp = root->children[i];
 		for(j=0;j<temp->size;j++)
+		{
+			if(strcmp(temp->children[j]->node_symbol,"TK_ASSIGNOP")==0)
+			{
+				check_assignop_type(temp->children[j]);	
+			}
+		}
 		if(strcmp(root->children[i]->node_symbol,"TK_MAIN")==0)
 		{
 
 		}
 	}
 }
+
+int check_assignop_type(astTree* root)
+{
+	root->
+}*/
