@@ -18,6 +18,7 @@ sym_table* push_sym_table(sym_table* head, func_sym_table* data){
 	new_node->f = data;
 	new_node->next = head;
 	head = new_node;
+
 	return head; 
 }
 
@@ -291,7 +292,7 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 	symbol_list* temp = lis;
 	while(temp->next!=NULL)
 	{
-		//printf("\nin printSymbolTable func name = %s\n",temp->func_name);
+		//printf("\nin printSymbolTable func name = \n");
 		func_sym_table* f = search_sym_table(st, temp->func_name);
 		//printf("in printSymbolTable\n");
 		if(f==NULL){
@@ -311,7 +312,7 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 			{
 				details* d2 = func_sym_get(d->f, temp2->lexeme);
 				if(d2!=NULL) 
-				printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d\n", temp2->lexeme, temp2->func_name, d2->type, d2->offset, d2->lineno);
+				printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d\n", temp2->lexeme, temp2->func_name, d2->type, d2->offset);
 				temp2 = temp2->next;
 			}
 		}
@@ -319,29 +320,3 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 	}
 }
 
-/*
-void init_typechecker(astTree* root, sym_table* st)
-{
-	int i=0,j;
-	for(i=0;i<root->size;i++)
-	{
-
-		astTree* temp = root->children[i];
-		for(j=0;j<temp->size;j++)
-		{
-			if(strcmp(temp->children[j]->node_symbol,"TK_ASSIGNOP")==0)
-			{
-				check_assignop_type(temp->children[j]);	
-			}
-		}
-		if(strcmp(root->children[i]->node_symbol,"TK_MAIN")==0)
-		{
-
-		}
-	}
-}
-/*
-int check_assignop_type(astTree* root)
-{
-	root->
-}*/

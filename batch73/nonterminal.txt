@@ -27,6 +27,7 @@
 <outputParameters>
 <inputParameters>
 <iterativeStmt>
+<whileBody>
 <conditionalStmt>
 <ifBody>
 <elsePart>

@@ -29,6 +29,7 @@ void parser_init()
 			fol[i]->valid = 0;
 			fol[i]->eflag = 0;
 			fol[i]->folof = -1;
+			fol[i]->folof_index=0;
 		}
 
 		readgrammar("grammarnew.txt", rules);
@@ -306,7 +307,10 @@ int find_fol(list_gram** rules, looktable* lt_non_terminal){
 				//printf("\nhere\n");
 				//fol_add(idx, nw);
 				if(idx != lt_get(lt_non_terminal, rules[i]->value))
+				{
 					fol[idx]->folof = lt_get(lt_non_terminal, rules[i]->value);
+					fol[idx]->folofarr[fol[idx]->folof_index++] = lt_get(lt_non_terminal, rules[i]->value);
+				}
 				//follow = first(rules[i])
 			}
 			else{
@@ -345,7 +349,10 @@ int find_fol(list_gram** rules, looktable* lt_non_terminal){
 						//printf("\nhere\n");
 						//fol_add(idx, nw);
 						if(idx != lt_get(lt_non_terminal, rules[i]->value))
+						{
 							fol[idx]->folof = lt_get(lt_non_terminal, rules[i]->value);
+							fol[idx]->folofarr[fol[idx]->folof_index++] = lt_get(lt_non_terminal, rules[i]->value);
+						}
 						//follow = first(rules[i])
 					}
 				}	
@@ -405,8 +412,16 @@ dum_fol* compute_fol(int idx,int start, int* arr, int size)
 		//for(j=0; j<size; j++) printf("%d-%d ",j, arr[i]);
 		//printf("]\n");
 		//if(fol[idx]->folof < 0) printf("kuch galat hai\n");
-		arr[size++] = fol[idx]->folof;
-		df->next = compute_fol(fol[idx]->folof,start, arr, size);
+		int j;
+		for(j=0;j<fol[idx]->folof_index;j++)
+		{
+			arr[size++] = fol[idx]->folofarr[j];
+			df->next = compute_fol(fol[idx]->folofarr[j],start, arr, size);
+			while(df->next!=NULL)
+				df=df->next;
+		}
+		//arr[size++] = fol[idx]->folof;
+		//df->next = compute_fol(fol[idx]->folof,start, arr, size);
 	}
 	return head->next;
 }

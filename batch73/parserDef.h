@@ -4,9 +4,9 @@ Nitesh Vijay 2013A7PS164P
 Nilay Jain 2013A7PS179P
 */
 
-#define NON_TERMINAL 50
+#define NON_TERMINAL 51
 #define TERMINAL 53
-#define NUM_RULES 88
+#define NUM_RULES 89
 
 struct list_gram{
 	char* value;
@@ -24,6 +24,8 @@ struct first_set{
 struct follow_set{
 	char* arr[30];
 	int folof;
+	int folofarr[5];
+	int folof_index;
 	int valid;
 	int size;
 	int eflag;

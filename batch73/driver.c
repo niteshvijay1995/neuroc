@@ -8,6 +8,7 @@ Nilay Jain 2013A7PS179P
 #include "lexer.h"
 #include "ast.h"
 #include "symbolTable.h"
+#include "typeChecker.h"
 void printcode(tokenInfo* tokenlist)
 {
 	int lineno = 0;
@@ -111,9 +112,12 @@ int main(int argc, char** args)
 						print_ast(astTree_root);
 						printf("\n_____________________________\n");
 						symbol_list* lis;
+						lis = malloc(sizeof(symbol_list*));
+						lis->next = NULL;
 						sym_table* st = createSymbolTable(astTree_root, &lis);
 						printSymbolTable(st, lis);
-						//print_ast(astTree_root);
+						print_ast(astTree_root);
+						init_typechecker(astTree_root, st,NULL);
 						break;
 					default:
 						exit(0);
@@ -121,4 +125,3 @@ int main(int argc, char** args)
 			}
 		}
 }
-
