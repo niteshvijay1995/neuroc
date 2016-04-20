@@ -1,5 +1,5 @@
-Compiler Stage1
-batch73
+Compiler Stage1 + Stage2
+Batch73
 Nitesh Vijay 2013A7PS164P
 Nilay Jain 2013A7PS179P
 
@@ -16,5 +16,9 @@ dfa.txt - dfa input
 terminals.txt - list of terminals in grammar
 nonterminal.txt - list of non-terminals in grammar
 grammarnew.txt - grammar input
+astRules.txt - semantics rules to construct ast. 0-remove, 1-pullup childrens 2-concrete
+
 
 Thank You 
+
+
