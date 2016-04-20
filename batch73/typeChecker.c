@@ -1,3 +1,6 @@
+#include "parser.h"
+#include "ast.h"
+#include "symbolTable.h"
 #include "typeChecker.h"
 
 void init_typechecker(astTree* root, sym_table* st, char* func_name)
