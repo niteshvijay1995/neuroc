@@ -5,3 +5,5 @@ void compute_type(astTree* root, sym_table* st,char* func_name);
 void symbol_table_lookup(astTree* root,sym_table* st,char* func_name);
 int check_boolexp_type(astTree* root,sym_table* st,char* func_name);
 void id_symbol_table_lookup(astTree* root,sym_table* st,char* func_name);
+void check_fun_call(astTree* root,sym_table* st,char* func_name);
+void check_ret_stmt(astTree* root,sym_table* st,char* func_name);

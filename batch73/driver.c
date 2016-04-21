@@ -116,7 +116,7 @@ int main(int argc, char** args)
 						lis->next = NULL;
 						sym_table* st = createSymbolTable(astTree_root, &lis);
 						printSymbolTable(st, lis);
-						print_ast(astTree_root);
+						//print_ast(astTree_root);
 						init_typechecker(astTree_root, st,NULL);
 						break;
 					default:

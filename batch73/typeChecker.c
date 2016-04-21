@@ -11,6 +11,10 @@ void init_typechecker(astTree* root, sym_table* st, char* func_name)
 		astTree* temp = root->children[i];
 		if(strcmp(temp->node_symbol,"TK_FUNID")==0 || strcmp(temp->node_symbol,"TK_MAIN")==0)
 			func_name = strdup(temp->lexeme);
+		if(strcmp(temp->node_symbol,"TK_FUNID")==0)
+		{
+			temp = temp->children[2];
+		}
 		//printf("\nInside : %s\n",temp->node_symbol);
 		for(j=0;j<temp->size;j++)
 		{
@@ -18,7 +22,7 @@ void init_typechecker(astTree* root, sym_table* st, char* func_name)
 			{
 				if(!check_assignop_type(temp->children[j],st,func_name))
 				{
-					printf("\nERROR 440: %s At line number: %d\n",temp->children[j]->node_symbol,temp->children[j]->lineno);
+					printf("ERROR 440: Type mismatch for %s at line number: %d\n",temp->children[j]->node_symbol,temp->children[j]->lineno);
 				}
 			}
 			//else if(if_bool_exp(temp->children[j]->node_symbol))
@@ -29,13 +33,114 @@ void init_typechecker(astTree* root, sym_table* st, char* func_name)
 
 				if(!check_boolexp_type(temp->children[j]->children[0],st,func_name))
 				{
-					printf("\nERROR 440: %s At line number: %d\n",temp->children[j]->node_symbol,temp->children[j]->children[0]->lineno);
+					printf("ERROR 440: %s At line number: %d\n",temp->children[j]->node_symbol,temp->children[j]->children[0]->lineno);
 				}
 				//printf("\nConditional Statement2\n");				
 				init_typechecker(temp->children[j],st,func_name);
 			}
+			else if(strcmp(temp->children[j]->node_symbol,"<funCallStmt>")==0)
+			{
+				check_fun_call(temp->children[j],st,func_name);
+			}
+			else if(strcmp(temp->children[j]->node_symbol,"<returnStmt>")==0 && !(strcmp(func_name,"_main")==0))
+			{
+				//printf("\nReturn Statement function : %s\n",func_name);
+				check_ret_stmt(temp->children[j],st,func_name);
+			}
 		}
 	}
+}
+
+void check_ret_stmt(astTree* root,sym_table* st,char* func_name)
+{
+	int i;
+	func_sym_table* func_table =  search_sym_table(st, func_name);
+	if(func_table !=NULL)
+	{
+		if(strcmp(root->children[1]->node_symbol,"<optionalReturn>")==0)
+		{
+			if(root->children[1]->size != func_table->num_output_par)
+			{
+				printf("ERROR 344: Number of output parameter doesn't match with return statement at lineno %d\n",root->children[1]->lineno);
+			}
+			else
+			{
+				for(i=0;i<func_table->num_output_par;i++)
+				{
+					if(root->children[1]->children[i]->type == -1)
+					{
+						compute_type(root->children[1]->children[i],st,func_name);
+					}
+					if(!(root->children[1]->children[i]->type == func_table->output_par_type[i])&& root->children[1]->children[i]->type!=-2)
+					{
+						printf("ERROR 878: Type mismatched in return statement with output parameters of function at lineno %d\n",root->children[1]->children[i]->lineno);
+
+					}
+				}
+			}
+		}
+	}
+}
+
+void check_fun_call(astTree* root,sym_table* st,char* func_name)
+{
+	func_sym_table* func_table =  search_sym_table(st, root->children[1]->lexeme);
+	if(func_table ==NULL)
+	{
+		printf("ERROR 405: Function %s not declared",root->children[1]->lexeme);
+	}
+	else if(strcmp(func_name,root->children[1]->lexeme)==0)
+	{
+		printf("ERROR 222: Recursive call\n");
+	}
+	else if(func_table->lineno > root->children[1]->lineno)
+	{
+		printf("ERROR 911: Function %s is not declared and called at line number %d\n",root->children[1]->lexeme,root->children[1]->lineno);
+	}
+	else
+	{
+		if(strcmp(root->children[0]->node_symbol,"<outputParameters>")==0 && strcmp(root->children[2]->node_symbol,"<inputParameters>")==0)
+		{
+			int i=0;
+			if(root->children[0]->size != func_table->num_output_par)
+			{
+				printf("ERROR 345: Number of output parameter doesn't match at lineno %d\n",root->children[0]->children[0]->lineno);
+			}
+			else if(root->children[2]->size != func_table->num_input_par)
+			{
+				printf("ERROR 346: Number of input parameter doesn't match at lineno %d\n",root->children[2]->children[0]->lineno);
+			}
+			else
+			{
+				for(i=0;i<func_table->num_output_par;i++)
+				{
+					if(root->children[0]->children[i]->type == -1)
+					{
+						compute_type(root->children[0]->children[i],st,func_name);
+					}
+					if(!(root->children[0]->children[i]->type == func_table->output_par_type[i])&& root->children[0]->children[i]->type!=-2)
+					{
+						printf("ERROR 879: Type mismatched for output parameters at lineno %d\n",root->children[0]->children[i]->lineno);
+
+					}
+				}
+				for(i=0;i<func_table->num_input_par;i++)
+				{
+					if(root->children[2]->children[i]->type == -1)
+					{
+						compute_type(root->children[2]->children[i],st,func_name);
+
+					}
+					if(!(root->children[2]->children[i]->type == func_table->input_par_type[i])&& root->children[2]->children[i]->type!=-2)
+					{
+						printf("ERROR 880: Type mismatched for input parameters at lineno %d type = %d\n",root->children[2]->children[i]->lineno,root->children[2]->children[i]->type);
+
+					}
+				}
+			}
+		}
+	}
+
 }
 
 int if_bool_exp(char* string)
@@ -136,14 +241,20 @@ void id_symbol_table_lookup(astTree* root,sym_table* st,char* func_name)
 	//printf("\n Looking up symbol table\n");
 	func_sym_table* func_table =  search_sym_table(st, func_name);
 	details* d =  func_sym_get(func_table, root->lexeme);
+	if(d==NULL)
+	{
+		func_sym_table* g_table = search_sym_table(st, "global");
+		d =  func_sym_get(g_table, root->lexeme);
+	}
 	if(d!=NULL)
 	{
+		//if (root->lineno > d->lineno)
 		root->type = d->type;
 		return;
 	}
 	else
 	{
-		printf("ERROR: Undeclared variable %s used at line number: %d\n",root->lexeme,root->lineno);
+		printf("ERROR 555: Undeclared variable %s , node_symbol: %s, used at line number: %d\n",root->lexeme, root->node_symbol,root->lineno);
 		root->type = -2;
 		return;
 	}
@@ -154,6 +265,11 @@ void symbol_table_lookup(astTree* root,sym_table* st,char* func_name)
 	//printf("\n Looking up symbol table of func : %s\n",func_name);
 	func_sym_table* func_table =  search_sym_table(st, func_name);
 	details* d =  func_sym_get(func_table, root->children[0]->lexeme);
+	if(d==NULL)
+	{
+		func_sym_table* g_table = search_sym_table(st, "global");
+		d =  func_sym_get(g_table, root->children[0]->lexeme);
+	}
 	if(d!=NULL)
 	{
 		root->children[0]->type = d->type;
@@ -183,7 +299,7 @@ void symbol_table_lookup(astTree* root,sym_table* st,char* func_name)
 	}
 	else
 	{
-		printf("ERROR: Undeclared variable %s used at line number: %d\n",root->lexeme,root->lineno);
+		printf("ERROR: Undeclared variable %s used at line number: %d\n",root->children[0]->lexeme,root->children[0]->lineno);
 		root->type = -2;
 		return;
 	}

@@ -22,7 +22,12 @@ struct var_entry{
 struct func_sym_table{
 	char* func_name;
 	int size;
+	int input_par_type[20];
+	int num_input_par;
+	int num_output_par;
+	int output_par_type[20];
 	var_entry** table;
+	int lineno;
 };
 
 struct sym_table{
