@@ -9,7 +9,7 @@ void init_typechecker(astTree* root, sym_table* st, char* func_name)
 	for(i=0;i<root->size;i++)
 	{
 		astTree* temp = root->children[i];
-		if(func_name == NULL)
+		if(strcmp(temp->node_symbol,"TK_FUNID")==0 || strcmp(temp->node_symbol,"TK_MAIN")==0)
 			func_name = strdup(temp->lexeme);
 		//printf("\nInside : %s\n",temp->node_symbol);
 		for(j=0;j<temp->size;j++)
@@ -113,7 +113,7 @@ void compute_type(astTree* root, sym_table* st,char* func_name)
 
 void symbol_table_lookup(astTree* root,sym_table* st,char* func_name)
 {
-	//printf("\n Looking up symbol table\n");
+	printf("\n Looking up symbol table of func : %s\n",func_name);
 	func_sym_table* func_table =  search_sym_table(st, func_name);
 	details* d =  func_sym_get(func_table, root->lexeme);
 	if(d!=NULL)

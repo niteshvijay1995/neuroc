@@ -119,7 +119,7 @@ astTree* clean_ast(astTree* root){
 			}
 			i--;
 		}
-		else if(check_pull_up(root->children[i]->node_symbol)){
+		else if(check_pull_up(root->children[i]->node_symbol)&&!cannotBeDeleted(root->node_symbol)){
 			astTree* temp = root->children[i];
 			copy_ast_node(root, root->children[i]);
 			root->size--;
