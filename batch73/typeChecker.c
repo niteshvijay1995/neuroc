@@ -56,9 +56,24 @@ int check_assignop_type(astTree* root,sym_table* st,char* func_name)
 		compute_type(root->children[1],st,func_name);
 	}
 	if(root->children[0]->type == root->children[1]->type)
+	{
+		root->type = root->children[0]->type;
 		return 1;
+	}	
+	else if(root->children[0]->type == -2)
+	{
+		root->type = root->children[1]->type;
+		return 1;
+	}
+	else if(root->children[1]->type == -2)
+	{
+		root->type = root->children[0]->type;
+		return 1;
+	}
 	else
+	{
 		return 0;
+	}
 }
 void compute_type(astTree* root, sym_table* st,char* func_name)
 {
@@ -100,26 +115,71 @@ void compute_type(astTree* root, sym_table* st,char* func_name)
 		root->type = 1;
 		return;
 	}
-	else if(strcmp(root->node_symbol,"TK_ID")==0)
+	else if(strcmp(root->node_symbol,"<singleOrRecId>")==0)
 	{
 		symbol_table_lookup(root, st,func_name);
+		//printf("\nSymbol Table Done\n");
 		return;
-	} 
+	}
+	else if(strcmp(root->node_symbol,"TK_ID")==0)
+	{
+		id_symbol_table_lookup(root, st,func_name);
+	}
 	else if(if_bool_exp(root->node_symbol))
 	{
 		check_boolexp_type(root,st,func_name);
 	}
 }
 
-void symbol_table_lookup(astTree* root,sym_table* st,char* func_name)
+void id_symbol_table_lookup(astTree* root,sym_table* st,char* func_name)
 {
-	printf("\n Looking up symbol table of func : %s\n",func_name);
+	//printf("\n Looking up symbol table\n");
 	func_sym_table* func_table =  search_sym_table(st, func_name);
 	details* d =  func_sym_get(func_table, root->lexeme);
 	if(d!=NULL)
 	{
 		root->type = d->type;
 		return;
+	}
+	else
+	{
+		printf("ERROR: Undeclared variable %s used at line number: %d\n",root->lexeme,root->lineno);
+		root->type = -2;
+		return;
+	}
+}
+
+void symbol_table_lookup(astTree* root,sym_table* st,char* func_name)
+{
+	//printf("\n Looking up symbol table of func : %s\n",func_name);
+	func_sym_table* func_table =  search_sym_table(st, func_name);
+	details* d =  func_sym_get(func_table, root->children[0]->lexeme);
+	if(d!=NULL)
+	{
+		root->children[0]->type = d->type;
+		if(d->type == 2 && root->children[1] != NULL)
+		{
+			//	printf("\nREC_ID detected %s\n",d->rec_name);
+			details* d2 =  func_sym_get(func_table, d->rec_name);
+			//printf("\nREC_ID detected\n");
+			details* d3 =  func_sym_get(d2->f, root->children[1]->lexeme);
+			if(d3 !=NULL)
+			{
+				root->type = d3->type;
+				return;
+			}
+			else
+			{
+				printf("ERROR 88: Undeclared record variable %s used at line number: %d\n",root->lexeme,root->lineno);
+				root->type = -2;
+				return;
+			}
+		}
+		else
+		{
+			root->type = d->type;
+			return;
+		}
 	}
 	else
 	{

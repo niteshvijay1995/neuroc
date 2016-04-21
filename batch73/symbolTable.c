@@ -54,6 +54,8 @@ void copy_details(details* d1, details* d2){
 		d1->f = d2->f;
 		d1->slist = d2->slist;
 	}
+	else if(d1->type==2)
+		d1->rec_name = strdup(d2->rec_name);
 	d1->lineno = d2->lineno;
 }
 
@@ -142,10 +144,12 @@ void createVarEntry(func_sym_table* f, char* lexeme, details* d, symbol_list** l
 	if(func_sym_get(f, lexeme)!=NULL){
 		printf("error. variable %s is redeclared", lexeme);
 	}
-	func_sym_insert(f, lexeme, d);
-	//printf("a variable entry is created\n");
-	push_symbol_list(lis, lexeme, f->func_name);
-	
+	else
+	{
+		func_sym_insert(f, lexeme, d);
+		//printf("a variable entry is created\n");
+		push_symbol_list(lis, lexeme, f->func_name);
+	}
 }
 
 void allocate(astTree* temp, int* offset, func_sym_table* f, func_sym_table* g, looktable* lt_rec, symbol_list** lis){
@@ -172,6 +176,8 @@ void allocate(astTree* temp, int* offset, func_sym_table* f, func_sym_table* g, 
 			temp->children[j+1]->type = 2;
 			d->type = 2;
 			d->lineno = temp->children[j]->lineno;
+			d->rec_name = strdup(temp->children[j]->lexeme);
+			//printf("\n***%s***%d\n",d->rec_name,d->lineno);
 			off = lt_get(lt_rec, temp->children[j]->lexeme);
 			//printf("\noff is: %d, lexeme searched was: %s\n", off, temp->children[j]->lexeme);
 		}
@@ -303,7 +309,7 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 		details* d = func_sym_get(f, temp->lexeme);
 		///printf("in printSymbolTable\n");
 
-		printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d, lineno: %d\n", temp->lexeme, temp->func_name, d->type, d->offset, d->lineno);
+		printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d, lineno: %d rec_name: %s\n", temp->lexeme, temp->func_name, d->type, d->offset, d->lineno,d->rec_name);
 		if(d->type==3)
 		{
 			symbol_list* temp2 = d->slist;

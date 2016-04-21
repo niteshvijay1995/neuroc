@@ -167,6 +167,6 @@ int check_pull_up(char* string)
 
 int cannotBeDeleted(char* string)
 {
-	return strcmp(string, "<whileBody>") == 0 || strcmp(string, "<booleanExpression>") == 0 || strcmp(string, "<funCallStmt>") == 0
+	return strcmp(string, "<whileBody>") == 0 || strcmp(string, "<singleOrRecId>") == 0/*|| strcmp(string, "<booleanExpression>") == 0*/ || strcmp(string, "<funCallStmt>") == 0
 		|| strcmp(string, "<parameter_list>") == 0 || strcmp(string, "<ifBody>") == 0 || strcmp(string, "<elsePart>") == 0;
 }
