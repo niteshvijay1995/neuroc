@@ -88,7 +88,8 @@ void check_ret_stmt(astTree* root,sym_table* st,char* func_name)
 
 void check_read_write_stmt(astTree* root, sym_table* st, char* func_name)
 {
-	compute_type(root,st,func_name);
+	compute_type(root->children[0],st,func_name);
+	//printf("\nComputed\n");
 }
 
 void check_fun_call(astTree* root,sym_table* st,char* func_name)
@@ -272,6 +273,7 @@ void id_symbol_table_lookup(astTree* root,sym_table* st,char* func_name)
 void symbol_table_lookup(astTree* root,sym_table* st,char* func_name)
 {
 	//printf("\n Looking up symbol table of func : %s\n",func_name);
+	//printf("\nDeclaring for %s\n",root->children[0]->lexeme);
 	func_sym_table* func_table =  search_sym_table(st, func_name);
 	details* d =  func_sym_get(func_table, root->children[0]->lexeme);
 	func_sym_table* g_table = search_sym_table(st, "global");
@@ -282,6 +284,7 @@ void symbol_table_lookup(astTree* root,sym_table* st,char* func_name)
 	}
 	if(d!=NULL)
 	{
+		//printf("\nDeclaring for lineno %d type %d\n",root->children[0]->lineno,d->type);
 		root->children[0]->type = d->type;
 		if(d->type == 2 && root->children[1] != NULL)
 		{
@@ -433,14 +436,14 @@ void code_gen1(astTree* root,sym_table* st,func_sym_table* g_table,FILE* fp)
 				fprintf(fp,"push %s_%s\npush formatin\ncall scanf\nadd esp,8\n",root->children[i]->children[0]->children[0]->lexeme,root->children[i]->children[0]->children[1]->lexeme);
 		}
 
-		if(strcmp(root->children[i]->node_symbol,"TK_WRITE")==0 && root->children[i]->type ==2)
+		if(strcmp(root->children[i]->node_symbol,"TK_WRITE")==0 && root->children[i]->children[0]->type ==2)
 		{
 			print_rec(root->children[i],st,g_table, fp);
 		}
 
 		else if(strcmp(root->children[i]->node_symbol,"TK_WRITE")==0)
 		{
-			printf("\nWrite at lineno %d type %d\n",root->children[0]->lineno,root->children[0]->type);
+			printf("\nWrite at lineno %d type %d\n",root->children[i]->lineno,root->children[i]->children[0]->children[0]->type);
 			if(root->children[i]->children[0]->size==1)
 				fprintf(fp,"mov ebx,[%s]\npush ebx\npush formatout\ncall printf\nadd esp,8\n",root->children[i]->children[0]->children[0]->lexeme);
 			else
@@ -459,9 +462,10 @@ void code_gen1(astTree* root,sym_table* st,func_sym_table* g_table,FILE* fp)
 
 void print_rec(astTree* root,sym_table* st,func_sym_table* g_table, FILE* fp)
 {
-	printf("Printing Record");
+	printf("\nPrinting Record %s\n",root->children[0]->node_symbol);
 	func_sym_table* f_table = search_sym_table(st, "_main");
-	details* d3 = func_sym_get(f_table, root->children[0]->lexeme);
+	details* d3 = func_sym_get(f_table, root->children[0]->children[0]->lexeme);
+	printf("\nPrinting Record\n");
 	d3 = func_sym_get(g_table,d3->rec_name);
 	symbol_list* temp2 = d3->slist;
 	while(temp2!=NULL)
@@ -470,7 +474,7 @@ void print_rec(astTree* root,sym_table* st,func_sym_table* g_table, FILE* fp)
 			if(d2!=NULL) 
 			{
 				if(d2->type == 0)
-					fprintf(fp,"mov ebx,[%s_%s]\npush ebx\npush formatout\ncall printf\nadd esp,8\n",root->children[0]->lexeme,temp2->lexeme);
+					fprintf(fp,"mov ebx,[%s_%s]\npush ebx\npush formatout\ncall printf\nadd esp,8\n",root->children[0]->children[0]->lexeme,temp2->lexeme);
 				//	fprintf(fp, "mov [%s_%s],ebx\n", root->children[0]->children[0]->lexeme,temp2->lexeme);
 			}
 			temp2 = temp2->next;

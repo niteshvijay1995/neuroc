@@ -13,7 +13,6 @@ _main
 
 	b5 <--- 1;
 	read(d5cb34567);
-	read(b5);
 	d4.maths <--- 0;
 	d4.physics <--- 0;
 	d4.chemistry <---0;
@@ -25,6 +24,5 @@ _main
 		b5 <--- b5 +1;
 	endwhile
 	write(d4);
-	write(d3);
 	return;
 end
