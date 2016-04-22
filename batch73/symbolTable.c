@@ -368,6 +368,8 @@ func_sym_table* search_sym_table(sym_table* st, char* name){
 void printSymbolTable(sym_table* st, symbol_list* lis){
 	symbol_list* temp = lis;
 	//int flag = 0;
+	printf("Printing Symbol Table . . . \n");
+	printf("Lexeme\t\t    Function\t\t Type\t\t\t|offset:\n");
 	while(temp->next!=NULL)
 	{
 		//printf("\nin printSymbolTable func name = \n");
@@ -379,11 +381,11 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 		}
 		details* d = func_sym_get(f, temp->lexeme);
 		if(d->type==0){
-			printf("\n%-20s %-20s INT\t\t\t%-5d\n", temp->lexeme, temp->func_name, d->offset);
+			printf("\n%-20s %-20s INT\t\t\t|offset: %-5d\n", temp->lexeme, temp->func_name, d->offset);
 		}
 		else if(d->type==1)
 		{
-			printf("\n%-20s %-20s REAL\t\t\t%-5d\n", temp->lexeme, temp->func_name, d->offset);
+			printf("\n%-20s %-20s REAL\t\t\t|offset: %-5d\n", temp->lexeme, temp->func_name, d->offset);
 		}
 		else if(d->type==2)
 		{
@@ -426,7 +428,7 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 					printf(" REAL\t");
 				}
 			}
-			printf("%-5d\n",d->offset);
+			printf("|offset: %-5d\n",d->offset);
 		}
 		/*
 		if(d->type==3)
