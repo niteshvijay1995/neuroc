@@ -118,6 +118,7 @@ int main(int argc, char** args)
 						printSymbolTable(st, lis);
 						//print_ast(astTree_root);
 						init_typechecker(astTree_root, st,NULL);
+						code_gen(astTree_root,st,lis);
 						break;
 					default:
 						exit(0);

@@ -7,3 +7,7 @@ int check_boolexp_type(astTree* root,sym_table* st,char* func_name);
 void id_symbol_table_lookup(astTree* root,sym_table* st,char* func_name);
 void check_fun_call(astTree* root,sym_table* st,char* func_name);
 void check_ret_stmt(astTree* root,sym_table* st,char* func_name);
+void evaluate(astTree* root);
+void eval(astTree* root,char* reg);
+void code_gen(astTree* root,sym_table* st, symbol_list* lis);
+char* reg2(char* reg);
