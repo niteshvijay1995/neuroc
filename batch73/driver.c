@@ -118,6 +118,11 @@ int main(int argc, char** args)
 						printSymbolTable(st, lis);
 						//print_ast(astTree_root);
 						init_typechecker(astTree_root, st,NULL);
+						int parse_tree_size = count_nodes_parser(root);
+						int ast_tree_size = count_nodes_ast(astTree_root);
+						printf("size of parse tree: %d, size of ast: %d\n", parse_tree_size, ast_tree_size);
+						double compression = 100.0 - (double)ast_tree_size/(double)parse_tree_size * 100.0;
+						printf("compression percentage: %lf", compression);
 						FILE* fp = fopen("code.asm", "w");
 						code_gen(astTree_root,st,lis,fp);
 						break;

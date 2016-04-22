@@ -47,15 +47,16 @@ func_sym_table* sym_create(int size, char* name){
 void copy_details(details* d1, details* d2){
 	d1->type = d2->type;
 	d1->offset = d2->offset;
-	if(d1->type==3)
+	if(d2->type==3)
 	{
 		d1->rec_name = strdup(d2->rec_name);
 		symbol_list* temp = d2->slist;
 		d1->f = d2->f;
 		d1->slist = d2->slist;
 	}
-	else if(d1->type==2)
+	else if(d2->type==2){
 		d1->rec_name = strdup(d2->rec_name);
+	}
 	d1->lineno = d2->lineno;
 }
 
@@ -200,7 +201,7 @@ void allocate(astTree* temp, int* offset, func_sym_table* f, func_sym_table* g, 
 			d->type = 2;
 			d->lineno = temp->children[j]->lineno;
 			d->rec_name = strdup(temp->children[j]->lexeme);
-			//printf("\n***%s***%d\n",d->rec_name,d->lineno);
+			//printf("\nrec_name: %s***lexeme: %s***rec_name: %s***lineno: %d\n",temp->children[j]->lexeme, temp->children[j+1]->lexeme,d->rec_name,d->lineno);
 			off = lt_get(lt_rec, temp->children[j]->lexeme);
 			//printf("\noff is: %d, lexeme searched was: %s\n", off, temp->children[j]->lexeme);
 			if(flag==1) f->input_par_type[j/2] =2;
@@ -260,10 +261,12 @@ func_sym_table* createMainFuncEntry(astTree* root, char* name, func_sym_table* g
 			astTree* at = temp->children[1]; //fieldDefinitions
 			int b;
 			for(b=0; b<at->size; b++){
-				if(strcmp(at->children[b]->children[0]->node_symbol, "TK_INT")==0)
+				if(strcmp(at->children[b]->children[0]->node_symbol, "TK_INT")==0){
 					value = value + 2;
-				else if(strcmp(at->children[b]->children[0]->node_symbol, "TK_REAL")==0)
+				}
+				else if(strcmp(at->children[b]->children[0]->node_symbol, "TK_REAL")==0){
 					value = value + 4;
+				}
 			}
 			lt_insert(lt_rec, temp->children[0]->lexeme, value);
 
@@ -278,7 +281,7 @@ func_sym_table* createMainFuncEntry(astTree* root, char* name, func_sym_table* g
 			temp->children[0]->type = 3;
 			iterate_type_def(&d2, temp->children[1],g);
 			//if(d2->slist == NULL) printf("nulla ho gaya\n");
-			createVarEntry(f,g,temp->children[0]->lexeme,d2, lis);
+			createVarEntry(g,g,temp->children[0]->lexeme,d2, lis);
 			
 
 			//func_sym_insert(f, )
@@ -375,8 +378,57 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 			continue;
 		}
 		details* d = func_sym_get(f, temp->lexeme);
-		
-		printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d, lineno: %d \n", temp->lexeme, temp->func_name, d->type, d->offset, d->lineno);
+		if(d->type==0){
+			printf("\n%-20s %-20s INT\t\t\t%-5d\n", temp->lexeme, temp->func_name, d->offset);
+		}
+		else if(d->type==1)
+		{
+			printf("\n%-20s %-20s REAL\t\t\t%-5d\n", temp->lexeme, temp->func_name, d->offset);
+		}
+		else if(d->type==2)
+		{
+
+			printf("\n%-20s %-20s",temp->lexeme, temp->func_name);
+			func_sym_table* g = search_sym_table(st, "global");
+			details* d2 = func_sym_get(g, d->rec_name);
+			if(d2==NULL) {
+				printf("found NULL for lexeme: %s and record: %s,",temp->lexeme, d->rec_name);
+				temp = temp->next;
+				continue;
+			}
+			//printf("\nin printSymbolTable\n");
+			symbol_list* temp2 = d2->slist;
+			//printf("\nin printSymbolTable\n");
+			while(/*temp2!=NULL && temp2->next!=NULL && */temp2->next->next!=NULL)
+			{
+				details* d3 = func_sym_get(d2->f, temp2->lexeme);
+				if(d3!=NULL){
+					if(d3->type==0)
+					{
+						printf(" INT X ");
+					}
+					else if(d3->type==1)
+					{
+						printf(" REAL X ");
+					}
+				}
+
+				temp2 = temp2->next;
+			}
+			details* d3 = func_sym_get(d2->f, temp2->lexeme);
+			if(d3!=NULL){
+				if(d3->type==0)
+				{
+					printf(" INT\t");
+				}
+				else if(d3->type==1)
+				{
+					printf(" REAL\t");
+				}
+			}
+			printf("%-5d\n",d->offset);
+		}
+		/*
 		if(d->type==3)
 		{
 			symbol_list* temp2 = d->slist;
@@ -388,7 +440,7 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 				printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d\n", temp2->lexeme, temp2->func_name, d2->type, d2->offset);
 				temp2 = temp2->next;
 			}
-		}
+		}*/
 		temp = temp->next;
 	}
 }

@@ -9,3 +9,5 @@ astTree* clean_ast(astTree* root);
 void print_ast(astTree* root);
 int check_pull_up(char* string);
 int cannotBeDeleted(char* string);
+int count_nodes_parser(ntree* root);
+int count_nodes_ast(astTree* root);
