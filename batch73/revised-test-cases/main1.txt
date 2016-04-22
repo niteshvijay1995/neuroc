@@ -4,7 +4,7 @@ _main
 	type int : c2;
 	type int : d2;
 	read(b2);
-	c2<--- 20;
+	c2<--- b2;
 	read(d2);
 
 	b3 <--- b2 / d2;

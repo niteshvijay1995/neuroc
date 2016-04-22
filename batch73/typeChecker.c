@@ -47,6 +47,10 @@ void init_typechecker(astTree* root, sym_table* st, char* func_name)
 				//printf("\nReturn Statement function : %s\n",func_name);
 				check_ret_stmt(temp->children[j],st,func_name);
 			}
+			else if(strcmp(temp->children[j]->node_symbol,"TK_READ")==0 || strcmp(temp->children[j]->node_symbol,"TK_WRITE")==0)
+			{
+				check_read_write_stmt(temp->children[j],st,func_name);
+			}
 		}
 	}
 }
@@ -80,6 +84,11 @@ void check_ret_stmt(astTree* root,sym_table* st,char* func_name)
 			}
 		}
 	}
+}
+
+void check_read_write_stmt(astTree* root, sym_table* st, char* func_name)
+{
+	compute_type(root,st,func_name);
 }
 
 void check_fun_call(astTree* root,sym_table* st,char* func_name)
@@ -361,6 +370,7 @@ int check_boolexp_type(astTree* root,sym_table* st,char* func_name)
 void code_gen(astTree* root,sym_table* st, symbol_list* lis, FILE* fp){
 	fprintf(fp,"global  main\nextern  printf\nextern scanf\nSECTION .data\nformatin: db \"%%d\", 0\nformatout: db \"%%d\", 10, 0\n");
 	symbol_list* temp = lis;
+	func_sym_table* g_table = search_sym_table(st, "global");
 	while(temp->next!=NULL)
 	{
 		func_sym_table* f = search_sym_table(st, temp->func_name);
@@ -373,18 +383,19 @@ void code_gen(astTree* root,sym_table* st, symbol_list* lis, FILE* fp){
 		{
 			fprintf(fp,"%s: times 4 db 0\n",temp->lexeme);
 		}
-		if(d->type==3)
+		if(d->type==2)
 		{
 
-			symbol_list* temp2 = d->slist;
+			details* d3 = func_sym_get(g_table, d->rec_name);
+			symbol_list* temp2 = d3->slist;
 			while(temp2!=NULL)
 			{
-				details* d2 = func_sym_get(d->f, temp2->lexeme);
+				details* d2 = func_sym_get(d3->f, temp2->lexeme);
 				if(d2!=NULL) 
 				{
 					//printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d\n", temp2->lexeme, temp2->func_name, d2->type, d2->offset);
 					if(d2->type == 0)
-						fprintf(fp,"%s_%s: times 4 db 0\n",temp2->func_name,temp2->lexeme);
+						fprintf(fp,"%s_%s: times 4 db 0\n",temp->lexeme,temp2->lexeme);
 				}
 				temp2 = temp2->next;
 			}
@@ -395,51 +406,166 @@ void code_gen(astTree* root,sym_table* st, symbol_list* lis, FILE* fp){
 	astTree* temp_tree = root;
 	int i;
 	fprintf(fp,"push ebx\npush ecx\n");
-	code_gen1(temp_tree,fp);
+	code_gen1(temp_tree,st,g_table,fp);
 	fprintf(fp,"pop ecx\npop ebx\nmov eax, 0\nret\n");
 
 }
 
-void code_gen1(astTree* root,FILE* fp)
+void code_gen1(astTree* root,sym_table* st,func_sym_table* g_table,FILE* fp)
 {
 	int i;
 	for(i=0;i<root->size;i++)
 	{
-		if(strcmp(root->children[i]->node_symbol,"TK_ASSIGNOP")==0)
+		if(strcmp(root->children[i]->node_symbol,"TK_ASSIGNOP")==0 && root->children[i]->type ==2)
 		{
-			evaluate(root->children[i], fp);
+			evaluate_record(root->children[i],st,g_table, fp);
+		}
+		else if(strcmp(root->children[i]->node_symbol,"TK_ASSIGNOP")==0)
+		{
+			//printf("\nAssign op at line %d type %d\n",root->children[i]->lineno,root->children[i]->type);
+			evaluate(root->children[i],g_table, fp);
 		}
 		if(strcmp(root->children[i]->node_symbol,"TK_READ")==0)
 		{
-			fprintf(fp,"push %s\npush formatin\ncall scanf\nadd esp,8\n",root->children[i]->children[0]->lexeme);
+			if(root->children[i]->children[0]->size==1)
+				fprintf(fp,"push %s\npush formatin\ncall scanf\nadd esp,8\n",root->children[i]->children[0]->children[0]->lexeme);
+			else if(root->children[i]->children[0]->size==2)
+				fprintf(fp,"push %s_%s\npush formatin\ncall scanf\nadd esp,8\n",root->children[i]->children[0]->children[0]->lexeme,root->children[i]->children[0]->children[1]->lexeme);
 		}
-		if(strcmp(root->children[i]->node_symbol,"TK_WRITE")==0)
+
+		if(strcmp(root->children[i]->node_symbol,"TK_WRITE")==0 && root->children[i]->type ==2)
 		{
-			fprintf(fp,"mov ebx,[%s]\npush ebx\npush formatout\ncall printf\nadd esp,8\n",root->children[i]->children[0]->lexeme);
+			print_rec(root->children[i],st,g_table, fp);
+		}
+
+		else if(strcmp(root->children[i]->node_symbol,"TK_WRITE")==0)
+		{
+			printf("\nWrite at lineno %d type %d\n",root->children[0]->lineno,root->children[0]->type);
+			if(root->children[i]->children[0]->size==1)
+				fprintf(fp,"mov ebx,[%s]\npush ebx\npush formatout\ncall printf\nadd esp,8\n",root->children[i]->children[0]->children[0]->lexeme);
+			else
+				fprintf(fp,"mov ebx,[%s_%s]\npush ebx\npush formatout\ncall printf\nadd esp,8\n",root->children[i]->children[0]->children[0]->lexeme,root->children[i]->children[0]->children[1]->lexeme);
 		}
 		if(strcmp(root->children[i]->node_symbol,"<conditionalStmt>")==0)
 		{
-			cond_stmt(root->children[i],fp);
+			cond_stmt(root->children[i],st,g_table,fp);
 		}
 		if(strcmp(root->children[i]->node_symbol,"<iterativeStmt>")==0)
 		{
-			iter_stmt(root->children[i],fp);
+			iter_stmt(root->children[i],st,g_table,fp);
 		}
 	}
 }
 
-void iter_stmt(astTree* root,FILE *fp)
+void print_rec(astTree* root,sym_table* st,func_sym_table* g_table, FILE* fp)
+{
+	printf("Printing Record");
+	func_sym_table* f_table = search_sym_table(st, "_main");
+	details* d3 = func_sym_get(f_table, root->children[0]->lexeme);
+	d3 = func_sym_get(g_table,d3->rec_name);
+	symbol_list* temp2 = d3->slist;
+	while(temp2!=NULL)
+		{
+			details* d2 = func_sym_get(d3->f, temp2->lexeme);
+			if(d2!=NULL) 
+			{
+				if(d2->type == 0)
+					fprintf(fp,"mov ebx,[%s_%s]\npush ebx\npush formatout\ncall printf\nadd esp,8\n",root->children[0]->lexeme,temp2->lexeme);
+				//	fprintf(fp, "mov [%s_%s],ebx\n", root->children[0]->children[0]->lexeme,temp2->lexeme);
+			}
+			temp2 = temp2->next;
+		}
+}
+
+void eval_rec(astTree* root,char* fid,FILE* fp)
+{
+	if(strcmp(root->node_symbol,"TK_PLUS")==0)
+	{
+		eval_rec(root->children[1],fid,fp);
+		fprintf(fp,"PUSH ebx\n");
+		eval_rec(root->children[0],fid, fp);
+		fprintf(fp,"POP ecx\n");
+		fprintf(fp,"add ebx,ecx\n");
+		return;
+	}
+	else if(strcmp(root->node_symbol,"TK_MINUS")==0)
+	{
+		eval_rec(root->children[1],fid, fp);
+		fprintf(fp,"PUSH ebx\n");
+		eval_rec(root->children[0],fid, fp);
+		fprintf(fp,"POP ecx\n");
+		fprintf(fp,"sub ebx,ecx\n");
+		return;
+	}
+	if(strcmp(root->node_symbol,"TK_MUL")==0)
+	{
+		eval_rec(root->children[1],fid,fp);
+		fprintf(fp,"PUSH ebx\n");
+		eval_rec(root->children[0],fid,fp);
+		fprintf(fp,"POP eax\n");
+		fprintf(fp,"imul ebx\n");
+		fprintf(fp,"mov ebx,eax\n");
+		return;
+	}
+	if(strcmp(root->node_symbol,"TK_DIV")==0)
+	{
+		eval_rec(root->children[1],fid,fp);
+		fprintf(fp,"PUSH ebx\n");
+		eval_rec(root->children[0],fid,fp);
+		fprintf(fp,"mov eax,ebx\n");
+		fprintf(fp,"POP ebx\n");
+		fprintf(fp,"idiv ebx\n");
+		fprintf(fp,"mov ebx,eax\n");
+		return;
+	}
+	else if(strcmp(root->node_symbol,"<singleOrRecId>")==0)
+	{
+		if(root->size==1)
+		{
+			fprintf(fp,"mov ebx,[%s_%s]\n",root->children[0]->lexeme,fid);
+			return;
+		}
+	}
+}
+
+void evaluate_record(astTree* root,sym_table* st,func_sym_table* g_table, FILE* fp)
+{
+	//printf("\nEvaluating record %s lineno : \n",root->children[0]->children[0]->lexeme);
+	func_sym_table* f_table = search_sym_table(st, "_main");
+	if(root->children[0]->type==2)		//record
+	{
+		details* d3 = func_sym_get(f_table, root->children[0]->children[0]->lexeme);
+		d3 = func_sym_get(g_table,d3->rec_name);
+		symbol_list* temp2 = d3->slist;
+		while(temp2!=NULL)
+		{
+			details* d2 = func_sym_get(d3->f, temp2->lexeme);
+			if(d2!=NULL) 
+			{
+				if(d2->type == 0)
+					eval_rec(root->children[1],temp2->lexeme, fp);
+					//fprintf(fp, "mov ebx,[%s_%s]\n", root->children[0]->children[0]->lexeme,temp2->lexeme );
+					fprintf(fp, "mov [%s_%s],ebx\n", root->children[0]->children[0]->lexeme,temp2->lexeme);
+			}
+			temp2 = temp2->next;
+		}
+		return;
+	}
+
+}
+
+void iter_stmt(astTree* root,sym_table *st,func_sym_table* g_table,FILE *fp)
 {
 	fprintf(fp, "label_%d:\n",root->children[0]->lineno );
 	cond_eval(root->children[0],fp);
 	fprintf(fp, "cmp ebx,1\n");
 	fprintf(fp, "jne label_out_%d\n",root->children[0]->lineno);
-	code_gen1(root->children[1],fp);
+	code_gen1(root->children[1],st,g_table,fp);
 	fprintf(fp, "jmp label_%d\n",root->children[0]->lineno);
 	fprintf(fp, "label_out_%d:\n",root->children[0]->lineno);
 }
 
-void cond_stmt(astTree* root,FILE* fp)
+void cond_stmt(astTree* root,sym_table* st,func_sym_table* g_table,FILE* fp)
 {
 	int r = rand()%100;
 	cond_eval(root->children[0],fp);
@@ -448,10 +574,10 @@ void cond_stmt(astTree* root,FILE* fp)
 	fprintf(fp, "jmp then_%d_%d\n",root->lineno,r);
 	fprintf(fp, "then_%d_%d:\n",root->lineno,r );
 	//fprintf(fp,"%s\n",toStr(A->next[3]->t->s));
-	code_gen1(root->children[1],fp);
+	code_gen1(root->children[1],st,g_table,fp);
 	fprintf(fp, "jmp cont_%d_%d\n",root->lineno,r );
 	fprintf(fp, "else_%d_%d:\n",root->lineno,r);
-	code_gen1(root->children[2],fp);
+	code_gen1(root->children[2],st,g_table,fp);
 	fprintf(fp, "cont_%d_%d:\n",root->lineno,r );
 
 }
@@ -565,17 +691,29 @@ void cond_eval(astTree* root,FILE* fp)
 	}
 }
 
-void evaluate(astTree* root, FILE* fp)
+void evaluate(astTree* root,func_sym_table* g_table, FILE* fp)
 {
 	astTree* temp = root->children[1]; 		//right side of assignop
 	if(strcmp(temp->node_symbol,"TK_NUM")==0)
 	{
 		fprintf(fp,"mov ebx,%s\n",temp->lexeme);
 	}
-	else if(strcmp(temp->node_symbol,"TK_ID")==0)
+	else if(strcmp(temp->node_symbol,"<singleOrRecId>")==0)
+	{
+		if(temp->size==1)
+		{
+			if(temp->children[0]->type==0)
+				fprintf(fp,"mov ebx,[%s]\n",temp->children[0]->lexeme);
+		}
+		else
+		{
+			fprintf(fp,"mov ebx,[%s_%s]\n",temp->children[0]->lexeme,temp->children[1]->lexeme);
+		}
+	}
+	/*else if(strcmp(temp->node_symbol,"TK_ID")==0)			//depreciated
 	{
 		fprintf(fp,"mov ebx,[%s]\n",temp->lexeme);
-	}
+	}*/
 	else if(strcmp(temp->node_symbol,"TK_PLUS")==0)
 	{
 		eval(temp, fp);
@@ -592,7 +730,10 @@ void evaluate(astTree* root, FILE* fp)
 	{
 		eval(temp, fp);
 	}
-	fprintf(fp,"mov [%s],ebx\n",root->children[0]->children[0]->lexeme);
+	if(root->children[0]->size==1)
+		fprintf(fp,"mov [%s],ebx\n",root->children[0]->children[0]->lexeme);
+	else if(root->children[0]->size==2)
+		fprintf(fp,"mov [%s_%s],ebx\n",root->children[0]->children[0]->lexeme,root->children[0]->children[1]->lexeme);
 }
 void eval(astTree* root, FILE* fp)
 {
@@ -635,11 +776,25 @@ void eval(astTree* root, FILE* fp)
 		fprintf(fp,"mov ebx,eax\n");
 		return;
 	}
-	else if(strcmp(root->node_symbol,"TK_ID")==0)
+	else if(strcmp(root->node_symbol,"<singleOrRecId>")==0)
+	{
+		if(root->size==1)
+		{
+			if(root->children[0]->type==0)
+				fprintf(fp,"mov ebx,[%s]\n",root->children[0]->lexeme);
+			return;
+		}
+		else
+		{
+			fprintf(fp,"mov ebx,[%s_%s]\n",root->children[0]->lexeme,root->children[1]->lexeme);
+			return;
+		}
+	}
+	/*else if(strcmp(root->node_symbol,"TK_ID")==0)			//depreciated
 	{
 		fprintf(fp,"mov ebx,[%s]\n",root->lexeme);
 		return;
-	}
+	}*/
 	else if(strcmp(root->node_symbol, "TK_NUM")==0)
 	{
 		fprintf(fp, "mov ebx,%s\n",root->lexeme);

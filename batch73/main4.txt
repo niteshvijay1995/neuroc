@@ -14,7 +14,7 @@ _main
 	b5 <--- 1;
 	read(d5cb34567);
 	d4.maths <--- 0;
-	d4.physics <--- 0;
+	d4.physics <--- d4.physics;
 	d4.chemistry <---0;
 	while(b5<=d5cb34567)
 		read(b3c2.maths);

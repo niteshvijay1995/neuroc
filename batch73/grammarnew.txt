@@ -64,7 +64,7 @@
 <hpo> ===> TK_DIV
 <all> ===> TK_NUM
 <all> ===> TK_RNUM
-<all> ===> TK_ID <temp>
+<all> ===> <singleOrRecId>
 <temp> ===> TK_DOT TK_FIELDID
 <temp> ===> eps
 <booleanExpression> ===> TK_OP <booleanExpression> TK_CL <logicalOp> TK_OP <booleanExpression> TK_CL
