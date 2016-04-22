@@ -9,8 +9,17 @@ void push_symbol_list(symbol_list** lis, char* lexeme, char* func_name){
 	symbol_list* new_node = malloc(sizeof(symbol_list));
 	new_node->lexeme = strdup(lexeme);
 	new_node->func_name = strdup(func_name);
-	new_node->next = *lis;
-	*lis = new_node;
+	new_node->next = NULL;
+	symbol_list* temp = *lis;
+	if(*lis==NULL){
+		//printf("NULLA AAYA\n");
+		*lis = new_node;
+		return;
+	}
+	while(temp->next!=NULL){
+		temp = temp->next;
+	}
+	temp->next = new_node;
 }
 
 sym_table* push_sym_table(sym_table* head, func_sym_table* data){
@@ -370,7 +379,7 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 	//int flag = 0;
 	printf("Printing Symbol Table . . . \n");
 	printf("Lexeme\t\t    Function\t\t Type\t\t\t|offset:\n");
-	while(temp->next!=NULL)
+	while(temp!=NULL)
 	{
 		//printf("\nin printSymbolTable func name = \n");
 		func_sym_table* f = search_sym_table(st, temp->func_name);
@@ -401,7 +410,7 @@ void printSymbolTable(sym_table* st, symbol_list* lis){
 			//printf("\nin printSymbolTable\n");
 			symbol_list* temp2 = d2->slist;
 			//printf("\nin printSymbolTable\n");
-			while(/*temp2!=NULL && temp2->next!=NULL && */temp2->next->next!=NULL)
+			while(/*temp2!=NULL && temp2->next!=NULL && */temp2->next!=NULL)
 			{
 				details* d3 = func_sym_get(d2->f, temp2->lexeme);
 				if(d3!=NULL){

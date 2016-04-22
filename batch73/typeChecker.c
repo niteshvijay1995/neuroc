@@ -374,7 +374,7 @@ void code_gen(astTree* root,sym_table* st, symbol_list* lis, FILE* fp){
 	fprintf(fp,"global  main\nextern  printf\nextern scanf\nSECTION .data\nformatin: db \"%%d\", 0\nformatout: db \"%%d\", 10, 0\n");
 	symbol_list* temp = lis;
 	func_sym_table* g_table = search_sym_table(st, "global");
-	while(temp->next!=NULL)
+	while(temp!=NULL)
 	{
 		func_sym_table* f = search_sym_table(st, temp->func_name);
 		if(f==NULL){
