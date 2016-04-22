@@ -5,7 +5,7 @@ typedef struct sym_table sym_table;
 typedef struct symbol_list symbol_list;
 
 struct details{
-	int type; // 0 = int, 1 = real, 2 = record.
+	int type; // 0 = int, 1 = real, 2 = record, 3 = record_details.
 	int offset;
 	char* rec_name;
 	func_sym_table* f;

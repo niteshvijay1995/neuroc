@@ -144,10 +144,10 @@ void print_ast(astTree* root)
 		return;
 	int i;
 	if(root->size != 0)
-		printf("\nparent - %s children - ",root-> node_symbol);
+		printf("\nparent - %20s \tchildren - ",root-> node_symbol);
 	for(i=0;i<root->size;i++)
 	{
-		printf(" %s ( %s )[ %d] ",root->children[i]->node_symbol, root->children[i]->lexeme, root->children[i]->type);
+		printf(" %s( %s ) ",root->children[i]->node_symbol, root->children[i]->lexeme);
 	}	
 	for(i=0;i<root->size;i++)
 	{
@@ -169,4 +169,26 @@ int cannotBeDeleted(char* string)
 {
 	return strcmp(string, "<whileBody>") == 0 || strcmp(string, "<singleOrRecId>") == 0/*|| strcmp(string, "<booleanExpression>") == 0*/ || strcmp(string, "<funCallStmt>") == 0
 		|| strcmp(string, "<parameter_list>") == 0 || strcmp(string, "<ifBody>") == 0 || strcmp(string, "<elsePart>") == 0 || strcmp(string, "<outputParameters>") == 0 || strcmp(string, "<inputParameters>") == 0 || strcmp(string, "<optionalReturn>") == 0;
+}
+
+int count_nodes_ast(astTree* root){
+	int i;
+	if(root==NULL) return 0;
+	if(root->size==0) return 1;
+	int size = 0;
+	for(i=0; i<root->size; i++){
+		size = size + count_nodes_ast(root->children[i]);
+	}
+	return size;
+}
+
+int count_nodes_parser(ntree* root){
+	int i;
+	if(root==NULL) return 0;
+	if(root->size==0) return 1;
+	int size = 0;
+	for(i=0; i<root->size; i++){
+		size = size + count_nodes_parser(root->next[i]);
+	}
+	return size;
 }

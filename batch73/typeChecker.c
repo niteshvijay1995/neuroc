@@ -265,9 +265,10 @@ void symbol_table_lookup(astTree* root,sym_table* st,char* func_name)
 	//printf("\n Looking up symbol table of func : %s\n",func_name);
 	func_sym_table* func_table =  search_sym_table(st, func_name);
 	details* d =  func_sym_get(func_table, root->children[0]->lexeme);
+	func_sym_table* g_table = search_sym_table(st, "global");
+
 	if(d==NULL)
 	{
-		func_sym_table* g_table = search_sym_table(st, "global");
 		d =  func_sym_get(g_table, root->children[0]->lexeme);
 	}
 	if(d!=NULL)
@@ -276,7 +277,13 @@ void symbol_table_lookup(astTree* root,sym_table* st,char* func_name)
 		if(d->type == 2 && root->children[1] != NULL)
 		{
 			//	printf("\nREC_ID detected %s\n",d->rec_name);
-			details* d2 =  func_sym_get(func_table, d->rec_name);
+			
+			details* d2 =  func_sym_get(g_table, d->rec_name);
+			if(d2==NULL){
+				printf("ERROR 231: Record %s not declared and used at line %d", d->rec_name, root->lineno);
+				root->type = -2;
+				return;
+			}
 			//printf("\nREC_ID detected\n");
 			details* d3 =  func_sym_get(d2->f, root->children[1]->lexeme);
 			if(d3 !=NULL)
