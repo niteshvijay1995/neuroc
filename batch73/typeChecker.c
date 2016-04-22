@@ -351,8 +351,8 @@ int check_boolexp_type(astTree* root,sym_table* st,char* func_name)
 	}
 }
 
-void code_gen(astTree* root,sym_table* st, symbol_list* lis){
-	printf("global  main\nextern  printf\nextern scanf\nSECTION .data\nformatin: db \"%%d\", 0\nformatout: db \"%%d\", 10, 0\n");
+void code_gen(astTree* root,sym_table* st, symbol_list* lis, FILE* fp){
+	fprintf(fp,"global  main\nextern  printf\nextern scanf\nSECTION .data\nformatin: db \"%%d\", 0\nformatout: db \"%%d\", 10, 0\n");
 	symbol_list* temp = lis;
 	while(temp->next!=NULL)
 	{
@@ -366,7 +366,7 @@ void code_gen(astTree* root,sym_table* st, symbol_list* lis){
 		
 		if(d->type==0)
 		{
-			printf("%s: times 4 db 0\n",temp->lexeme);
+			fprintf(fp,"%s: times 4 db 0\n",temp->lexeme);
 		}
 
 	/*	if(d->type==3)
@@ -383,65 +383,74 @@ void code_gen(astTree* root,sym_table* st, symbol_list* lis){
 		}*/
 		temp = temp->next;
 	}
-	printf("SECTION .text\nmain:\n");
+	fprintf(fp,"SECTION .text\nmain:\n");
 	astTree* temp_tree = root->children[0];		//_main function
 	int i;
-	printf("push ebx\npush ecx\n");
+	fprintf(fp,"push ebx\npush ecx\n");
 	for(i=0;i<temp_tree->size;i++)
 	{
 		if(strcmp(temp_tree->children[i]->node_symbol,"TK_ASSIGNOP")==0)
 		{
-			evaluate(temp_tree->children[i]);
+			evaluate(temp_tree->children[i], fp);
 		}
 		if(strcmp(temp_tree->children[i]->node_symbol,"TK_READ")==0)
 		{
-			printf("push %s\npush formatin\ncall scanf\nadd esp,8\n",temp_tree->children[i]->children[0]->lexeme);
+			fprintf(fp,"push %s\npush formatin\ncall scanf\nadd esp,8\n",temp_tree->children[i]->children[0]->lexeme);
 		}
 		if(strcmp(temp_tree->children[i]->node_symbol,"TK_WRITE")==0)
 		{
-			printf("mov ebx,[%s]\npush ebx\npush formatout\ncall printf\nadd esp,8\n",temp_tree->children[i]->children[0]->lexeme);
+			fprintf(fp,"mov ebx,[%s]\npush ebx\npush formatout\ncall printf\nadd esp,8\n",temp_tree->children[i]->children[0]->lexeme);
 		}
 	}
-	printf("pop ecx\npop ebx\nmov eax, 0\nret\n");
+	fprintf(fp,"pop ecx\npop ebx\nmov eax, 0\nret\n");
 
 }
 
-void evaluate(astTree* root)
+void evaluate(astTree* root, FILE* fp)
 {
 	astTree* temp = root->children[1]; 		//right side of assignop
 	if(strcmp(temp->node_symbol,"TK_NUM")==0)
 	{
-		printf("mov ebx,%s\n",temp->lexeme);
+		fprintf(fp,"mov ebx,%s\n",temp->lexeme);
 	}
 	else if(strcmp(temp->node_symbol,"TK_ID")==0)
 	{
-		printf("mov ebx,[%s]\n",temp->lexeme);
+		fprintf(fp,"mov ebx,[%s]\n",temp->lexeme);
 	}
 	else if(strcmp(temp->node_symbol,"TK_PLUS")==0)
 	{
-		eval(temp,"ebx");
+		eval(temp,"ebx", fp);
 	}
-	printf("mov [%s],ebx\n",root->children[0]->children[0]->lexeme);
+	else if(strcmp(temp->node_symbol,"TK_MINUS")==0)
+	{
+		eval(temp,"ebx", fp);
+	}
+	fprintf(fp,"mov [%s],ebx\n",root->children[0]->children[0]->lexeme);
 }
-void eval(astTree* root,char* reg)
+void eval(astTree* root,char* reg, FILE* fp)
 {
 	if(strcmp(root->node_symbol,"TK_PLUS")==0)
 	{
-		eval(root->children[1],reg2(reg));
-		eval(root->children[0],reg);
-		printf("add %s,%s\n",reg,reg2(reg));
+		eval(root->children[1],reg2(reg),fp);
+		eval(root->children[0],reg, fp);
+		fprintf(fp,"add %s,%s\n",reg,reg2(reg));
 		return;
 	}
 	else if(strcmp(root->node_symbol,"TK_MINUS")==0)
 	{
-		eval(root->children[1],reg2(reg));
-		eval(root->children[0],reg);
-		printf("sub %s,%s\n",reg,reg2(reg));
+		eval(root->children[1],reg2(reg), fp);
+		eval(root->children[0],reg, fp);
+		fprintf(fp,"sub %s,%s\n",reg,reg2(reg));
 		return;
 	}
 	else if(strcmp(root->node_symbol,"TK_ID")==0)
 	{
-		printf("mov %s,[%s]\n",reg,root->lexeme);
+		fprintf(fp,"mov %s,[%s]\n",reg,root->lexeme);
+		return;
+	}
+	else if(strcmp(root->node_symbol, "TK_NUM")==0)
+	{
+		fprintf(fp, "mov %s,%s\n",reg,root->lexeme);
 		return;
 	}
 }
