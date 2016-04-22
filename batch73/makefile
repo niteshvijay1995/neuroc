@@ -11,4 +11,4 @@ symbolTable.o: symbolTable.c symbolTable.h symbolTableDef.h
 typeChecker.o: typeChecker.c typeChecker.h
 	gcc -c typeChecker.c
 clean:
-	rm -f lexer.o parser.o ast.o symbolTable.o typeChecker.o
+	rm -f lexer.o parser.o ast.o symbolTable.o typeChecker.o code.asm code.o code.out o.am out.no stage1exe

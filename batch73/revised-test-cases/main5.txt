@@ -1,0 +1,27 @@
+
+_main 
+	record #marks
+		type int : maths; 
+		type int: physics; 
+		type int: chemistry;
+	endrecord;
+
+	type record #marks : d4;
+	type int : b5;
+	type int : d5cb34567;
+	type record #marks : b3c2;
+	b5 <--- 1;
+	read(d5cb34567);
+	d4.maths <--- 2;
+	d4.physics <--- 2;
+	d4.chemistry <---4;
+	while(b5<=d5cb34567)
+		read(b3c2.maths);
+		read(b3c2.physics);
+		read(b3c2.chemistry);
+		d4 <--- b3c2 / d4; 
+		b5 <--- b5 +1;
+	endwhile
+	write(d4);
+	return;
+end

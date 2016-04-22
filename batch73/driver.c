@@ -113,7 +113,7 @@ int main(int argc, char** args)
 						printf("\n_____________________________\n");
 						symbol_list* lis;
 						lis = malloc(sizeof(symbol_list*));
-						lis->next = NULL;
+						//lis->next = NULL;
 						sym_table* st = createSymbolTable(astTree_root, &lis);
 						printSymbolTable(st, lis);
 						//print_ast(astTree_root);

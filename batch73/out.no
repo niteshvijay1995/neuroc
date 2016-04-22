@@ -1,561 +1,112 @@
-lexemeCurrentNode: _addRecords         , lineno: 9 , token: TK_FUNID            ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: _addRecords         , lineno: 9 , token: TK_FUNID            ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: input               , lineno: 9 , token: TK_INPUT            ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: input               , lineno: 9 , token: TK_INPUT            ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameter           , lineno: 9 , token: TK_PARAMETER        ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameter           , lineno: 9 , token: TK_PARAMETER        ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: list                , lineno: 9 , token: TK_LIST             ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: list                , lineno: 9 , token: TK_LIST             ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 9 , token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 9 , token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: int                 , lineno: 9 , token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: int                 , lineno: 9 , token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <dataType>          , isLeafNode: no  , NodeSymbol: <primitiveDatatype>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: no  , NodeSymbol: <dataType>
-lexemeCurrentNode: b2                  , lineno: 9 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b2                  , lineno: 9 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ,                   , lineno: 9 , token: TK_COMMA            ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ,                   , lineno: 9 , token: TK_COMMA            ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 9 , token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 9 , token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 9 , token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 9 , token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <dataType>          , isLeafNode: no  , NodeSymbol: <constructedDatatype>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: no  , NodeSymbol: <dataType>
-lexemeCurrentNode: c3b5                , lineno: 9 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: c3b5                , lineno: 9 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ,                   , lineno: 9 , token: TK_COMMA            ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ,                   , lineno: 9 , token: TK_COMMA            ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 9 , token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 9 , token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 9 , token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 9 , token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <dataType>          , isLeafNode: no  , NodeSymbol: <constructedDatatype>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: no  , NodeSymbol: <dataType>
-lexemeCurrentNode: c3b6                , lineno: 9 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: c3b6                , lineno: 9 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: no  , NodeSymbol: <remaining_list>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: no  , NodeSymbol: <parameter_list>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: no  , NodeSymbol: <remaining_list>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: no  , NodeSymbol: <parameter_list>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: no  , NodeSymbol: <remaining_list>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: no  , NodeSymbol: <parameter_list>
-lexemeCurrentNode: ]                   , lineno: 9 , token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 9 , token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: no  , NodeSymbol: <input_par>
-lexemeCurrentNode: output              , lineno: 10, token: TK_OUTPUT           ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: output              , lineno: 10, token: TK_OUTPUT           ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameter           , lineno: 10, token: TK_PARAMETER        ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameter           , lineno: 10, token: TK_PARAMETER        ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: list                , lineno: 10, token: TK_LIST             ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: list                , lineno: 10, token: TK_LIST             ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 10, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 10, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 10, token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 10, token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 10, token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 10, token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <dataType>          , isLeafNode: no  , NodeSymbol: <constructedDatatype>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: no  , NodeSymbol: <dataType>
-lexemeCurrentNode: b3c45               , lineno: 10, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c45               , lineno: 10, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: no  , NodeSymbol: <remaining_list>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: no  , NodeSymbol: <parameter_list>
-lexemeCurrentNode: ]                   , lineno: 10, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 10, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: no  , NodeSymbol: <output_par>
-lexemeCurrentNode: ;                   , lineno: 10, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 10, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <typeDefinitions>   , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <typeDefinitions>   , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmts>             , isLeafNode: no  , NodeSymbol: <typeDefinitions>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmts>             , isLeafNode: no  , NodeSymbol: <declarations>
-lexemeCurrentNode: [                   , lineno: 11, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 11, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: c3b5                , lineno: 11, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: c3b5                , lineno: 11, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: no  , NodeSymbol: <more_ids>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: no  , NodeSymbol: <idList>
-lexemeCurrentNode: ]                   , lineno: 11, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 11, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 11, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 11, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: no  , NodeSymbol: <outputParameters>
-lexemeCurrentNode: call                , lineno: 11, token: TK_CALL             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: call                , lineno: 11, token: TK_CALL             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: _readMarks          , lineno: 11, token: TK_FUNID            ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: _readMarks          , lineno: 11, token: TK_FUNID            ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: with                , lineno: 11, token: TK_WITH             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: with                , lineno: 11, token: TK_WITH             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameters          , lineno: 11, token: TK_PARAMETERS       ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameters          , lineno: 11, token: TK_PARAMETERS       ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 11, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 11, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b2                  , lineno: 11, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b2                  , lineno: 11, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: no  , NodeSymbol: <more_ids>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: no  , NodeSymbol: <idList>
-lexemeCurrentNode: ]                   , lineno: 11, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 11, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: no  , NodeSymbol: <inputParameters>
-lexemeCurrentNode: ;                   , lineno: 11, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 11, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <funCallStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: [                   , lineno: 12, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 12, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: c3b6                , lineno: 12, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: c3b6                , lineno: 12, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: no  , NodeSymbol: <more_ids>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: no  , NodeSymbol: <idList>
-lexemeCurrentNode: ]                   , lineno: 12, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 12, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 12, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 12, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: no  , NodeSymbol: <outputParameters>
-lexemeCurrentNode: call                , lineno: 12, token: TK_CALL             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: call                , lineno: 12, token: TK_CALL             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: _readMarks          , lineno: 12, token: TK_FUNID            ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: _readMarks          , lineno: 12, token: TK_FUNID            ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: with                , lineno: 12, token: TK_WITH             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: with                , lineno: 12, token: TK_WITH             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameters          , lineno: 12, token: TK_PARAMETERS       ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameters          , lineno: 12, token: TK_PARAMETERS       ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 12, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 12, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b2                  , lineno: 12, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b2                  , lineno: 12, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: no  , NodeSymbol: <more_ids>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: no  , NodeSymbol: <idList>
-lexemeCurrentNode: ]                   , lineno: 12, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 12, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: no  , NodeSymbol: <inputParameters>
-lexemeCurrentNode: ;                   , lineno: 12, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 12, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <funCallStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: b3c45               , lineno: 13, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c45               , lineno: 13, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <singleOrRecId>
-lexemeCurrentNode: <---                , lineno: 13, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 13, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: c3b5                , lineno: 13, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: c3b5                , lineno: 13, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: no  , NodeSymbol: <temp>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <factor>            , isLeafNode: no  , NodeSymbol: <all>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <factor>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <termPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <term>
-lexemeCurrentNode: +                   , lineno: 13, token: TK_PLUS             ,valueIfNumber:      , parentNodeSymbol: <lpo>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: +                   , lineno: 13, token: TK_PLUS             ,valueIfNumber:      , parentNodeSymbol: <lpo>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: no  , NodeSymbol: <lpo>
-lexemeCurrentNode: c3b6                , lineno: 13, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: c3b6                , lineno: 13, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: no  , NodeSymbol: <temp>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <factor>            , isLeafNode: no  , NodeSymbol: <all>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <factor>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <termPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <term>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <expPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: no  , NodeSymbol: <arithmeticExpression>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <expPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <arithmeticExpression>
-lexemeCurrentNode: ;                   , lineno: 13, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 13, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <assignmentStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmts>             , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: return              , lineno: 14, token: TK_RETURN           ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: return              , lineno: 14, token: TK_RETURN           ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 14, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <optionalReturn>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 14, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <optionalReturn>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c45               , lineno: 14, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c45               , lineno: 14, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: no  , NodeSymbol: <more_ids>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <optionalReturn>    , isLeafNode: no  , NodeSymbol: <idList>
-lexemeCurrentNode: ]                   , lineno: 14, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <optionalReturn>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 14, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <optionalReturn>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: no  , NodeSymbol: <optionalReturn>
-lexemeCurrentNode: ;                   , lineno: 14, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 14, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmts>             , isLeafNode: no  , NodeSymbol: <returnStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: no  , NodeSymbol: <stmts>
-lexemeCurrentNode: end                 , lineno: 15, token: TK_END              ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: end                 , lineno: 15, token: TK_END              ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherFunctions>    , isLeafNode: no  , NodeSymbol: <function>
-lexemeCurrentNode: _readMarks          , lineno: 17, token: TK_FUNID            ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: _readMarks          , lineno: 17, token: TK_FUNID            ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: input               , lineno: 17, token: TK_INPUT            ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: input               , lineno: 17, token: TK_INPUT            ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameter           , lineno: 17, token: TK_PARAMETER        ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameter           , lineno: 17, token: TK_PARAMETER        ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: list                , lineno: 17, token: TK_LIST             ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: list                , lineno: 17, token: TK_LIST             ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 17, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 17, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: int                 , lineno: 17, token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: int                 , lineno: 17, token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <dataType>          , isLeafNode: no  , NodeSymbol: <primitiveDatatype>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: no  , NodeSymbol: <dataType>
-lexemeCurrentNode: b7                  , lineno: 17, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b7                  , lineno: 17, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: no  , NodeSymbol: <remaining_list>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: no  , NodeSymbol: <parameter_list>
-lexemeCurrentNode: ]                   , lineno: 17, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 17, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <input_par>         , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: no  , NodeSymbol: <input_par>
-lexemeCurrentNode: output              , lineno: 18, token: TK_OUTPUT           ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: output              , lineno: 18, token: TK_OUTPUT           ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameter           , lineno: 18, token: TK_PARAMETER        ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameter           , lineno: 18, token: TK_PARAMETER        ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: list                , lineno: 18, token: TK_LIST             ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: list                , lineno: 18, token: TK_LIST             ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 18, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 18, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 18, token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 18, token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 18, token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 18, token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <dataType>          , isLeafNode: no  , NodeSymbol: <constructedDatatype>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: no  , NodeSymbol: <dataType>
-lexemeCurrentNode: b3c2                , lineno: 18, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c2                , lineno: 18, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <remaining_list>    , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <parameter_list>    , isLeafNode: no  , NodeSymbol: <remaining_list>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: no  , NodeSymbol: <parameter_list>
-lexemeCurrentNode: ]                   , lineno: 18, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 18, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <output_par>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: no  , NodeSymbol: <output_par>
-lexemeCurrentNode: ;                   , lineno: 18, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 18, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <typeDefinitions>   , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <typeDefinitions>   , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmts>             , isLeafNode: no  , NodeSymbol: <typeDefinitions>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmts>             , isLeafNode: no  , NodeSymbol: <declarations>
-lexemeCurrentNode: read                , lineno: 19, token: TK_READ             ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: read                , lineno: 19, token: TK_READ             ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 19, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 19, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c2                , lineno: 19, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c2                , lineno: 19, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 19, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 19, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: maths               , lineno: 19, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: maths               , lineno: 19, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: no  , NodeSymbol: <singleOrRecId>
-lexemeCurrentNode: )                   , lineno: 19, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: )                   , lineno: 19, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 19, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 19, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <ioStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: read                , lineno: 20, token: TK_READ             ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: read                , lineno: 20, token: TK_READ             ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 20, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 20, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c2                , lineno: 20, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c2                , lineno: 20, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 20, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 20, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: physics             , lineno: 20, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: physics             , lineno: 20, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: no  , NodeSymbol: <singleOrRecId>
-lexemeCurrentNode: )                   , lineno: 20, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: )                   , lineno: 20, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 20, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 20, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <ioStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: read                , lineno: 21, token: TK_READ             ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: read                , lineno: 21, token: TK_READ             ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 21, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 21, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c2                , lineno: 21, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c2                , lineno: 21, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 21, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 21, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: chemistry           , lineno: 21, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: chemistry           , lineno: 21, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: no  , NodeSymbol: <singleOrRecId>
-lexemeCurrentNode: )                   , lineno: 21, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: )                   , lineno: 21, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 21, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 21, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <ioStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmts>             , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: return              , lineno: 22, token: TK_RETURN           ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: return              , lineno: 22, token: TK_RETURN           ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 22, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <optionalReturn>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 22, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <optionalReturn>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c2                , lineno: 22, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b3c2                , lineno: 22, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: no  , NodeSymbol: <more_ids>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <optionalReturn>    , isLeafNode: no  , NodeSymbol: <idList>
-lexemeCurrentNode: ]                   , lineno: 22, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <optionalReturn>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 22, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <optionalReturn>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: no  , NodeSymbol: <optionalReturn>
-lexemeCurrentNode: ;                   , lineno: 22, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 22, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmts>             , isLeafNode: no  , NodeSymbol: <returnStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: no  , NodeSymbol: <stmts>
-lexemeCurrentNode: end                 , lineno: 23, token: TK_END              ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: end                 , lineno: 23, token: TK_END              ,valueIfNumber:      , parentNodeSymbol: <function>          , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherFunctions>    , isLeafNode: no  , NodeSymbol: <function>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherFunctions>    , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherFunctions>    , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherFunctions>    , isLeafNode: no  , NodeSymbol: <otherFunctions>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherFunctions>    , isLeafNode: no  , NodeSymbol: <otherFunctions>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <program>           , isLeafNode: no  , NodeSymbol: <otherFunctions>
-lexemeCurrentNode: _main               , lineno: 27, token: TK_MAIN             ,valueIfNumber:      , parentNodeSymbol: <mainFunction>      , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: _main               , lineno: 27, token: TK_MAIN             ,valueIfNumber:      , parentNodeSymbol: <mainFunction>      , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 28, token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <typeDefinition>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 28, token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <typeDefinition>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 28, token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <typeDefinition>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 28, token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <typeDefinition>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: type                , lineno: 29, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: type                , lineno: 29, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: real                , lineno: 29, token: TK_REAL             ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: real                , lineno: 29, token: TK_REAL             ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: no  , NodeSymbol: <primitiveDatatype>
-lexemeCurrentNode: :                   , lineno: 29, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: :                   , lineno: 29, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: maths               , lineno: 29, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: maths               , lineno: 29, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 29, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 29, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <fieldDefinitions>  , isLeafNode: no  , NodeSymbol: <fieldDefinition>
-lexemeCurrentNode: type                , lineno: 30, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: type                , lineno: 30, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: real                , lineno: 30, token: TK_REAL             ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: real                , lineno: 30, token: TK_REAL             ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: no  , NodeSymbol: <primitiveDatatype>
-lexemeCurrentNode: :                   , lineno: 30, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: :                   , lineno: 30, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: physics             , lineno: 30, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: physics             , lineno: 30, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 30, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 30, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <fieldDefinitions>  , isLeafNode: no  , NodeSymbol: <fieldDefinition>
-lexemeCurrentNode: type                , lineno: 31, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: type                , lineno: 31, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: real                , lineno: 31, token: TK_REAL             ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: real                , lineno: 31, token: TK_REAL             ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: no  , NodeSymbol: <primitiveDatatype>
-lexemeCurrentNode: :                   , lineno: 31, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: :                   , lineno: 31, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: chemistry           , lineno: 31, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: chemistry           , lineno: 31, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 31, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 31, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <fieldDefinition>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <moreFields>        , isLeafNode: no  , NodeSymbol: <fieldDefinition>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <moreFields>        , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <moreFields>        , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <moreFields>        , isLeafNode: no  , NodeSymbol: <moreFields>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <fieldDefinitions>  , isLeafNode: no  , NodeSymbol: <moreFields>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <typeDefinition>    , isLeafNode: no  , NodeSymbol: <fieldDefinitions>
-lexemeCurrentNode: endrecord           , lineno: 32, token: TK_ENDRECORD        ,valueIfNumber:      , parentNodeSymbol: <typeDefinition>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: endrecord           , lineno: 32, token: TK_ENDRECORD        ,valueIfNumber:      , parentNodeSymbol: <typeDefinition>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 32, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <typeDefinition>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 32, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <typeDefinition>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <typeDefinitions>   , isLeafNode: no  , NodeSymbol: <typeDefinition>
+lexemeCurrentNode: _main               , lineno: 1 , token: TK_MAIN             ,valueIfNumber:      , parentNodeSymbol: <mainFunction>      , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: _main               , lineno: 1 , token: TK_MAIN             ,valueIfNumber:      , parentNodeSymbol: <mainFunction>      , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <typeDefinitions>   , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <typeDefinitions>   , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <typeDefinitions>   , isLeafNode: no  , NodeSymbol: <typeDefinitions>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmts>             , isLeafNode: no  , NodeSymbol: <typeDefinitions>
-lexemeCurrentNode: type                , lineno: 35, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: type                , lineno: 35, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 35, token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 35, token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 35, token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 35, token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <dataType>          , isLeafNode: no  , NodeSymbol: <constructedDatatype>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: no  , NodeSymbol: <dataType>
-lexemeCurrentNode: :                   , lineno: 35, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: :                   , lineno: 35, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d4                  , lineno: 35, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d4                  , lineno: 35, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <global_or_not>     , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <global_or_not>     , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: no  , NodeSymbol: <global_or_not>
-lexemeCurrentNode: ;                   , lineno: 35, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 35, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: no  , NodeSymbol: <declaration>
-lexemeCurrentNode: type                , lineno: 38, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: type                , lineno: 38, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: int                 , lineno: 38, token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: int                 , lineno: 38, token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: type                , lineno: 2 , token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: type                , lineno: 2 , token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: int                 , lineno: 2 , token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: int                 , lineno: 2 , token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <dataType>          , isLeafNode: no  , NodeSymbol: <primitiveDatatype>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: no  , NodeSymbol: <dataType>
-lexemeCurrentNode: :                   , lineno: 38, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: :                   , lineno: 38, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5                  , lineno: 38, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5                  , lineno: 38, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: :                   , lineno: 2 , token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: :                   , lineno: 2 , token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b3                  , lineno: 2 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b3                  , lineno: 2 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <global_or_not>     , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <global_or_not>     , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: no  , NodeSymbol: <global_or_not>
-lexemeCurrentNode: ;                   , lineno: 38, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 38, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 2 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 2 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: no  , NodeSymbol: <declaration>
-lexemeCurrentNode: type                , lineno: 39, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: type                , lineno: 39, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: int                 , lineno: 39, token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: int                 , lineno: 39, token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: type                , lineno: 3 , token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: type                , lineno: 3 , token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: int                 , lineno: 3 , token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: int                 , lineno: 3 , token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <dataType>          , isLeafNode: no  , NodeSymbol: <primitiveDatatype>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: no  , NodeSymbol: <dataType>
-lexemeCurrentNode: :                   , lineno: 39, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: :                   , lineno: 39, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d5cb34567           , lineno: 39, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d5cb34567           , lineno: 39, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: :                   , lineno: 3 , token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: :                   , lineno: 3 , token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b2                  , lineno: 3 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b2                  , lineno: 3 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <global_or_not>     , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <global_or_not>     , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: no  , NodeSymbol: <global_or_not>
-lexemeCurrentNode: ;                   , lineno: 39, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 39, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 3 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 3 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: no  , NodeSymbol: <declaration>
-lexemeCurrentNode: type                , lineno: 40, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: type                , lineno: 40, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: real                , lineno: 40, token: TK_REAL             ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: real                , lineno: 40, token: TK_REAL             ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: type                , lineno: 4 , token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: type                , lineno: 4 , token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: int                 , lineno: 4 , token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: int                 , lineno: 4 , token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <dataType>          , isLeafNode: no  , NodeSymbol: <primitiveDatatype>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: no  , NodeSymbol: <dataType>
-lexemeCurrentNode: :                   , lineno: 40, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: :                   , lineno: 40, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5                  , lineno: 40, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5                  , lineno: 40, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: :                   , lineno: 4 , token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: :                   , lineno: 4 , token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: c2                  , lineno: 4 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: c2                  , lineno: 4 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <global_or_not>     , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <global_or_not>     , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: no  , NodeSymbol: <global_or_not>
-lexemeCurrentNode: ;                   , lineno: 40, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 40, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 4 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 4 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: no  , NodeSymbol: <declaration>
-lexemeCurrentNode: type                , lineno: 41, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: type                , lineno: 41, token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 41, token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: record              , lineno: 41, token: TK_RECORD           ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 41, token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: #marks              , lineno: 41, token: TK_RECORDID         ,valueIfNumber:      , parentNodeSymbol: <constructedDatatype>, isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <dataType>          , isLeafNode: no  , NodeSymbol: <constructedDatatype>
+lexemeCurrentNode: type                , lineno: 5 , token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: type                , lineno: 5 , token: TK_TYPE             ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: int                 , lineno: 5 , token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: int                 , lineno: 5 , token: TK_INT              ,valueIfNumber:      , parentNodeSymbol: <primitiveDatatype> , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <dataType>          , isLeafNode: no  , NodeSymbol: <primitiveDatatype>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: no  , NodeSymbol: <dataType>
-lexemeCurrentNode: :                   , lineno: 41, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: :                   , lineno: 41, token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5c6                , lineno: 41, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5c6                , lineno: 41, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: :                   , lineno: 5 , token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: :                   , lineno: 5 , token: TK_COLON            ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: d2                  , lineno: 5 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: d2                  , lineno: 5 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <global_or_not>     , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <global_or_not>     , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: no  , NodeSymbol: <global_or_not>
-lexemeCurrentNode: ;                   , lineno: 41, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 41, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 5 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 5 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <declaration>       , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: no  , NodeSymbol: <declaration>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: no  , NodeSymbol: <declarations>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: no  , NodeSymbol: <declarations>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: no  , NodeSymbol: <declarations>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: no  , NodeSymbol: <declarations>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <declarations>      , isLeafNode: no  , NodeSymbol: <declarations>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmts>             , isLeafNode: no  , NodeSymbol: <declarations>
-lexemeCurrentNode: b5                  , lineno: 44, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5                  , lineno: 44, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <singleOrRecId>
-lexemeCurrentNode: <---                , lineno: 44, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 44, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: 1                   , lineno: 44, token: TK_NUM              ,valueIfNumber: 1    , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: 1                   , lineno: 44, token: TK_NUM              ,valueIfNumber: 1    , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <factor>            , isLeafNode: no  , NodeSymbol: <all>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <factor>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <termPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <term>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <expPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <arithmeticExpression>
-lexemeCurrentNode: ;                   , lineno: 44, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 44, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <assignmentStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: read                , lineno: 45, token: TK_READ             ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: read                , lineno: 45, token: TK_READ             ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 45, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 45, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d5cb34567           , lineno: 45, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d5cb34567           , lineno: 45, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: read                , lineno: 6 , token: TK_READ             ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: read                , lineno: 6 , token: TK_READ             ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: (                   , lineno: 6 , token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: (                   , lineno: 6 , token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b2                  , lineno: 6 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b2                  , lineno: 6 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: no  , NodeSymbol: <singleOrRecId>
-lexemeCurrentNode: )                   , lineno: 45, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: )                   , lineno: 45, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 45, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 45, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: )                   , lineno: 6 , token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: )                   , lineno: 6 , token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 6 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 6 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <ioStmt>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: b5c6                , lineno: 46, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5c6                , lineno: 46, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 46, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 46, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: maths               , lineno: 46, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: maths               , lineno: 46, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: c2                  , lineno: 7 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: c2                  , lineno: 7 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <singleOrRecId>
-lexemeCurrentNode: <---                , lineno: 46, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 46, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: 0.00                , lineno: 46, token: TK_RNUM             ,valueIfNumber: 0.00 , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: 0.00                , lineno: 46, token: TK_RNUM             ,valueIfNumber: 0.00 , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: <---                , lineno: 7 , token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: <---                , lineno: 7 , token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b2                  , lineno: 7 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b2                  , lineno: 7 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: no  , NodeSymbol: <singleOrRecId>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <factor>            , isLeafNode: no  , NodeSymbol: <all>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <factor>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
@@ -566,223 +117,51 @@ lexemeCurrentNode: ----                , lineno:   , token:                     
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <expPrime>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <arithmeticExpression>
-lexemeCurrentNode: ;                   , lineno: 46, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 46, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 7 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 7 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <assignmentStmt>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: b5c6                , lineno: 47, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5c6                , lineno: 47, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 47, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 47, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: physics             , lineno: 47, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: physics             , lineno: 47, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: read                , lineno: 8 , token: TK_READ             ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: read                , lineno: 8 , token: TK_READ             ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: (                   , lineno: 8 , token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: (                   , lineno: 8 , token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: d2                  , lineno: 8 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: d2                  , lineno: 8 , token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <singleOrRecId>
-lexemeCurrentNode: <---                , lineno: 47, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 47, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: 0.00                , lineno: 47, token: TK_RNUM             ,valueIfNumber: 0.00 , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: 0.00                , lineno: 47, token: TK_RNUM             ,valueIfNumber: 0.00 , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <factor>            , isLeafNode: no  , NodeSymbol: <all>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <factor>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <termPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <term>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <expPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <arithmeticExpression>
-lexemeCurrentNode: ;                   , lineno: 47, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 47, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <assignmentStmt>
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: no  , NodeSymbol: <singleOrRecId>
+lexemeCurrentNode: )                   , lineno: 8 , token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: )                   , lineno: 8 , token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 8 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 8 , token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <ioStmt>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: b5c6                , lineno: 48, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5c6                , lineno: 48, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 48, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 48, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: chemistry           , lineno: 48, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: chemistry           , lineno: 48, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <singleOrRecId>
-lexemeCurrentNode: <---                , lineno: 48, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 48, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: 0.00                , lineno: 48, token: TK_RNUM             ,valueIfNumber: 0.00 , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: 0.00                , lineno: 48, token: TK_RNUM             ,valueIfNumber: 0.00 , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <factor>            , isLeafNode: no  , NodeSymbol: <all>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <factor>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <termPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <term>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <expPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <arithmeticExpression>
-lexemeCurrentNode: ;                   , lineno: 48, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 48, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <assignmentStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: while               , lineno: 49, token: TK_WHILE            ,valueIfNumber:      , parentNodeSymbol: <iterativeStmt>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: while               , lineno: 49, token: TK_WHILE            ,valueIfNumber:      , parentNodeSymbol: <iterativeStmt>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 49, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <iterativeStmt>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 49, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <iterativeStmt>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5                  , lineno: 49, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <var>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5                  , lineno: 49, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <var>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <booleanExpression> , isLeafNode: no  , NodeSymbol: <var>
-lexemeCurrentNode: <=                  , lineno: 49, token: TK_LE               ,valueIfNumber:      , parentNodeSymbol: <relationalOp>      , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <=                  , lineno: 49, token: TK_LE               ,valueIfNumber:      , parentNodeSymbol: <relationalOp>      , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <booleanExpression> , isLeafNode: no  , NodeSymbol: <relationalOp>
-lexemeCurrentNode: d5cb34567           , lineno: 49, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <var>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d5cb34567           , lineno: 49, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <var>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <booleanExpression> , isLeafNode: no  , NodeSymbol: <var>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <iterativeStmt>     , isLeafNode: no  , NodeSymbol: <booleanExpression>
-lexemeCurrentNode: )                   , lineno: 49, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <iterativeStmt>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: )                   , lineno: 49, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <iterativeStmt>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 50, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 50, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d4                  , lineno: 50, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d4                  , lineno: 50, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: no  , NodeSymbol: <more_ids>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: no  , NodeSymbol: <idList>
-lexemeCurrentNode: ]                   , lineno: 50, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 50, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 50, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 50, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: no  , NodeSymbol: <outputParameters>
-lexemeCurrentNode: call                , lineno: 50, token: TK_CALL             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: call                , lineno: 50, token: TK_CALL             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: _readMarks          , lineno: 50, token: TK_FUNID            ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: _readMarks          , lineno: 50, token: TK_FUNID            ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: with                , lineno: 50, token: TK_WITH             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: with                , lineno: 50, token: TK_WITH             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameters          , lineno: 50, token: TK_PARAMETERS       ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameters          , lineno: 50, token: TK_PARAMETERS       ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 50, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 50, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5                  , lineno: 50, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5                  , lineno: 50, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: no  , NodeSymbol: <more_ids>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: no  , NodeSymbol: <idList>
-lexemeCurrentNode: ]                   , lineno: 50, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 50, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: no  , NodeSymbol: <inputParameters>
-lexemeCurrentNode: ;                   , lineno: 50, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 50, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <funCallStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <whileBody>         , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: [                   , lineno: 51, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 51, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5c6                , lineno: 51, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5c6                , lineno: 51, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: no  , NodeSymbol: <more_ids>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: no  , NodeSymbol: <idList>
-lexemeCurrentNode: ]                   , lineno: 51, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 51, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 51, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 51, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <outputParameters>  , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: no  , NodeSymbol: <outputParameters>
-lexemeCurrentNode: call                , lineno: 51, token: TK_CALL             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: call                , lineno: 51, token: TK_CALL             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: _addRecords         , lineno: 51, token: TK_FUNID            ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: _addRecords         , lineno: 51, token: TK_FUNID            ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: with                , lineno: 51, token: TK_WITH             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: with                , lineno: 51, token: TK_WITH             ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameters          , lineno: 51, token: TK_PARAMETERS       ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: parameters          , lineno: 51, token: TK_PARAMETERS       ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 51, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: [                   , lineno: 51, token: TK_SQL              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5c6                , lineno: 51, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5c6                , lineno: 51, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <more_ids>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <idList>            , isLeafNode: no  , NodeSymbol: <more_ids>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: no  , NodeSymbol: <idList>
-lexemeCurrentNode: ]                   , lineno: 51, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ]                   , lineno: 51, token: TK_SQR              ,valueIfNumber:      , parentNodeSymbol: <inputParameters>   , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: no  , NodeSymbol: <inputParameters>
-lexemeCurrentNode: ;                   , lineno: 51, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 51, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <funCallStmt>       , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <funCallStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: b5                  , lineno: 53, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5                  , lineno: 53, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b3                  , lineno: 10, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b3                  , lineno: 10, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <singleOrRecId>
-lexemeCurrentNode: <---                , lineno: 53, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 53, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5                  , lineno: 53, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5                  , lineno: 53, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: no  , NodeSymbol: <temp>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <factor>            , isLeafNode: no  , NodeSymbol: <all>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <factor>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <termPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <term>
-lexemeCurrentNode: +                   , lineno: 53, token: TK_PLUS             ,valueIfNumber:      , parentNodeSymbol: <lpo>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: +                   , lineno: 53, token: TK_PLUS             ,valueIfNumber:      , parentNodeSymbol: <lpo>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: no  , NodeSymbol: <lpo>
-lexemeCurrentNode: 1                   , lineno: 53, token: TK_NUM              ,valueIfNumber: 1    , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: 1                   , lineno: 53, token: TK_NUM              ,valueIfNumber: 1    , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <factor>            , isLeafNode: no  , NodeSymbol: <all>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <factor>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <termPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <term>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <expPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: no  , NodeSymbol: <arithmeticExpression>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <expPrime>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <arithmeticExpression>
-lexemeCurrentNode: ;                   , lineno: 53, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 53, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <assignmentStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <whileBody>         , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <iterativeStmt>     , isLeafNode: no  , NodeSymbol: <whileBody>
-lexemeCurrentNode: endwhile            , lineno: 54, token: TK_ENDWHILE         ,valueIfNumber:      , parentNodeSymbol: <iterativeStmt>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: endwhile            , lineno: 54, token: TK_ENDWHILE         ,valueIfNumber:      , parentNodeSymbol: <iterativeStmt>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <iterativeStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: d4                  , lineno: 55, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d4                  , lineno: 55, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: <---                , lineno: 10, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: <---                , lineno: 10, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b2                  , lineno: 10, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b2                  , lineno: 10, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <singleOrRecId>
-lexemeCurrentNode: <---                , lineno: 55, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: <---                , lineno: 55, token: TK_ASSIGNOP         ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5c6                , lineno: 55, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: b5c6                , lineno: 55, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: no  , NodeSymbol: <temp>
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: no  , NodeSymbol: <singleOrRecId>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <factor>            , isLeafNode: no  , NodeSymbol: <all>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <factor>
-lexemeCurrentNode: /                   , lineno: 55, token: TK_DIV              ,valueIfNumber:      , parentNodeSymbol: <hpo>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: /                   , lineno: 55, token: TK_DIV              ,valueIfNumber:      , parentNodeSymbol: <hpo>               , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: /                   , lineno: 10, token: TK_DIV              ,valueIfNumber:      , parentNodeSymbol: <hpo>               , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: /                   , lineno: 10, token: TK_DIV              ,valueIfNumber:      , parentNodeSymbol: <hpo>               , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: no  , NodeSymbol: <hpo>
-lexemeCurrentNode: d5cb34567           , lineno: 55, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d5cb34567           , lineno: 55, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: no  , NodeSymbol: <temp>
+lexemeCurrentNode: d2                  , lineno: 10, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: d2                  , lineno: 10, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: no  , NodeSymbol: <singleOrRecId>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <factor>            , isLeafNode: no  , NodeSymbol: <all>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <term>              , isLeafNode: no  , NodeSymbol: <factor>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <termPrime>         , isLeafNode: yes , NodeSymbol: eps
@@ -795,87 +174,45 @@ lexemeCurrentNode: ----                , lineno:   , token:                     
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <expPrime>          , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <arithmeticExpression>, isLeafNode: no  , NodeSymbol: <expPrime>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: no  , NodeSymbol: <arithmeticExpression>
-lexemeCurrentNode: ;                   , lineno: 55, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 55, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 10, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 10, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <assignmentStmt>    , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <assignmentStmt>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: write               , lineno: 56, token: TK_WRITE            ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: write               , lineno: 56, token: TK_WRITE            ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 56, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 56, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d4                  , lineno: 56, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d4                  , lineno: 56, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 56, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 56, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: maths               , lineno: 56, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: maths               , lineno: 56, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: no  , NodeSymbol: <temp>
+lexemeCurrentNode: write               , lineno: 11, token: TK_WRITE            ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: write               , lineno: 11, token: TK_WRITE            ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: (                   , lineno: 11, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: (                   , lineno: 11, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b3                  , lineno: 11, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: b3                  , lineno: 11, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <new_24>            , isLeafNode: yes , NodeSymbol: eps
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <singleOrRecId>     , isLeafNode: no  , NodeSymbol: <new_24>
+lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: no  , NodeSymbol: <singleOrRecId>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: no  , NodeSymbol: <all>
-lexemeCurrentNode: )                   , lineno: 56, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: )                   , lineno: 56, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 56, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 56, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <ioStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: write               , lineno: 57, token: TK_WRITE            ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: write               , lineno: 57, token: TK_WRITE            ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 57, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 57, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d4                  , lineno: 57, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d4                  , lineno: 57, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 57, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 57, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: physics             , lineno: 57, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: physics             , lineno: 57, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: no  , NodeSymbol: <temp>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: no  , NodeSymbol: <all>
-lexemeCurrentNode: )                   , lineno: 57, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: )                   , lineno: 57, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 57, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 57, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <ioStmt>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
-lexemeCurrentNode: write               , lineno: 58, token: TK_WRITE            ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: write               , lineno: 58, token: TK_WRITE            ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 58, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: (                   , lineno: 58, token: TK_OP               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d4                  , lineno: 58, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: d4                  , lineno: 58, token: TK_ID               ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 58, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: .                   , lineno: 58, token: TK_DOT              ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: chemistry           , lineno: 58, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: chemistry           , lineno: 58, token: TK_FIELDID          ,valueIfNumber:      , parentNodeSymbol: <temp>              , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <all>               , isLeafNode: no  , NodeSymbol: <temp>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: no  , NodeSymbol: <all>
-lexemeCurrentNode: )                   , lineno: 58, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: )                   , lineno: 58, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 58, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 58, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: )                   , lineno: 11, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: )                   , lineno: 11, token: TK_CL               ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 11, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 11, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <ioStmt>            , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmt>              , isLeafNode: no  , NodeSymbol: <ioStmt>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <stmt>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: yes , NodeSymbol: eps
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <otherStmts>        , isLeafNode: no  , NodeSymbol: <otherStmts>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmts>             , isLeafNode: no  , NodeSymbol: <otherStmts>
-lexemeCurrentNode: return              , lineno: 59, token: TK_RETURN           ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: return              , lineno: 59, token: TK_RETURN           ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: return              , lineno: 12, token: TK_RETURN           ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: return              , lineno: 12, token: TK_RETURN           ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <optionalReturn>    , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <optionalReturn>    , isLeafNode: yes , NodeSymbol: eps
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: no  , NodeSymbol: <optionalReturn>
-lexemeCurrentNode: ;                   , lineno: 59, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: ;                   , lineno: 59, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 12, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: ;                   , lineno: 12, token: TK_SEM              ,valueIfNumber:      , parentNodeSymbol: <returnStmt>        , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <stmts>             , isLeafNode: no  , NodeSymbol: <returnStmt>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <mainFunction>      , isLeafNode: no  , NodeSymbol: <stmts>
-lexemeCurrentNode: end                 , lineno: 60, token: TK_END              ,valueIfNumber:      , parentNodeSymbol: <mainFunction>      , isLeafNode: yes , NodeSymbol: 
-lexemeCurrentNode: end                 , lineno: 60, token: TK_END              ,valueIfNumber:      , parentNodeSymbol: <mainFunction>      , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: end                 , lineno: 13, token: TK_END              ,valueIfNumber:      , parentNodeSymbol: <mainFunction>      , isLeafNode: yes , NodeSymbol: 
+lexemeCurrentNode: end                 , lineno: 13, token: TK_END              ,valueIfNumber:      , parentNodeSymbol: <mainFunction>      , isLeafNode: yes , NodeSymbol: 
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: <program>           , isLeafNode: no  , NodeSymbol: <mainFunction>
 lexemeCurrentNode: ----                , lineno:   , token:                     ,valueIfNumber:      , parentNodeSymbol: root                , isLeafNode: no  , NodeSymbol:<program> 
