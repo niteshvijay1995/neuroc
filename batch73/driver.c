@@ -119,7 +119,7 @@ int main(int argc, char** args)
 						//print_ast(astTree_root);
 						init_typechecker(astTree_root, st,NULL);
 						FILE* fp = fopen("code.asm", "w");
-						code_gen(astTree_root,st,lis,fp);
+						code_gen(astTree_root->children[0],st,lis,fp);
 						break;
 					default:
 						exit(0);

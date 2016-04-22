@@ -362,48 +362,200 @@ void code_gen(astTree* root,sym_table* st, symbol_list* lis, FILE* fp){
 			continue;
 		}
 		details* d = func_sym_get(f, temp->lexeme);		
-	//	printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d, lineno: %d \n", temp->lexeme, temp->func_name, d->type, d->offset, d->lineno);
-		
 		if(d->type==0)
 		{
 			fprintf(fp,"%s: times 4 db 0\n",temp->lexeme);
 		}
-
-	/*	if(d->type==3)
+		if(d->type==3)
 		{
-			symbol_list* temp2 = d->slist;
 
+			symbol_list* temp2 = d->slist;
 			while(temp2!=NULL)
 			{
 				details* d2 = func_sym_get(d->f, temp2->lexeme);
 				if(d2!=NULL) 
-				printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d\n", temp2->lexeme, temp2->func_name, d2->type, d2->offset);
+				{
+					//printf("\nlexeme: %s, function_name: %s, type: %d, offset: %d\n", temp2->lexeme, temp2->func_name, d2->type, d2->offset);
+					if(d2->type == 0)
+						fprintf(fp,"%s_%s: times 4 db 0\n",temp2->func_name,temp2->lexeme);
+				}
 				temp2 = temp2->next;
 			}
-		}*/
+		}
 		temp = temp->next;
 	}
 	fprintf(fp,"SECTION .text\nmain:\n");
-	astTree* temp_tree = root->children[0];		//_main function
+	astTree* temp_tree = root;
 	int i;
 	fprintf(fp,"push ebx\npush ecx\n");
-	for(i=0;i<temp_tree->size;i++)
-	{
-		if(strcmp(temp_tree->children[i]->node_symbol,"TK_ASSIGNOP")==0)
-		{
-			evaluate(temp_tree->children[i], fp);
-		}
-		if(strcmp(temp_tree->children[i]->node_symbol,"TK_READ")==0)
-		{
-			fprintf(fp,"push %s\npush formatin\ncall scanf\nadd esp,8\n",temp_tree->children[i]->children[0]->lexeme);
-		}
-		if(strcmp(temp_tree->children[i]->node_symbol,"TK_WRITE")==0)
-		{
-			fprintf(fp,"mov ebx,[%s]\npush ebx\npush formatout\ncall printf\nadd esp,8\n",temp_tree->children[i]->children[0]->lexeme);
-		}
-	}
+	code_gen1(temp_tree,fp);
 	fprintf(fp,"pop ecx\npop ebx\nmov eax, 0\nret\n");
 
+}
+
+void code_gen1(astTree* root,FILE* fp)
+{
+	int i;
+	for(i=0;i<root->size;i++)
+	{
+		if(strcmp(root->children[i]->node_symbol,"TK_ASSIGNOP")==0)
+		{
+			evaluate(root->children[i], fp);
+		}
+		if(strcmp(root->children[i]->node_symbol,"TK_READ")==0)
+		{
+			fprintf(fp,"push %s\npush formatin\ncall scanf\nadd esp,8\n",root->children[i]->children[0]->lexeme);
+		}
+		if(strcmp(root->children[i]->node_symbol,"TK_WRITE")==0)
+		{
+			fprintf(fp,"mov ebx,[%s]\npush ebx\npush formatout\ncall printf\nadd esp,8\n",root->children[i]->children[0]->lexeme);
+		}
+		if(strcmp(root->children[i]->node_symbol,"<conditionalStmt>")==0)
+		{
+			cond_stmt(root->children[i],fp);
+		}
+		if(strcmp(root->children[i]->node_symbol,"<iterativeStmt>")==0)
+		{
+			iter_stmt(root->children[i],fp);
+		}
+	}
+}
+
+void iter_stmt(astTree* root,FILE *fp)
+{
+	fprintf(fp, "label_%d:\n",root->children[0]->lineno );
+	cond_eval(root->children[0],fp);
+	fprintf(fp, "cmp ebx,1\n");
+	fprintf(fp, "jne label_out_%d\n",root->children[0]->lineno);
+	code_gen1(root->children[1],fp);
+	fprintf(fp, "jmp label_%d\n",root->children[0]->lineno);
+	fprintf(fp, "label_out_%d:\n",root->children[0]->lineno);
+}
+
+void cond_stmt(astTree* root,FILE* fp)
+{
+	int r = rand()%100;
+	cond_eval(root->children[0],fp);
+	fprintf(fp, "cmp ebx,1\n");
+	fprintf(fp, "jne else_%d_%d\n",root->lineno,r);
+	fprintf(fp, "jmp then_%d_%d\n",root->lineno,r);
+	fprintf(fp, "then_%d_%d:\n",root->lineno,r );
+	//fprintf(fp,"%s\n",toStr(A->next[3]->t->s));
+	code_gen1(root->children[1],fp);
+	fprintf(fp, "jmp cont_%d_%d\n",root->lineno,r );
+	fprintf(fp, "else_%d_%d:\n",root->lineno,r);
+	code_gen1(root->children[2],fp);
+	fprintf(fp, "cont_%d_%d:\n",root->lineno,r );
+
+}
+
+void cond_eval(astTree* root,FILE* fp)
+{
+	if(strcmp(root->node_symbol,"TK_AND")==0)
+	{
+		cond_eval(root->children[0],fp);
+		fprintf(fp, "push ebx\n");
+		cond_eval(root->children[1],fp);
+		fprintf(fp, "pop ecx\n");
+		fprintf(fp,"and ebx,ecx\n");
+	}
+	else if(strcmp(root->node_symbol,"TK_OR")==0)
+	{
+		cond_eval(root->children[0],fp);
+		fprintf(fp, "push ebx\n");
+		cond_eval(root->children[1],fp);
+		fprintf(fp, "pop ecx\n");
+		fprintf(fp,"or ebx,ecx\n");
+	}
+	else if(strcmp(root->node_symbol,"TK_GT")==0)
+	{
+		cond_eval(root->children[0],fp);
+		fprintf(fp, "push ebx\n");
+		cond_eval(root->children[1],fp);
+		fprintf(fp, "pop ecx\n");
+		fprintf(fp, "cmp ecx,ebx\n");
+		int r =  rand()%10000;
+		fprintf(fp, "jg true_%d_%d\n",root->lineno,r);
+		fprintf(fp, "jmp false_%d_%d\n",root->lineno,r);
+		fprintf(fp, "true_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
+		fprintf(fp, "false_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
+
+
+	}
+	else if(strcmp(root->node_symbol,"TK_GE")==0)
+	{
+		cond_eval(root->children[0],fp);
+		fprintf(fp, "push ebx\n");
+		cond_eval(root->children[1],fp);
+		fprintf(fp, "pop ecx\n");
+		fprintf(fp, "cmp ecx,ebx\n");
+		int r =  rand()%10000;
+		fprintf(fp, "jge true_%d_%d\n",root->lineno,r);
+		fprintf(fp, "jmp false_%d_%d\n",root->lineno,r);
+		fprintf(fp, "true_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
+		fprintf(fp, "false_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
+	}
+	else if(strcmp(root->node_symbol,"TK_EQ")==0)
+	{
+		cond_eval(root->children[0],fp);
+		fprintf(fp, "push ebx\n");
+		cond_eval(root->children[1],fp);
+		fprintf(fp, "pop ecx\n");
+		fprintf(fp, "cmp ebx,ecx\n");
+		int r =  rand()%10000;
+		fprintf(fp, "je true_%d_%d\n",root->lineno,r);
+		fprintf(fp, "jmp false_%d_%d\n",root->lineno,r);
+		fprintf(fp, "true_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
+		fprintf(fp, "false_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
+	}
+	else if(strcmp(root->node_symbol,"TK_NE")==0)
+	{
+		cond_eval(root->children[0],fp);
+		fprintf(fp, "push ebx\n");
+		cond_eval(root->children[1],fp);
+		fprintf(fp, "pop ecx\n");
+		fprintf(fp, "cmp ebx,ecx\n");
+		int r =  rand()%10000;
+		fprintf(fp, "jne true_%d_%d\n",root->lineno,r);
+		fprintf(fp, "jmp false_%d_%d\n",root->lineno,r);
+		fprintf(fp, "true_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
+		fprintf(fp, "false_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
+	}
+	else if(strcmp(root->node_symbol,"TK_LE")==0)
+	{
+		cond_eval(root->children[0],fp);
+		fprintf(fp, "push ebx\n");
+		cond_eval(root->children[1],fp);
+		fprintf(fp, "pop ecx\n");
+		fprintf(fp, "cmp ecx,ebx\n");
+		int r =  rand()%10000;
+		fprintf(fp, "jle true_%d_%d\n",root->lineno,r);
+		fprintf(fp, "jmp false_%d_%d\n",root->lineno,r);
+		fprintf(fp, "true_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
+		fprintf(fp, "false_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
+	}
+	else if(strcmp(root->node_symbol,"TK_LT")==0)
+	{
+		cond_eval(root->children[0],fp);
+		fprintf(fp, "push ebx\n");
+		cond_eval(root->children[1],fp);
+		fprintf(fp, "pop ecx\n");
+		fprintf(fp, "cmp ecx,ebx\n");
+		int r =  rand()%10000;
+		fprintf(fp, "jl true_%d_%d\n",root->lineno,r);
+		fprintf(fp, "jmp false_%d_%d\n",root->lineno,r);
+		fprintf(fp, "true_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
+		fprintf(fp, "false_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
+
+	}
+	else if(strcmp(root->node_symbol,"TK_ID")==0)
+	{
+		fprintf(fp, "mov ebx,[%s]\n",root->lexeme);
+	}
+	else if(strcmp(root->node_symbol,"TK_NUM")==0)
+	{
+		fprintf(fp, "mov ebx,%s\n",root->lexeme );
+	}
 }
 
 void evaluate(astTree* root, FILE* fp)
@@ -419,49 +571,71 @@ void evaluate(astTree* root, FILE* fp)
 	}
 	else if(strcmp(temp->node_symbol,"TK_PLUS")==0)
 	{
-		eval(temp,"ebx", fp);
+		eval(temp, fp);
 	}
 	else if(strcmp(temp->node_symbol,"TK_MINUS")==0)
 	{
-		eval(temp,"ebx", fp);
+		eval(temp, fp);
+	}
+	else if(strcmp(temp->node_symbol,"TK_MUL")==0)
+	{
+		eval(temp, fp);
+	}
+	else if(strcmp(temp->node_symbol,"TK_DIV")==0)
+	{
+		eval(temp, fp);
 	}
 	fprintf(fp,"mov [%s],ebx\n",root->children[0]->children[0]->lexeme);
 }
-void eval(astTree* root,char* reg, FILE* fp)
+void eval(astTree* root, FILE* fp)
 {
 	if(strcmp(root->node_symbol,"TK_PLUS")==0)
 	{
-		eval(root->children[1],reg2(reg),fp);
-		eval(root->children[0],reg, fp);
-		fprintf(fp,"add %s,%s\n",reg,reg2(reg));
+		eval(root->children[1],fp);
+		fprintf(fp,"PUSH ebx\n");
+		eval(root->children[0], fp);
+		fprintf(fp,"POP ecx\n");
+		fprintf(fp,"add ebx,ecx\n");
 		return;
 	}
 	else if(strcmp(root->node_symbol,"TK_MINUS")==0)
 	{
-		eval(root->children[1],reg2(reg), fp);
-		eval(root->children[0],reg, fp);
-		fprintf(fp,"sub %s,%s\n",reg,reg2(reg));
+		eval(root->children[1], fp);
+		fprintf(fp,"PUSH ebx\n");
+		eval(root->children[0], fp);
+		fprintf(fp,"POP ecx\n");
+		fprintf(fp,"sub ebx,ecx\n");
+		return;
+	}
+	if(strcmp(root->node_symbol,"TK_MUL")==0)
+	{
+		eval(root->children[1],fp);
+		fprintf(fp,"PUSH ebx\n");
+		eval(root->children[0], fp);
+		fprintf(fp,"POP eax\n");
+		fprintf(fp,"imul ebx\n");
+		fprintf(fp,"mov ebx,eax\n");
+		return;
+	}
+	if(strcmp(root->node_symbol,"TK_DIV")==0)
+	{
+		eval(root->children[1],fp);
+		fprintf(fp,"PUSH ebx\n");
+		eval(root->children[0], fp);
+		fprintf(fp,"mov eax,ebx\n");
+		fprintf(fp,"POP ebx\n");
+		fprintf(fp,"idiv ebx\n");
+		fprintf(fp,"mov ebx,eax\n");
 		return;
 	}
 	else if(strcmp(root->node_symbol,"TK_ID")==0)
 	{
-		fprintf(fp,"mov %s,[%s]\n",reg,root->lexeme);
+		fprintf(fp,"mov ebx,[%s]\n",root->lexeme);
 		return;
 	}
 	else if(strcmp(root->node_symbol, "TK_NUM")==0)
 	{
-		fprintf(fp, "mov %s,%s\n",reg,root->lexeme);
+		fprintf(fp, "mov ebx,%s\n",root->lexeme);
 		return;
-	}
-}
-char* reg2(char* reg)
-{
-	if(strcmp(reg,"ebx")==0)
-	{
-		return "ecx";
-	}
-	else
-	{
-		return "ebx";
 	}
 }

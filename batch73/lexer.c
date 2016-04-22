@@ -516,6 +516,7 @@ tokenInfo* getNextToken(FILE *fp)
 						}
 						break;
 					case '>':
+						temp = i;
 						if(Buffer[++temp] == '=')			//check for >= (greater than or equal to)
 						{
 							lexeme[j] = '\0';
