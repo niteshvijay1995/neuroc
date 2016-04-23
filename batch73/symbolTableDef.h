@@ -1,3 +1,9 @@
+
+/*
+Batch 73
+Nitesh Vijay 2013A7PS164P
+Nilay Jain 2013A7PS179P
+*/
 typedef struct func_sym_table func_sym_table;
 typedef struct details details;
 typedef struct var_entry var_entry;

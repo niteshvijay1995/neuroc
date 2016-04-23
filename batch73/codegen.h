@@ -1,3 +1,8 @@
+/*
+Batch 73
+Nitesh Vijay 2013A7PS164P
+Nilay Jain 2013A7PS179P
+*/
 void evaluate(astTree* root,func_sym_table* g_table, FILE* fp);
 void eval(astTree* root,FILE* fp);
 void code_gen(astTree* root,sym_table* st, symbol_list* lis, FILE* fp);

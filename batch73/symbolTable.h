@@ -1,3 +1,8 @@
+/*
+Batch 73
+Nitesh Vijay 2013A7PS164P
+Nilay Jain 2013A7PS179P
+*/
 #include "symbolTableDef.h"
 
 void push_symbol_list(symbol_list** lis, char* lexeme, char* func_name);

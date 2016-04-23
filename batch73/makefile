@@ -15,4 +15,4 @@ codegen.o: codegen.c codegen.h
 semanticAnalyzer.o: semanticAnalyzer.c semanticAnalyzer.h
 	gcc -c semanticAnalyzer.c
 clean:
-	rm -f lexer.o parser.o ast.o symbolTable.o typeChecker.o codegen.o semanticAnalyzer.o code.asm code.o code.out o.am out.no stage2exe
+	rm -f lexer.o parser.o ast.o symbolTable.o typeChecker.o codegen.o semanticAnalyzer.o code.asm code.o code.out stage2exe

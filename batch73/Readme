@@ -7,11 +7,20 @@ Instructions
 
 1. Open terminal in current directory
 2. Type "make"
-3. Type "./stage1exe testcase1.txt output.txt"
+3. Type "./stage2exe testcase1.txt code.asm"
 Note -  All the 4 options are working.
 
+Instructions to run assembly code:
+1. first install the follwing library by typing the below command on terminal
+	$ sudo apt-get install gcc-multilib g++-multilib
+2. Now when you run code by step 3 of Instructions, and generate assembly code using option 7, you'll be asked if you want to execute assembly code (only when the output file is named "code.asm"). Press y for yes and then you can enter the input for the program.
 
-.txt file details :
+3. Exclusively you can run the asm code by giving the following commands (considering file is code.asm):
+	$ nasm -f elf code.asm -o code.o
+	$ gcc -m32 code.o -o code.out
+	$ ./code.out
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<< .txt file details : >>>>>>>>>>>>>>>>>>>>>>>>>>
 dfa.txt - dfa input
 terminals.txt - list of terminals in grammar
 nonterminal.txt - list of non-terminals in grammar
