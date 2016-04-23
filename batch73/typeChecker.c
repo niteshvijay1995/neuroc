@@ -170,7 +170,7 @@ void id_symbol_table_lookup(astTree* root,sym_table* st,char* func_name, int* er
 	}
 	else
 	{
-		printf("ERROR 555: Undeclared variable %s , node_symbol: %s, used at line number: %d\n",root->lexeme, root->node_symbol,root->lineno);
+		printf("ERROR 555: Undeclared variable %s used at line number: %d\n",root->lexeme,root->lineno);
 			*error = 1;
 			root->type = -2;
 		return;

@@ -15,4 +15,3 @@ sym_table* createSymbolTable(astTree* root, symbol_list** lis, int flag, int* er
 func_sym_table* search_sym_table(sym_table* st, char* name);
 void printSymbolTable(sym_table* st, symbol_list* lis);
 void iterate_type_def(details** d, astTree* root, func_sym_table* g, int flag, int* error);
-void check_read_write_stmt(astTree* root, sym_table* st, char* func_name, int* error);

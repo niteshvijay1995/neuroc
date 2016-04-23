@@ -33,7 +33,7 @@ sym_table* push_sym_table(sym_table* head, func_sym_table* data){
 
 func_sym_table* sym_create(int size, char* name){
 	func_sym_table* ht = NULL;
-
+	global_offset = 0;
 	if(size < 1) return ht;
 
 	if((ht = malloc(sizeof(func_sym_table)))==NULL){
@@ -191,6 +191,7 @@ void createVarEntry(func_sym_table* f, func_sym_table* g, char* lexeme, details*
 	}
 	func_sym_insert(f, lexeme, d);
 	push_symbol_list(lis, lexeme, f->func_name);
+
 }
 
 void allocate(astTree* temp, int* offset, func_sym_table* f, func_sym_table* g, looktable* lt_rec, symbol_list** lis, int flag, int flag2, int* error){
@@ -235,7 +236,7 @@ void allocate(astTree* temp, int* offset, func_sym_table* f, func_sym_table* g, 
 			createVarEntry(g, g, temp->children[j+1]->lexeme, d, lis, flag2, error);
 		}
 		else{
-			(*offset) = *offset + off;
+			(*offset) = (*offset) + off;
 			createVarEntry(f,g,temp->children[j+1]->lexeme,d, lis, flag2, error);
 			//printf("\n ***lexeme = %s\n",temp->children[j+1]->lexeme);
 		}	

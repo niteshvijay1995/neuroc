@@ -97,10 +97,10 @@ void code_gen1(astTree* root,sym_table* st,func_sym_table* g_table,FILE* fp)
 
 void print_rec(astTree* root,sym_table* st,func_sym_table* g_table, FILE* fp)
 {
-	printf("\nPrinting Record %s\n",root->children[0]->node_symbol);
+	// printf("\nPrinting Record %s\n",root->children[0]->node_symbol);
 	func_sym_table* f_table = search_sym_table(st, "_main");
 	details* d3 = func_sym_get(f_table, root->children[0]->children[0]->lexeme);
-	printf("\nPrinting Record\n");
+	// printf("\nPrinting Record\n");
 	d3 = func_sym_get(g_table,d3->rec_name);
 	symbol_list* temp2 = d3->slist;
 	while(temp2!=NULL)
@@ -246,13 +246,11 @@ void cond_eval(astTree* root,FILE* fp)
 		cond_eval(root->children[1],fp);
 		fprintf(fp, "pop ecx\n");
 		fprintf(fp, "cmp ecx,ebx\n");
-		int r =  rand()%10000;
-		fprintf(fp, "jg true_%d_%d\n",root->lineno,r);
-		fprintf(fp, "jmp false_%d_%d\n",root->lineno,r);
-		fprintf(fp, "true_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
-		fprintf(fp, "false_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
-
-
+		int r =  rand()%1000;
+		fprintf(fp, "jg yes_%d_%d\n",root->lineno,r);
+		fprintf(fp, "jmp no_%d_%d\n",root->lineno,r);
+		fprintf(fp, "yes_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
+		fprintf(fp, "no_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
 	}
 	else if(strcmp(root->node_symbol,"TK_GE")==0)
 	{
@@ -261,11 +259,11 @@ void cond_eval(astTree* root,FILE* fp)
 		cond_eval(root->children[1],fp);
 		fprintf(fp, "pop ecx\n");
 		fprintf(fp, "cmp ecx,ebx\n");
-		int r =  rand()%10000;
-		fprintf(fp, "jge true_%d_%d\n",root->lineno,r);
-		fprintf(fp, "jmp false_%d_%d\n",root->lineno,r);
-		fprintf(fp, "true_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
-		fprintf(fp, "false_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
+		int r =  rand()%1000;
+		fprintf(fp, "jge yes_%d_%d\n",root->lineno,r);
+		fprintf(fp, "jmp no_%d_%d\n",root->lineno,r);
+		fprintf(fp, "yes_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
+		fprintf(fp, "no_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
 	}
 	else if(strcmp(root->node_symbol,"TK_EQ")==0)
 	{
@@ -274,11 +272,11 @@ void cond_eval(astTree* root,FILE* fp)
 		cond_eval(root->children[1],fp);
 		fprintf(fp, "pop ecx\n");
 		fprintf(fp, "cmp ebx,ecx\n");
-		int r =  rand()%10000;
-		fprintf(fp, "je true_%d_%d\n",root->lineno,r);
-		fprintf(fp, "jmp false_%d_%d\n",root->lineno,r);
-		fprintf(fp, "true_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
-		fprintf(fp, "false_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
+		int r =  rand()%1000;
+		fprintf(fp, "je yes_%d_%d\n",root->lineno,r);
+		fprintf(fp, "jmp no_%d_%d\n",root->lineno,r);
+		fprintf(fp, "yes_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
+		fprintf(fp, "no_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
 	}
 	else if(strcmp(root->node_symbol,"TK_NE")==0)
 	{
@@ -287,11 +285,11 @@ void cond_eval(astTree* root,FILE* fp)
 		cond_eval(root->children[1],fp);
 		fprintf(fp, "pop ecx\n");
 		fprintf(fp, "cmp ebx,ecx\n");
-		int r =  rand()%10000;
-		fprintf(fp, "jne true_%d_%d\n",root->lineno,r);
-		fprintf(fp, "jmp false_%d_%d\n",root->lineno,r);
-		fprintf(fp, "true_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
-		fprintf(fp, "false_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
+		int r =  rand()%1000;
+		fprintf(fp, "jne yes_%d_%d\n",root->lineno,r);
+		fprintf(fp, "jmp no_%d_%d\n",root->lineno,r);
+		fprintf(fp, "yes_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
+		fprintf(fp, "no_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
 	}
 	else if(strcmp(root->node_symbol,"TK_LE")==0)
 	{
@@ -300,11 +298,11 @@ void cond_eval(astTree* root,FILE* fp)
 		cond_eval(root->children[1],fp);
 		fprintf(fp, "pop ecx\n");
 		fprintf(fp, "cmp ecx,ebx\n");
-		int r =  rand()%10000;
-		fprintf(fp, "jle true_%d_%d\n",root->lineno,r);
-		fprintf(fp, "jmp false_%d_%d\n",root->lineno,r);
-		fprintf(fp, "true_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
-		fprintf(fp, "false_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
+		int r =  rand()%1000;
+		fprintf(fp, "jle yes_%d_%d\n",root->lineno,r);
+		fprintf(fp, "jmp no_%d_%d\n",root->lineno,r);
+		fprintf(fp, "yes_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
+		fprintf(fp, "no_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
 	}
 	else if(strcmp(root->node_symbol,"TK_LT")==0)
 	{
@@ -313,11 +311,11 @@ void cond_eval(astTree* root,FILE* fp)
 		cond_eval(root->children[1],fp);
 		fprintf(fp, "pop ecx\n");
 		fprintf(fp, "cmp ecx,ebx\n");
-		int r =  rand()%10000;
-		fprintf(fp, "jl true_%d_%d\n",root->lineno,r);
-		fprintf(fp, "jmp false_%d_%d\n",root->lineno,r);
-		fprintf(fp, "true_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
-		fprintf(fp, "false_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
+		int r =  rand()%1000;
+		fprintf(fp, "jl yes_%d_%d\n",root->lineno,r);
+		fprintf(fp, "jmp no_%d_%d\n",root->lineno,r);
+		fprintf(fp, "yes_%d_%d:\nmov ebx, 1\njmp resume_%d_%d\n",root->lineno,r,root->lineno,r );
+		fprintf(fp, "no_%d_%d:\nmov ebx, 0\nresume_%d_%d:\n",root->lineno,r,root->lineno,r );
 
 	}
 	else if(strcmp(root->node_symbol,"TK_ID")==0)

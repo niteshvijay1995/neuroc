@@ -3,7 +3,7 @@ typedef struct details details;
 typedef struct var_entry var_entry;
 typedef struct sym_table sym_table;
 typedef struct symbol_list symbol_list;
-
+//typedef struct error_list error_list;
 struct details{
 	int type; // 0 = int, 1 = real, 2 = record, 3 = record_details.
 	int offset;
@@ -40,3 +40,8 @@ struct symbol_list{
 	char* func_name;
 	struct symbol_list* next;
 };
+
+// struct error_list{
+// 	char* error_name;
+// 	struct error_list* next;
+// };
