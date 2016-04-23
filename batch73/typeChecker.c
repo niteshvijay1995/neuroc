@@ -408,9 +408,9 @@ void code_gen(astTree* root,sym_table* st, symbol_list* lis, FILE* fp){
 	fprintf(fp,"SECTION .text\nmain:\n");
 	astTree* temp_tree = root;
 	int i;
-	fprintf(fp,"push ebx\npush ecx\n");
+	fprintf(fp,"push ebx\npush ecx\npush eax\n");
 	code_gen1(temp_tree,st,g_table,fp);
-	fprintf(fp,"pop ecx\npop ebx\nmov eax, 0\nret\n");
+	fprintf(fp,"pop ecx\npop ebx\npop eax\nmov eax, 0\nret\n");
 
 }
 
